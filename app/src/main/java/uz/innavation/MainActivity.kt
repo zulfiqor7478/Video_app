@@ -224,7 +224,7 @@ class MainActivity : AppCompatActivity() {
                     this, cameraSelector, preview, videoCapture)
 
             } catch(exc: Exception) {
-                Log.e(TAG, "Use case binding failed", exc)
+                Log.e(TAG, "Use case binding failed exception", exc)
             }
 
         }, ContextCompat.getMainExecutor(this))
