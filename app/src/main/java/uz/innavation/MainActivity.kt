@@ -47,11 +47,8 @@ class MainActivity : AppCompatActivity() {
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
-        if (splashActivity.allPermissionsGranted()) {
             startCamera()
-        } else {
 
-        }
 
         viewBinding.imageCaptureButton.setOnClickListener { takePhoto() }
         viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
