@@ -6,10 +6,10 @@ import kotlin.math.roundToInt
 class MyTasks {
     companion object{
         fun getTimeText(time: Double): String{
-            var rounded = time.roundToInt()
-            var seconds: Int = ((rounded % 86400) % 3600) % 60
-            var minutes: Int = ((rounded) % 86400) / 60
-            var hours: Int = ((rounded %86400)/3600)
+            val rounded = time.roundToInt()
+            val seconds: Int = ((rounded % 86400) % 3600) % 60
+            val minutes: Int = ((rounded) % 86400) / 60
+            val hours: Int = ((rounded %86400)/3600)
 
             return formatTime(seconds, minutes, hours)
         }
