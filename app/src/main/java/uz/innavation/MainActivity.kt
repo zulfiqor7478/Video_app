@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.Manifest
 import android.content.ContentValues
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -23,6 +24,7 @@ import android.provider.Settings
 import android.view.animation.Animation
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.PermissionChecker
 import androidx.lifecycle.ViewModelProvider
 import com.karumi.dexter.Dexter
@@ -49,24 +51,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainActivityViewModel
 
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults:
-        IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CODE_PERMISSIONS) {
-            if (allPermissionsGranted()) {
-                startCamera()
-            } else {
-                Toast.makeText(
-                    this,
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,21 +59,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-
-        if (allPermissionsGranted()) {
-            startCamera()
-        } else {
-            ActivityCompat.requestPermissions(
-                this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS
-            )
-        }
+        startCamera()
 
         // Set up the listeners for take photo and video capture buttons
         viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
         viewModel.getLocation(this)
         cameraExecutor = Executors.newSingleThreadExecutor()
         subscribeObservers()
-        requestPermissionsForLocation()
     }
     private fun subscribeObservers() {
         viewModel.timeForTextView.observe(this){
@@ -212,46 +188,7 @@ class MainActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
-        ContextCompat.checkSelfPermission(
-            baseContext, it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
 
-
-    private fun requestPermissionsForLocation() {
-        Dexter.withContext(this)
-            .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
-            .withListener(object : PermissionListener {
-                override fun onPermissionGranted(response: PermissionGrantedResponse) {
-                    Toast.makeText(this@MainActivity, "Location Access", Toast.LENGTH_SHORT)
-                        .show()
-                    viewModel.getLocation(this@MainActivity)
-                }
-
-                override fun onPermissionDenied(response: PermissionDeniedResponse) {
-                    if (response.isPermanentlyDenied) {
-                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        val uri: Uri = Uri.fromParts("package", packageName, null)
-                        intent.data = uri
-                        startActivity(intent)
-                    }
-                }
-
-                override fun onPermissionRationaleShouldBeShown(
-                    permission: PermissionRequest?,
-                    token: PermissionToken?
-                ) {
-                    val alertDialog = AlertDialog.Builder(this@MainActivity)
-                    alertDialog.setMessage("Tasvirga tushirish uchun siz qurilma joylashvini aniqlash uchun ruxsat berishingiz lozim!!!")
-                    alertDialog.setPositiveButton("OK") { dialog, which ->
-                        token?.continuePermissionRequest()
-                    }
-                    alertDialog.setNegativeButton("RAD ETISH") { dialog, which -> dialog?.dismiss() }
-                    alertDialog.show()
-                }
-            }).check()
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -262,14 +199,5 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "CameraXApp"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-        private const val REQUEST_CODE_PERMISSIONS = 10
-        private val REQUIRED_PERMISSIONS =
-            mutableListOf(
-                Manifest.permission.CAMERA,
-                Manifest.permission.RECORD_AUDIO
-            ).apply {
-                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                } }.toTypedArray()
     }
 }
