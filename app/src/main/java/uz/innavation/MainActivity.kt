@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -17,10 +19,18 @@ import androidx.camera.video.VideoCapture
 import java.util.concurrent.ExecutorService
 import android.os.Build
 import android.provider.MediaStore
+import android.provider.Settings
 import android.view.animation.Animation
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.PermissionChecker
 import androidx.lifecycle.ViewModelProvider
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionDeniedResponse
+import com.karumi.dexter.listener.PermissionGrantedResponse
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.single.PermissionListener
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -76,15 +86,20 @@ class MainActivity : AppCompatActivity() {
 
         // Set up the listeners for take photo and video capture buttons
         viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
-
+        viewModel.getLocation(this)
         cameraExecutor = Executors.newSingleThreadExecutor()
-
         subscribeObservers()
+        requestPermissionsForLocation()
     }
+
+
 
     private fun subscribeObservers() {
         viewModel.timeForTextView.observe(this){
             viewBinding.tvTime.text = it
+        }
+        viewModel.locationText.observe(this){
+            viewBinding.tvLocationText.text = it
         }
     }
 
@@ -208,10 +223,47 @@ class MainActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
+
+    private fun requestPermissionsForLocation() {
+        Dexter.withContext(this)
+            .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
+            .withListener(object : PermissionListener {
+                override fun onPermissionGranted(response: PermissionGrantedResponse) {
+                    Toast.makeText(this@MainActivity, "Location Access", Toast.LENGTH_SHORT)
+                        .show()
+                    viewModel.getLocation(this@MainActivity)
+                }
+
+                override fun onPermissionDenied(response: PermissionDeniedResponse) {
+                    if (response.isPermanentlyDenied) {
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                        val uri: Uri = Uri.fromParts("package", packageName, null)
+                        intent.data = uri
+                        startActivity(intent)
+                    }
+                }
+
+                override fun onPermissionRationaleShouldBeShown(
+                    permission: PermissionRequest?,
+                    token: PermissionToken?
+                ) {
+                    val alertDialog = AlertDialog.Builder(this@MainActivity)
+                    alertDialog.setMessage("Tasvirga tushirish uchun siz qurilma joylashvini aniqlash uchun ruxsat berishingiz lozim!!!")
+                    alertDialog.setPositiveButton("OK") { dialog, which ->
+                        token?.continuePermissionRequest()
+                    }
+                    alertDialog.setNegativeButton("RAD ETISH") { dialog, which -> dialog?.dismiss() }
+                    alertDialog.show()
+
+                }
+            }).check()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
+
 
     companion object {
         private const val TAG = "CameraXApp"
@@ -226,4 +278,6 @@ class MainActivity : AppCompatActivity() {
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 } }.toTypedArray()
     }
+
+
 }
