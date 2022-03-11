@@ -91,9 +91,6 @@ class MainActivity : AppCompatActivity() {
         subscribeObservers()
         requestPermissionsForLocation()
     }
-
-
-
     private fun subscribeObservers() {
         viewModel.timeForTextView.observe(this){
             viewBinding.tvTime.text = it
@@ -102,8 +99,6 @@ class MainActivity : AppCompatActivity() {
             viewBinding.tvLocationText.text = it
         }
     }
-
-
     private fun captureVideo() {
         val videoCapture = this.videoCapture ?: return
 
@@ -254,7 +249,6 @@ class MainActivity : AppCompatActivity() {
                     }
                     alertDialog.setNegativeButton("RAD ETISH") { dialog, which -> dialog?.dismiss() }
                     alertDialog.show()
-
                 }
             }).check()
     }
@@ -278,6 +272,4 @@ class MainActivity : AppCompatActivity() {
                     add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 } }.toTypedArray()
     }
-
-
 }
