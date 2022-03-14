@@ -144,6 +144,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
         <TextView
+            android:id="@+id/tv_card"
             android:text="Ruxsat berish"
             android:textAllCaps="true"
             android:textSize="18sp"
