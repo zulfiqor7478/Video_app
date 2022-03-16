@@ -64,4 +64,11 @@ dependencies {
 
     //Dexter
     implementation 'com.karumi:dexter:6.2.3'
+
+    //SpeedView
+    implementation 'com.github.anastr:speedviewlib:1.6.0'
+
+    //Play service
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 }

@@ -92,12 +92,12 @@
         app:layout_constraintTop_toBottomOf="@id/tv_rec"
         app:layout_constraintVertical_bias="0" />
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_demo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_margin="20dp"
-        android:text="DEMO"
+        android:src="@drawable/yxx"
         android:textColor="@color/white"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -108,19 +108,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1" />
 
-    <Button
+    <androidx.cardview.widget.CardView
         android:id="@+id/video_capture_button"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="50dp"
-        android:backgroundTint="@color/teal_200"
-        android:elevation="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        app:cardElevation="0dp"
+        android:backgroundTint="#00FFFFFF"
+        android:foreground="?attr/selectableItemBackground"
         android:text="@string/start_capture"
+        android:textSize="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toEndOf="@id/vertical_centerline" />
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/vertical_centerline"
+        android:focusable="true" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_centerline"
@@ -129,4 +131,33 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent=".5001" />
 
+    <com.github.anastr.speedviewlib.SpeedView
+        android:id="@+id/speedView"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:sv_backgroundCircleColor="@color/white"
+        app:sv_centerCircleColor="@color/black"
+        app:sv_centerCircleRadius="5dp"
+        app:sv_indicator="KiteIndicator"
+        app:sv_indicatorColor="@color/brown"
+        app:sv_indicatorWidth="8dp"
+        app:sv_markWidth="2dp"
+        app:sv_maxSpeed="180"
+        app:sv_sectionStyle="BUTT"
+        app:sv_speedTextFormat="INTEGER"
+        app:sv_speedTextPosition="BOTTOM_CENTER"
+        app:sv_speedTextSize="13sp"
+        app:sv_speedometerWidth="18dp"
+        app:sv_textSize="8dp"
+        app:sv_tickNumber="10"
+        app:sv_unit="km/h"
+        app:sv_unitTextColor="@color/black"
+        app:sv_withIndicatorLight="true" />
 </androidx.constraintlayout.widget.ConstraintLayout>
