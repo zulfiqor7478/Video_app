@@ -1,21 +1,17 @@
 package uz.innavation.utils
 
-import kotlin.math.round
-import kotlin.math.roundToInt
-
 class MyTasks {
     companion object {
-        fun getTimeText(time: Double): String {
-            val rounded = time.roundToInt()
-            val seconds: Int = ((rounded % 86400) % 3600) % 60
-            val minutes: Int = ((rounded) % 86400) / 60
-            val hours: Int = ((rounded % 86400) / 3600)
+        fun getTimeText(time: Long): String {
+            val seconds: Long = ((time % 86400) % 3600) % 60
+            val minutes: Long = ((time) % 86400) / 60
+            val hours: Long = ((time % 86400) / 3600)
 
             return formatTime(seconds, minutes, hours)
         }
 
-        private fun formatTime(seconds: Int, minutes: Int, hours: Int): String {
-            return String.format("%02d", hours) + ":" + String.format(
+        private fun formatTime(seconds: Long, minutes: Long, hours: Long): String {
+            return String.format(
                 "%02d",
                 minutes
             ) + ":" + String.format("%02d", seconds)

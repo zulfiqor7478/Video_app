@@ -4,16 +4,9 @@ import uz.innavation.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.ContentValues
-import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
 import android.location.Location
-import android.net.Uri
 import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,22 +19,14 @@ import java.util.concurrent.ExecutorService
 import android.os.Build
 import android.os.Looper
 import android.provider.MediaStore
-import android.provider.Settings
 import android.view.animation.Animation
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.content.PermissionChecker
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.*
-import com.karumi.dexter.Dexter
-import com.karumi.dexter.PermissionToken
-import com.karumi.dexter.listener.PermissionDeniedResponse
-import com.karumi.dexter.listener.PermissionGrantedResponse
-import com.karumi.dexter.listener.PermissionRequest
-import com.karumi.dexter.listener.single.PermissionListener
+import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -67,29 +52,44 @@ class MainActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.hide()
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-        supportActionBar?.hide()
-        askPermission()
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+
+        askPermission()
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 for (location in p0.locations) {
-//                  viewBinding.tvLocationText.text = "${location.latitude}, ${location.longitude}"
                     viewModel.getAddressForLocation(this@MainActivity, location)
+                    viewModel.getSpeedForLocation(location)
                 }
             }
         }
 
-        startCamera()
-        viewModel.startTimer()
+        CoroutineScope(Dispatchers.IO).launch {
+            startCamera()
+        }
 
         viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
-        subscribeObservers()
 
-//        viewModel.getLocation(this)
-        cameraExecutor = Executors.newSingleThreadExecutor()
+        subscribeObservers()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.startLocationUpdates(this, fusedLocationClient, locationCallback)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.stopLocationUpdates(fusedLocationClient, locationCallback)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
     }
 
     private fun subscribeObservers() {
@@ -99,10 +99,15 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.speedText.observe(this) {
             viewBinding.speedView?.speedTo(it.speed, it.time)
+            Toast.makeText(this, it.speed.toString(), Toast.LENGTH_SHORT).show()
         }
+
         viewModel.locationText.observe(this) {
             viewBinding.tvLocationText.text = it
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
+
+        cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
     private fun captureVideo() {
@@ -213,53 +218,6 @@ class MainActivity : AppCompatActivity() {
             }
 
         }, ContextCompat.getMainExecutor(this))
-    }
-
-
-    override fun onResume() {
-        super.onResume()
-        captureVideo()
-        startLocationUpdates()
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        stopLocationUpdates()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cameraExecutor.shutdown()
-    }
-
-    private fun stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
-    }
-
-
-    private fun startLocationUpdates() {
-        val locationRequest = LocationRequest.create().apply {
-            interval = 5000
-            fastestInterval = 3000
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            fusedLocationClient.requestLocationUpdates(
-                locationRequest,
-                locationCallback,
-                Looper.getMainLooper()
-            )
-        }
-
     }
 
 
