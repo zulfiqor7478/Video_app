@@ -20,6 +20,7 @@ import android.os.Build
 import android.os.Looper
 import android.provider.MediaStore
 import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -30,12 +31,9 @@ import kotlinx.coroutines.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-typealias LumaListener = (luma: Double) -> Unit
-
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
-
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
 
@@ -44,9 +42,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var animation2: Animation
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var location: Location? = null
     private lateinit var locationCallback: LocationCallback
-    private var isGot = false
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -75,6 +71,10 @@ class MainActivity : AppCompatActivity() {
         viewBinding.videoCaptureButton.setOnClickListener { captureVideo() }
 
         subscribeObservers()
+
+        CoroutineScope(Dispatchers.Default).launch {
+            videoAnimation()
+        }
     }
 
     override fun onResume() {
@@ -91,6 +91,35 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun askPermission() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        val locationPermissionRequest = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+                    // Precise location access granted.
+                }
+                permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
+                    // Only approximate location access granted.
+                }
+                else -> {
+                    // No location access granted.
+                }
+            }
+        }
+
+        locationPermissionRequest.launch(
+            arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            )
+        )
+
+    }
+
 
     private fun subscribeObservers() {
         viewModel.timeForTextView.observe(this) {
@@ -220,37 +249,47 @@ class MainActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
+    private fun videoAnimation() {
+        animation1 = AnimationUtils.loadAnimation(this@MainActivity, R.anim.anim)
+        animation2 = AnimationUtils.loadAnimation(this@MainActivity, R.anim.anim_2)
 
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun askPermission() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-        val locationPermissionRequest = registerForActivityResult(
-            ActivityResultContracts.RequestMultiplePermissions()
-        ) { permissions ->
-            when {
-                permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
-                    // Precise location access granted.
-                }
-                permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
-                    // Only approximate location access granted.
-                }
-                else -> {
-                    // No location access granted.
-                }
+        viewBinding.redCircleAnimation?.animation = animation1
+
+        animation1.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+
             }
-        }
 
-        locationPermissionRequest.launch(
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-        )
+            override fun onAnimationEnd(animation: Animation?) {
+                viewBinding.redCircleAnimation?.animation = animation2
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+
+            }
+
+        })
+
+        animation2.setAnimationListener(object : Animation.AnimationListener {
+            override fun onAnimationStart(animation: Animation?) {
+
+            }
+
+            override fun onAnimationEnd(animation: Animation?) {
+                videoAnimation()
+            }
+
+            override fun onAnimationRepeat(animation: Animation?) {
+
+            }
+        })
 
     }
+
 
     companion object {
         private const val TAG = "CameraXApp"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
     }
+
 }
