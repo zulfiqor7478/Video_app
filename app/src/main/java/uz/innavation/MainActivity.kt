@@ -1,35 +1,33 @@
 package uz.innavation
 
-import uz.innavation.databinding.ActivityMainBinding
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.Manifest
 import android.content.ContentValues
-import android.content.pm.PackageManager
-import android.location.Location
-import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import java.util.concurrent.Executors
-import androidx.camera.core.*
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.*
-import androidx.camera.video.VideoCapture
-import java.util.concurrent.ExecutorService
+import android.media.MediaExtractor
+import android.opengl.GLES20
 import android.os.Build
-import android.os.Looper
+import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.*
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.video.*
+import androidx.camera.video.VideoCapture
+import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.*
 import kotlinx.coroutines.*
+import uz.innavation.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class MainActivity : AppCompatActivity() {
@@ -286,6 +284,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun drawExtra() {
+        GLES20.glClearColor(1.0f, 1.0f, 1.0f, 1.0f)
+        GLES20.glEnable(GLES20.GL_SCISSOR_TEST)
+        GLES20.glScissor(0, 0,  20,  20)
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
+        GLES20.glDisable(GLES20.GL_SCISSOR_TEST)
+
+    }
 
     companion object {
         private const val TAG = "CameraXApp"
