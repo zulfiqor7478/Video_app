@@ -7,4 +7,24 @@
     <string name="kamera">Kameradan foydalanish</string>
     <string name="galleriya">Galleriyaga saqlash</string>
     <string name="text1">Video registrator ishlashi uchun quyidagi ruxsatlar talab qilinadi:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hush_kelibsiz">Hush kelibsiz!</string>
+    <string name="dasturga_kirish_turini_tanlang">Dasturga kirish turini tanlang</string>
+    <string name="now">Telefon raqami orqali</string>
+    <string name="google_email">Google email</string>
+    <string name="sms_kodni_kiriting">SMS kodni kiriting</string>
+    <string name="kodni_kiriting">Kodni kiriting</string>
+    <string name="kodni_qayta_olish">Kodni qayta olish</string>
+    <string name="_00_45">00:45</string>
+    <string name="kirish">Kirish</string>
+    <string name="ortga_qaytish">Ortga qaytish</string>
+    <string name="ism">Ism</string>
+    <string name="familiya">Familiya</string>
+    <string name="sharifi">Sharifi</string>
+    <string name="poselka_mavze_ko_cha_uy">Poselka/mavze/ko\'cha/uy</string>
+    <string name="pochta_indexi">Pochta indeksi</string>
+    <string name="keyingisi">Keyingisi</string>
+    <string name="_998_90_123_45_67">(+998 90) 123-45-67</string>
+    <string name="send">send</string>
 </resources>

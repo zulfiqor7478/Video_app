@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/selectLanguageFragment">
+
+
+    <fragment
+        android:id="@+id/selectLanguageFragment"
+        android:name="uz.innavation.registration.SelectLanguageFragment"
+        android:label="fragment_select_language"
+        tools:layout="@layout/fragment_select_language" />
+    <fragment
+        android:id="@+id/selectRegisterTypeFragment"
+        android:name="uz.innavation.registration.SelectRegisterTypeFragment"
+        android:label="fragment_select_register_type"
+        tools:layout="@layout/fragment_select_register_type" />
+    <fragment
+        android:id="@+id/phoneNumberRegisterFragment"
+        android:name="uz.innavation.registration.PhoneNumberRegisterFragment"
+        android:label="fragment_phone_number_register"
+        tools:layout="@layout/fragment_phone_number_register" />
+    <fragment
+        android:id="@+id/verifyCodeFragment"
+        android:name="uz.innavation.registration.VerifyCodeFragment"
+        android:label="fragment_verify_code"
+        tools:layout="@layout/fragment_verify_code" />
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="uz.innavation.registration.SignUpFragment"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
+
+
+</navigation>

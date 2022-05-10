@@ -4,12 +4,11 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.opengl.GLES20
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import uz.innavation.databinding.ActivitySplashBinding
@@ -37,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
                 )
                 == PackageManager.PERMISSION_GRANTED
             ) {
-                binding.tvCard.setText("Ruxsat berildi")
+                binding.tvCard.text = "Ruxsat berildi"
                 val intent=Intent(this@SplashActivity,MainActivity::class.java)
                 startActivity(intent)
                 Toast.makeText(this@SplashActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
