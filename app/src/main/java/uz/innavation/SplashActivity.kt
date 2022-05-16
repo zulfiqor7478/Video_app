@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import uz.innavation.databinding.ActivitySplashBinding
+import uz.innavation.registration.RegisterMainActivity
 
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
@@ -148,7 +149,7 @@ class SplashActivity : AppCompatActivity() {
         ) {
 
             if (it.isAccepted) {
-                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                val intent = Intent(this@SplashActivity, RegisterMainActivity::class.java)
                 startActivity(intent)
             }
 

@@ -31,6 +31,26 @@
         android:name="uz.innavation.registration.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="uz.innavation.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/firstFragment"
+        android:name="uz.innavation.FirstFragment"
+        android:label="fragment_first"
+        tools:layout="@layout/fragment_first" />
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="uz.innavation.SignInFragment"
+        android:label="fragment_sign_in"
+        tools:layout="@layout/fragment_sign_in" />
+    <fragment
+        android:id="@+id/signUpFragment2"
+        android:name="uz.innavation.SignUpFragment"
+        android:label="fragment_sign_up2"
+        tools:layout="@layout/fragment_sign_up2" />
 
 
 </navigation>
