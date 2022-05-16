@@ -35,7 +35,6 @@ class MainActivityViewModel : ViewModel() {
                 val speedKpPerHour = location.speed * 3.6
                 _speedText.value = Speed(speedKpPerHour.toFloat(), 500)
             }
-
     }
 
     fun startLocationUpdates(

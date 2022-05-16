@@ -98,10 +98,7 @@
         android:layout_height="80dp"
         android:layout_margin="20dp"
         android:src="@drawable/yxx"
-        android:textColor="@color/white"
         android:textSize="30sp"
-        android:visibility="invisible"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -113,17 +110,17 @@
         android:id="@+id/video_capture_button"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@android:color/transparent"
         android:clickable="true"
-        app:cardElevation="0dp"
-        android:backgroundTint="#00FFFFFF"
+        android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
         android:text="@string/start_capture"
         android:textSize="8dp"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintStart_toEndOf="@id/vertical_centerline"
-        android:focusable="true" />
+        app:layout_constraintStart_toEndOf="@id/vertical_centerline" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vertical_centerline"

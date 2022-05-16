@@ -2,15 +2,14 @@ package uz.innavation.models
 
 class User {
 
-    var name:String? = null
-    var lastName:String? = null
-    var fatherName:String? = null
-    var phoneNumber:String? = null
-    var region:String? = null
-    var country:String? = null
-    var home:String? = null
-    var zipCode:String? = null
-
+    var name: String? = null
+    var lastName: String? = null
+    var fatherName: String? = null
+    var phoneNumber: String? = null
+    var region: String? = null
+    var country: String? = null
+    var home: String? = null
+    var zipCode: String? = null
 
     constructor()
     constructor(

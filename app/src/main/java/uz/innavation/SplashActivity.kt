@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.github.florent37.runtimepermission.kotlin.askPermission
 import uz.innavation.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.card.setOnClickListener {
+/*
             if (ContextCompat.checkSelfPermission(
                     this@SplashActivity,
                     Manifest.permission.CAMERA
@@ -37,16 +39,19 @@ class SplashActivity : AppCompatActivity() {
                 == PackageManager.PERMISSION_GRANTED
             ) {
                 binding.tvCard.text = "Ruxsat berildi"
-                val intent=Intent(this@SplashActivity,MainActivity::class.java)
+                val intent = Intent(this@SplashActivity, MainActivity::class.java)
                 startActivity(intent)
                 Toast.makeText(this@SplashActivity, "Permission Granted", Toast.LENGTH_SHORT).show()
             } else {
                 requestRecordAudio()
             }
+*/
+
 
         }
+        allow()
     }
-
+/*
     private fun requestRecordAudio() {
         if (ActivityCompat.shouldShowRequestPermissionRationale(
                 this,
@@ -54,8 +59,10 @@ class SplashActivity : AppCompatActivity() {
             ) && ActivityCompat.shouldShowRequestPermissionRationale(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) && ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.CAMERA)
+            ) && ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.CAMERA
+            )
         ) {
             val alertDialog = AlertDialog.Builder(this)
             alertDialog.setMessage("Record audio uchun ruxsat ber")
@@ -75,15 +82,18 @@ class SplashActivity : AppCompatActivity() {
         } else {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                arrayOf(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.CAMERA),
+                    Manifest.permission.CAMERA
+                ),
                 1
 
             )
         }
-    }
+    }*/
 
+/*
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -92,7 +102,7 @@ class SplashActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == 1) {
-            if (grantResults.size == 3 && grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
+            if (grantResults.size == 3 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 binding.imageGpsX.setImageResource(R.drawable.right_icon)
                 Toast.makeText(this, "Ruxsat 1", Toast.LENGTH_SHORT).show()
             }
@@ -104,13 +114,13 @@ class SplashActivity : AppCompatActivity() {
                 binding.imageGalleriyaX.setImageResource(R.drawable.right_icon)
                 Toast.makeText(this, "Ruxsat 3", Toast.LENGTH_SHORT).show()
             }
-             if (ActivityCompat.shouldShowRequestPermissionRationale(
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     Manifest.permission.ACCESS_FINE_LOCATION
-                )|| ActivityCompat.shouldShowRequestPermissionRationale(
+                ) || ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )|| ActivityCompat.shouldShowRequestPermissionRationale(
+                ) || ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
                     Manifest.permission.CAMERA
                 )
@@ -123,5 +133,47 @@ class SplashActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
+
+    }
+
+*/
+
+    private fun allow() {
+
+        askPermission(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.CAMERA
+        ) {
+
+            if (it.isAccepted) {
+                val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+
+        }.onDeclined { e ->
+            if (e.hasDenied()) {
+
+                AlertDialog.Builder(this)
+                    .setMessage("Iltimos, ruxsatnomaga ruxsat bering. Aks holda siz bizning dasturimizdan foydalana olmaysiz!")
+                    .setPositiveButton(
+                        "Ok"
+                    ) { _, _ -> e.askAgain() }
+                    .setNegativeButton(
+                        "No"
+                    ) { dialog, _ -> dialog?.dismiss() }
+                    .show()
+
+
+            }
+            if (e.hasForeverDenied()) {
+
+                e.goToSettings()
+            }
+
+
+        }
+
     }
 }
