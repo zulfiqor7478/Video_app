@@ -8,9 +8,8 @@
         <entry key="..\:/Users/DELL/Video_app/app/src/main/res/layout/custom_permission_dialog.xml" value="0.2" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/drawable/edit_back.xml" value="0.2555" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/drawable/rectangle.xml" value="0.2265" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/drawable/red_circle.xml" value="0.2555" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/drawable/style.xml" value="0.2265" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-land/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-land/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-v23/fragment_verify_code.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/activity_register_main.xml" value="0.25" />
@@ -19,10 +18,19 @@
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_select_language.xml" value="0.264" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_select_register_type.xml" value="0.2" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_sign_up.xml" value="0.264" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_sign_up2.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_verify_code.xml" value="0.536" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/main.xml" value="0.24895833333333334" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/xml/file_paths.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/drawable/ic_splsh_back.xml" value="0.271" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/drawable/lang_button_back.xml" value="0.3135" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/drawable/lang_card_back.xml" value="0.271" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/drawable/top_back.xml" value="0.3135" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/activity_register_main.xml" value="0.3625" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/activity_splash.xml" value="0.3625" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_first.xml" value="0.27586206896551724" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_phone_number_register.xml" value="0.3625" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_select_language.xml" value="0.3625" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_select_register_type.xml" value="0.3625" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_sign_in.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/Personal/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_splash.xml" value="0.3625" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Video_app/app/src/main/res/drawable/red_circle.xml" value="0.1195" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Video_app/app/src/main/res/layout-land/activity_main.xml" value="0.20104166666666667" />
         <entry key="..\:/Users/User/AndroidStudioProjects/Video_app/app/src/main/res/layout/activity_main.xml" value="0.15806159420289856" />
