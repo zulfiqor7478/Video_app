@@ -36,4 +36,7 @@
     <string name="e_mail">E-mail</string>
     <string name="password">Password</string>
     <string name="continue_btn">Continue</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="location">Location</string>
 </resources>
