@@ -51,9 +51,9 @@
                 android:id="@+id/cardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
                 android:background="@color/main_color"
                 app:cardCornerRadius="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@id/cardView2"
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
                 android:backgroundTint="@color/white"
                 app:cardCornerRadius="@dimen/_12sdp"
                 app:cardElevation="@dimen/_10sdp"
@@ -124,7 +124,9 @@
                     android:background="@color/white"
                     android:hint="@string/e_mail"
                     android:paddingStart="@dimen/_7sdp"
-                    android:paddingEnd="@dimen/_7sdp" />
+                    android:paddingEnd="@dimen/_7sdp"
+                    android:inputType="textEmailAddress"
+                    android:importantForAutofill="no" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -148,7 +150,9 @@
                     android:background="@color/white"
                     android:hint="@string/password"
                     android:paddingStart="@dimen/_7sdp"
-                    android:paddingEnd="@dimen/_7sdp" />
+                    android:paddingEnd="@dimen/_7sdp"
+                    android:inputType="textPassword"
+                    android:importantForAutofill="no" />
             </androidx.cardview.widget.CardView>
 
 
