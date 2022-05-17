@@ -46,13 +46,24 @@
         android:name="uz.innavation.SignUpFragment"
         android:label="fragment_sign_up2"
         tools:layout="@layout/fragment_sign_up2" />
-    <navigation android:id="@+id/navigation2"
-        app:startDestination="@id/firstFragment">
-        <fragment
-            android:id="@+id/firstFragment"
-            android:name="uz.innavation.FirstFragment"
-            android:label="fragment_first"
-            tools:layout="@layout/fragment_first" />
+    <navigation android:id="@+id/navigation4"
+        app:startDestination="@id/navigation3">
+        <navigation
+            android:id="@+id/navigation3"
+            app:startDestination="@id/navigation2">
+            <navigation android:id="@+id/navigation5"
+                app:startDestination="@id/navigation2">
+                <navigation
+                    android:id="@+id/navigation2"
+                    app:startDestination="@id/firstFragment">
+                    <fragment
+                        android:id="@+id/firstFragment"
+                        android:name="uz.innavation.FirstFragment"
+                        android:label="fragment_first"
+                        tools:layout="@layout/fragment_first" />
+                </navigation>
+            </navigation>
+        </navigation>
     </navigation>
 
 
