@@ -5,55 +5,118 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import uz.innavation.databinding.FragmentSignUp2Binding
+import uz.innavation.databinding.FragmentSignUpBinding
+import uz.innavation.models.User
+import uz.innavation.utils.MySharedPreference
+import uz.innavation.utils.setAnimation
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SignUpFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignUpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    lateinit var binding: FragmentSignUp2Binding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up2, container, false)
+    ): View {
+        binding = FragmentSignUp2Binding.inflate(layoutInflater)
+
+
+        binding.signInBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.locationCard.setOnClickListener {
+            findNavController().navigate(
+                R.id.selectLocationFragment,
+                Bundle(),
+                setAnimation().build()
+            )
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignUpFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onResume() {
+        binding.apply {
+
+            btnCard.setOnClickListener {
+
+                if (check()) {
+
+                    val bundle = Bundle()
+                    bundle.putString("name",name.text.toString())
+                    bundle.putString("lastName",lastName.text.toString())
+                    bundle.putString("email",email.text.toString())
+                    bundle.putString("password",password.text.toString())
+
+                    findNavController().navigate(R.id.verifyCodeFragment, bundle)
+
                 }
+
+
+                /*          var phoneNumber = binding.phone.text.toString()
+                          phoneNumber = phoneNumber.replace("(", "", true)
+                          phoneNumber = phoneNumber.replace(")", "", true)
+                          phoneNumber = phoneNumber.replace(" ", "", true)
+                          phoneNumber = phoneNumber.replace("-", "", true)*/
+
+                /*
+  */
+
+
             }
+
+
+        }
+
+        super.onResume()
     }
+
+    private fun check(): Boolean {
+        var a = false
+        if (binding.name.text.isNotBlank()) {
+            if (binding.lastName.text.isNotBlank()) {
+                if (binding.email.text.isNotBlank()) {
+                    if (binding.password.length() < 8) {
+                        if (MySharedPreference.region!!.isNotBlank() && MySharedPreference.country!!.isNotBlank() && MySharedPreference.streetNumber!!.isNotBlank()) {
+
+                            a = true
+
+                        } else
+                            Toast.makeText(
+                                binding.root.context,
+                                "Iltimos, turar joyingizni tanlang!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                    } else
+                        Toast.makeText(
+                            binding.root.context,
+                            "Iltimos, kamida 8 tadan iborat harf yoki raqam kiriting!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                } else
+                    Toast.makeText(
+                        binding.root.context,
+                        "Iltimos, email'ingizni kiriting!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+            } else
+                Toast.makeText(
+                    binding.root.context,
+                    "Iltimos, familiyangizni kiriting!",
+                    Toast.LENGTH_SHORT
+                ).show()
+        } else
+            Toast.makeText(
+                binding.root.context,
+                "Iltimos, ismingizni kiriting!",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        return a
+    }
+
+
 }

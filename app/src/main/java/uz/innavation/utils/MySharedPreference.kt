@@ -23,4 +23,28 @@ object MySharedPreference {
             }
         }
 
+    var region: String?
+        get() = sharedPreferences.getString("region", "")
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putString("region", value)
+            }
+        }
+
+    var country: String?
+        get() = sharedPreferences.getString("country", "")
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putString("country", value)
+            }
+        }
+
+    var streetNumber: String?
+        get() = sharedPreferences.getString("streetNumber", "")
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putString("streetNumber", value)
+            }
+        }
+
 }

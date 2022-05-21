@@ -32,5 +32,39 @@ class User {
         this.zipCode = zipCode
     }
 
+    constructor(
+        name: String?,
+        lastName: String?,
+        phoneNumber: String?,
+        region: String?,
+        country: String?,
+        home: String?,
+        zipCode: String?
+    ) {
+        this.name = name
+        this.lastName = lastName
+        this.phoneNumber = phoneNumber
+        this.region = region
+        this.country = country
+        this.home = home
+        this.zipCode = zipCode
+    }
+
+    constructor(
+        name: String?,
+        lastName: String?,
+        phoneNumber: String?,
+        region: String?,
+        country: String?,
+        home: String?
+    ) {
+        this.name = name
+        this.lastName = lastName
+        this.phoneNumber = phoneNumber
+        this.region = region
+        this.country = country
+        this.home = home
+    }
+
 
 }

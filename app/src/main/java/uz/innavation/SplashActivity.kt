@@ -1,11 +1,16 @@
 package uz.innavation
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +20,7 @@ import com.github.florent37.runtimepermission.kotlin.askPermission
 import uz.innavation.databinding.ActivitySplashBinding
 import uz.innavation.registration.RegisterMainActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,8 +28,14 @@ class SplashActivity : AppCompatActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.card.setOnClickListener {
-/*
+        val w: Window = window
+        w.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
+        /* binding.card.setOnClickListener {
+ *//*
             if (ContextCompat.checkSelfPermission(
                     this@SplashActivity,
                     Manifest.permission.CAMERA
@@ -46,11 +58,22 @@ class SplashActivity : AppCompatActivity() {
             } else {
                 requestRecordAudio()
             }
-*/
+*//*
 
 
         }
-        allow()
+        */
+
+
+
+        Handler(Looper.myLooper()!!).postDelayed({
+            startActivity(Intent(this, RegisterMainActivity::class.java))
+            finish()
+        }, 2000)
+
+
+
+       // allow()
     }
 /*
     private fun requestRecordAudio() {
