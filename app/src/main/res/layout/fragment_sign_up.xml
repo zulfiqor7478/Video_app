@@ -12,7 +12,7 @@
         android:paddingBottom="@dimen/_20sdp">
 
         <LinearLayout
-            android:id="@+id/back"f
+            android:id="@+id/back"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
             android:background="@drawable/top_back"
