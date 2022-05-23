@@ -2,219 +2,152 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ann"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".registration.VerifyCodeFragment">
+    tools:context=".ui.registration.VerifyCodeFragment">
 
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/lang_img"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:text="@string/sms_kodni_kiriting"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_verify_icon"
+            app:layout_constraintBottom_toTopOf="@id/lang_card"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card"
+            android:id="@+id/lang_card"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:outlineAmbientShadowColor="@color/teal_200"
-            android:outlineSpotShadowColor="@color/teal_200"
-            app:cardCornerRadius="10dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="5dp"
-            tools:ignore="UnusedAttribute">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lang_img">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:orientation="vertical">
 
 
-                <ImageView
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:layout_marginStart="15dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_baseline_lock_24" />
-
-                <com.google.android.material.textfield.TextInputLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/phone_card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:defaultFocusHighlightEnabled="false"
-                    android:gravity="center"
-                    android:textColorHint="#B9B8B8"
-                    android:background="@android:color/transparent"
-                    app:hintTextColor="@color/white"
-                    app:passwordToggleEnabled="true">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    app:cardCornerRadius="@dimen/_10sdp">
+
+
+                    <com.vicmikhailau.maskededittext.MaskedEditText
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="?actionBarSize"
+                        android:background="@color/white"
+                        android:hint="@string/phone_number"
+                        android:inputType="phone"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        app:mask="(+### ##) ###-##-##" />
+
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/code_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="@dimen/_10sdp">
 
                     <EditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginEnd="10dp"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/kodni_kiriting"
+                        android:layout_height="?actionBarSize"
+                        android:background="@color/white"
+                        android:hint="@string/code"
                         android:importantForAutofill="no"
-                        android:inputType="numberPassword"
-                        android:maxLength="6"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:textSize="17sp" />
+                        android:inputType="number"
+                        android:paddingStart="@dimen/_7sdp"
+                        android:paddingEnd="@dimen/_7sdp"
+                        tools:ignore="TextFields" />
+                </androidx.cardview.widget.CardView>
 
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="15dp"
-            android:baselineAligned="false"
-            android:gravity="left|center"
-            tools:ignore="RtlHardcoded">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="left|center"
-                tools:ignore="RtlHardcoded,UseCompoundDrawables">
-
-                <ImageView
-                    android:layout_width="18sp"
-                    android:layout_height="15dp"
-                    android:layout_marginStart="30dp"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_refresh" />
-
-                <TextView
-                    android:id="@+id/reSend"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/code"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground"
-                    android:text="@string/kodni_qayta_olish"
-                    android:textColor="@color/teal_200"
-                    tools:ignore="UnusedAttribute"
-                    tools:targetApi="m" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="35dp"
-                    android:gravity="bottom|right"
-                    android:text="@string/_00_45"
-                    android:textColor="#2D3A45"
-                    android:textSize="12sp"
-                    tools:ignore="RtlHardcoded" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/signIn"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="30dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground"
-            android:outlineAmbientShadowColor="@color/teal_200"
-            android:outlineSpotShadowColor="@color/teal_200"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp"
-            tools:ignore="UnusedAttribute">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/teal_200"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:gravity="center"
-                    android:text="@string/kirish"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="-56dp"
-                    tools:layout_editor_absoluteY="0dp" />
+                    android:visibility="gone">
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/send_code_again"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="@string/_02_12"
+                        android:textColor="@color/main_color"
+                        android:textSize="@dimen/_15sdp" />
+
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/btn_card"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/white"
-                    android:padding="7dp"
-                    android:visibility="gone"
+                    android:layout_marginLeft="@dimen/_20sdp"
+
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:backgroundTint="@color/main_color"
+                    app:cardCornerRadius="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/password_card">
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="?actionBarSize"
+                        android:backgroundTint="@color/main_color"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/_7sdp"
+                        android:paddingEnd="@dimen/_7sdp"
+                        android:text="@string/continue_btn"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_16sdp" />
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="4dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
-                android:text="@string/ortga_qaytish"
-                android:textColor="@color/teal_200"
-                android:textStyle="bold"
-                tools:ignore="UnusedAttribute" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

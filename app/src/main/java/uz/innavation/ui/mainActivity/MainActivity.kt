@@ -1,4 +1,4 @@
-package uz.innavation
+package uz.innavation.ui.mainActivity
 
 import android.Manifest
 import android.content.ContentValues
@@ -32,6 +32,7 @@ import com.google.android.gms.location.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import uz.innavation.R
 import uz.innavation.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.*

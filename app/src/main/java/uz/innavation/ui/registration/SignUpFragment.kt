@@ -1,4 +1,4 @@
-package uz.innavation
+package uz.innavation.ui.registration
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,21 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import uz.innavation.databinding.FragmentSignUp2Binding
+import uz.innavation.R
 import uz.innavation.databinding.FragmentSignUpBinding
-import uz.innavation.models.User
 import uz.innavation.utils.MySharedPreference
 import uz.innavation.utils.setAnimation
 
 
 class SignUpFragment : Fragment() {
 
-    lateinit var binding: FragmentSignUp2Binding
+    lateinit var binding: FragmentSignUpBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSignUp2Binding.inflate(layoutInflater)
+        binding = FragmentSignUpBinding.inflate(layoutInflater)
 
 
         binding.signInBtn.setOnClickListener {
@@ -51,7 +50,7 @@ class SignUpFragment : Fragment() {
                     bundle.putString("email",email.text.toString())
                     bundle.putString("password",password.text.toString())
 
-                    findNavController().navigate(R.id.verifyCodeFragment, bundle)
+                    findNavController().navigate(R.id.verifyCodeFragment, bundle, setAnimation().build())
 
                 }
 
@@ -79,10 +78,11 @@ class SignUpFragment : Fragment() {
         if (binding.name.text.isNotBlank()) {
             if (binding.lastName.text.isNotBlank()) {
                 if (binding.email.text.isNotBlank()) {
-                    if (binding.password.length() < 8) {
-                        if (MySharedPreference.region!!.isNotBlank() && MySharedPreference.country!!.isNotBlank() && MySharedPreference.streetNumber!!.isNotBlank()) {
+                    if (binding.password.length() >= 8) {
+                        if (MySharedPreference.region != "" && MySharedPreference.country != "" && MySharedPreference.streetNumber != "") {
 
                             a = true
+                            Toast.makeText(binding.root.context, MySharedPreference.region, Toast.LENGTH_SHORT).show()
 
                         } else
                             Toast.makeText(
@@ -117,6 +117,7 @@ class SignUpFragment : Fragment() {
 
         return a
     }
+
 
 
 }

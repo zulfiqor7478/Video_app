@@ -1,4 +1,4 @@
-package uz.innavation
+package uz.innavation.utils
 
 import android.media.MediaCodec
 import android.media.MediaCodecInfo

@@ -1,4 +1,4 @@
-package uz.innavation
+package uz.innavation.ui.mainActivity
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -18,6 +18,7 @@ import com.google.android.gms.location.LocationRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import uz.innavation.utils.Speed
 import java.util.*
 
 class MainActivityViewModel : ViewModel() {

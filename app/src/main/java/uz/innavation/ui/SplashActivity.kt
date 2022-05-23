@@ -1,24 +1,18 @@
-package uz.innavation
+package uz.innavation.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.Settings
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import uz.innavation.databinding.ActivitySplashBinding
-import uz.innavation.registration.RegisterMainActivity
+import uz.innavation.ui.registration.RegisterMainActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {

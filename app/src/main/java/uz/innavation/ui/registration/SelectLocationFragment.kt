@@ -1,4 +1,4 @@
-package uz.innavation
+package uz.innavation.ui.registration
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,9 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.R
-import androidx.core.view.marginTop
 import androidx.navigation.fragment.findNavController
-import uz.innavation.databinding.FragmentSelectLanguageBinding
 import uz.innavation.databinding.FragmentSelectLocationBinding
 import uz.innavation.utils.MyData
 import uz.innavation.utils.MySharedPreference

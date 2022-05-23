@@ -45,4 +45,7 @@
     <string name="tashkent">Tashkent</string>
     <string name="street">Street</string>
     <string name="save">Save</string>
+    <string name="code">Code</string>
+    <string name="send_code_again">Send code again</string>
+    <string name="_02_12">02:12</string>
 </resources>

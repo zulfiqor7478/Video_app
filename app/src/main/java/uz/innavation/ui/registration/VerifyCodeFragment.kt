@@ -1,32 +1,38 @@
-package uz.innavation.registration
+package uz.innavation.ui.registration
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Intent
 import android.os.*
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.navigation.fragment.findNavController
+import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import uz.innavation.R
 import uz.innavation.databinding.FragmentVerifyCodeBinding
+import uz.innavation.models.User
+import uz.innavation.ui.mainActivity.MainActivity
+import uz.innavation.utils.MySharedPreference
 import java.util.concurrent.TimeUnit
 
 class VerifyCodeFragment : Fragment() {
 
     private lateinit var timer: CountDownTimer
     lateinit var binding: FragmentVerifyCodeBinding
-    lateinit var auth:FirebaseAuth
+    lateinit var auth: FirebaseAuth
+    var isCodeSend = false
     lateinit var storedVerificationId: String
+     lateinit var dialog: AlertDialog
     private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
     lateinit var number: String
     override fun onCreateView(
@@ -37,10 +43,29 @@ class VerifyCodeFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        number = arguments?.getString("number")!!
 
-        setTime()
-        sentVerificationCode(number)
+
+        binding.phone.addTextChangedListener {
+
+            if (it!!.toString().length == 19) {
+                binding.code.visibility = View.VISIBLE
+                binding.codeCard.visibility = View.VISIBLE
+
+                var phoneNumber = binding.phone.text.toString()
+                phoneNumber = phoneNumber.replace("(", "", true)
+                phoneNumber = phoneNumber.replace(")", "", true)
+                phoneNumber = phoneNumber.replace(" ", "", true)
+                phoneNumber = phoneNumber.replace("-", "", true)
+                number = phoneNumber
+
+                sentVerificationCode(phoneNumber)
+                setTime()
+                closeKerBoard()
+            }
+
+        }
+
+
 /*
 
         binding.password.setOnEditorActionListener { v, actionId, event ->
@@ -57,21 +82,18 @@ class VerifyCodeFragment : Fragment() {
         }
 */
 
-        binding.signIn.setOnClickListener {
-            verifyCode()
+        binding.btnCard.setOnClickListener {
+            if (binding.password.text.toString().isNotBlank()) {
+                verifyCode()
+            }
         }
 
-        binding.reSend.setOnClickListener {
-
-            binding.reSend.setTextColor(ContextCompat.getColor(binding.root.context,
-                R.color.teal_200
-            ))
-            binding.reSend.isClickable = false
-            timer.start()
-            binding.password.isEnabled = true
-
-            resendCode(number)
+        binding.password.addTextChangedListener {
+            if (it.toString().length >= 6) {
+                verifyCode()
+            }
         }
+
 
         return binding.root
     }
@@ -95,18 +117,25 @@ class VerifyCodeFragment : Fragment() {
 
             override fun onFinish() {
                 try {
-                    binding.reSend.setTextColor(
-                        ContextCompat.getColor(
+                    if (isCodeSend) {
+                        resendCode(number)
+                        vibratsiya()
+                        binding.password.setText("")
+                        timer.start()
+                        Toast.makeText(
                             binding.root.context,
-                            R.color.red
-                        )
-                    )
-                    binding.reSend.isClickable = true
-                    vibratsiya()
-                    binding.password.setBackgroundResource(R.color.teal_200)
-                    binding.password.visibility
-                    binding.password.setText("")
-                    binding.password.isEnabled = false
+                            "Kod qayta yuborildi",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        Toast.makeText(
+                            binding.root.context,
+                            "Agarda tasdiqlash kodi yetib bormagan bo'lsa, keyinroq urinib ko'ring!",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                    isCodeSend = true
 
                 } catch (e: Exception) {
                 }
@@ -134,7 +163,7 @@ class VerifyCodeFragment : Fragment() {
         }
     }
 
-    fun sentVerificationCode(phoneNumber: String) {
+    private fun sentVerificationCode(phoneNumber: String) {
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber)       // Phone number to verify
             .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
@@ -202,12 +231,40 @@ class VerifyCodeFragment : Fragment() {
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
 
-                val user = task.result?.user?.phoneNumber
+                setProgress()
 
                 val bundle = Bundle()
                 bundle.putString("number2", number)
-                findNavController().navigate(R.id.signUpFragment, bundle)
-                Toast.makeText(binding.root.context, "Urra :)", Toast.LENGTH_SHORT).show()
+
+
+                val name = arguments?.getString("name")
+                val lastName = arguments?.getString("lastName")
+                val email = arguments?.getString("email")
+                val password = arguments?.getString("password")
+
+                val user = User(
+                    name,
+                    lastName,
+                    number,
+                    email, password,
+                    MySharedPreference.region,
+                    MySharedPreference.country,
+                    MySharedPreference.streetNumber
+                )
+
+
+                val database = Firebase.database
+                val myRef = database.getReference("users/$number")
+                myRef.setValue(user)
+
+                Handler(Looper.myLooper()!!).postDelayed({
+
+                    dialog.cancel()
+                    startActivity(Intent(binding.root.context, MainActivity::class.java))
+                    timer.cancel()
+                    activity?.finish()
+
+                }, 1000)
 
             } else {
                 // Sign in failed, display a message and update the UI
@@ -220,6 +277,24 @@ class VerifyCodeFragment : Fragment() {
                 // Update UI
             }
         }
+    }
+
+    private fun closeKerBoard() {
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
+    }
+
+
+    private fun setProgress() {
+        dialog = AlertDialog.Builder(binding.root.context).create()
+        val view = LayoutInflater.from(binding.root.context)
+            .inflate(R.layout.custom_progress, null, false)
+        dialog.setView(view)
+        dialog.setContentView(view)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
+        dialog.show()
     }
 
 

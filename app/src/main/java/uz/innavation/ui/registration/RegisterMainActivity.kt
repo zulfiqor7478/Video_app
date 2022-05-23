@@ -1,4 +1,4 @@
-package uz.innavation.registration
+package uz.innavation.ui.registration
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

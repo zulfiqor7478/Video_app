@@ -8,27 +8,27 @@
 
     <fragment
         android:id="@+id/selectLanguageFragment"
-        android:name="uz.innavation.registration.SelectLanguageFragment"
+        android:name="uz.innavation.ui.registration.SelectLanguageFragment"
         android:label="fragment_select_language"
         tools:layout="@layout/fragment_select_language" />
     <fragment
         android:id="@+id/selectRegisterTypeFragment"
-        android:name="uz.innavation.registration.SelectRegisterTypeFragment"
+        android:name="uz.innavation.ui.registration.SelectRegisterTypeFragment"
         android:label="fragment_select_register_type"
         tools:layout="@layout/fragment_select_register_type" />
     <fragment
         android:id="@+id/phoneNumberRegisterFragment"
-        android:name="uz.innavation.registration.PhoneNumberRegisterFragment"
+        android:name="uz.innavation.ui.registration.PhoneNumberRegisterFragment"
         android:label="fragment_phone_number_register"
         tools:layout="@layout/fragment_phone_number_register" />
     <fragment
         android:id="@+id/verifyCodeFragment"
-        android:name="uz.innavation.registration.VerifyCodeFragment"
+        android:name="uz.innavation.ui.registration.VerifyCodeFragment"
         android:label="fragment_verify_code"
         tools:layout="@layout/fragment_verify_code" />
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="uz.innavation.registration.SignUpFragment"
+        android:name="uz.innavation.ui.registration.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <fragment
@@ -38,22 +38,22 @@
         tools:layout="@layout/fragment_splash" />
     <fragment
         android:id="@+id/signInFragment"
-        android:name="uz.innavation.SignInFragment"
+        android:name="uz.innavation.ui.registration.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" />
     <fragment
         android:id="@+id/signUpFragment2"
-        android:name="uz.innavation.SignUpFragment"
+        android:name="uz.innavation.ui.registration.SignUpFragment"
         android:label="fragment_sign_up2"
-        tools:layout="@layout/fragment_sign_up2" />
+        tools:layout="@layout/fragment_sign_up" />
     <fragment
         android:id="@+id/firstFragment2"
-        android:name="uz.innavation.FirstFragment"
+        android:name="uz.innavation.ui.registration.FirstFragment"
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/selectLocationFragment"
-        android:name="uz.innavation.SelectLocationFragment"
+        android:name="uz.innavation.ui.registration.SelectLocationFragment"
         android:label="fragment_select_location"
         tools:layout="@layout/fragment_select_location" />
 
