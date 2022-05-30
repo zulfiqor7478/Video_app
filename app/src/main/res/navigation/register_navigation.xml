@@ -37,6 +37,42 @@
         android:name="uz.innavation.ui.registration.SelectLocationFragment"
         android:label="fragment_select_location"
         tools:layout="@layout/fragment_select_location" />
+    <fragment
+        android:id="@+id/homePageFragment"
+        android:name="uz.innavation.ui.home.HomePageFragment"
+        android:label="HomePageFragment" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="uz.innavation.ui.home.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/editFragment"
+        android:name="uz.innavation.ui.home.EditFragment"
+        android:label="EditFragment" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="uz.innavation.ui.home.AboutFragment"
+        android:label="AboutFragment" />
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="uz.innavation.ui.home.GalleryFragment"
+        android:label="GalleryFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="uz.innavation.ui.home.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/savedVideoListFragment"
+        android:name="uz.innavation.ui.home.SavedVideoListFragment"
+        android:label="fragment_saved_video_list"
+        tools:layout="@layout/fragment_saved_video_list" />
+    <fragment
+        android:id="@+id/videosListFragment"
+        android:name="uz.innavation.ui.home.VideosListFragment"
+        android:label="fragment_videos_list"
+        tools:layout="@layout/fragment_videos_list" />
 
 
 </navigation>

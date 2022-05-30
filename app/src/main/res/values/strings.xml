@@ -7,7 +7,6 @@
     <string name="kamera">Kameradan foydalanish</string>
     <string name="galleriya">Galleriyaga saqlash</string>
     <string name="text1">Video registrator ishlashi uchun quyidagi ruxsatlar talab qilinadi:</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hush_kelibsiz">Hush kelibsiz!</string>
     <string name="dasturga_kirish_turini_tanlang">Dasturga kirish turini tanlang</string>
@@ -48,11 +47,18 @@
     <string name="code">Code</string>
     <string name="send_code_again">Send code again</string>
     <string name="_02_12">02:12</string>
-    <string name="_70">70</string>
-    <string name="_0">0</string>
-    <string name="_11_05_2022_17_30">11.05.2022. 17:30</string>
-    <string name="fd">--:--</string>
+    <string name="app_nameee">Havfsiz Yo\'l</string>
+    <string name="yoqubov_otabek">Yoqubov Otabek</string>
+    <string name="setting">Setting</string>
     <string name="start">Start</string>
+    <string name="profile">Profile</string>
+    <string name="log_out">Log out</string>
+    <string name="number">+998 99 999 99 99</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ullamcorper lacinia risus placerat at id. A, enim diam porttitor id sed malesuada elementum. Nibh posuere convallis. A, enim diam porttitor id sed malesuada elementum. Nibh posuere convallis A, enim diam porttitor id sed malesuada elementum. Nibh posuere convallis.</string>
+    <string name="about">About</string>
+    <string name="saved_videos">Saved videos</string>
     <string name="videos">Videos</string>
-    <string name="saved_videos">Saved Videos</string>
+    <string name="gallery">Gallery</string>
+    <string name="open_map">Open Map</string>
 </resources>
