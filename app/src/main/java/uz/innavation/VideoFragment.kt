@@ -7,16 +7,21 @@ import android.content.IntentSender
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.*
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
@@ -44,6 +49,7 @@ class VideoFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var locationRequest: LocationRequest
+    private lateinit var dialog: AlertDialog
 
     private val abs = 10001
     private lateinit var binding: FragmentVideoBinding
@@ -60,13 +66,10 @@ class VideoFragment : Fragment() {
     ): View {
         binding = FragmentVideoBinding.inflate(layoutInflater)
 
-
-
-
+        setProgress()
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(binding.root.context)
-
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
                 for (location in p0.locations) {
@@ -78,16 +81,23 @@ class VideoFragment : Fragment() {
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
+        Handler(Looper.myLooper()!!).postDelayed({
 
-        startCamera()
+            dialog.cancel()
 
-        binding.videoCaptureButton.setOnClickListener {
-            captureVideo()
-        }
+            startCamera()
+
+            binding.videoCaptureButton.setOnClickListener {
+                captureVideo()
+            }
 
 
 
-        setSpeed()
+            setSpeed()
+
+
+        }, 2000)
+
 
         return binding.root
     }
@@ -233,8 +243,6 @@ class VideoFragment : Fragment() {
     }
 
 
-
-
     private fun turnOnGPS() {
 
         locationRequest = LocationRequest.create()
@@ -293,7 +301,8 @@ class VideoFragment : Fragment() {
         var locationManager: LocationManager? = null
 
         if (locationManager == null) {
-            locationManager = activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            locationManager =
+                activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         }
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
@@ -302,6 +311,18 @@ class VideoFragment : Fragment() {
     companion object {
         private const val TAG = "CameraXApp"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+    }
+
+
+    private fun setProgress() {
+        dialog = AlertDialog.Builder(binding.root.context).create()
+        val view = LayoutInflater.from(binding.root.context)
+            .inflate(R.layout.custom_progress, null, false)
+        dialog.setView(view)
+        dialog.setContentView(view)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(false)
+        dialog.show()
     }
 
 

@@ -61,4 +61,7 @@
     <string name="videos">Videos</string>
     <string name="gallery">Gallery</string>
     <string name="open_map">Open Map</string>
+    <string name="_0">0</string>
+    <string name="_11_05_2022_17_30">11.05.2022. 17:30</string>
+    <string name="fd">--:--</string>
 </resources>

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import uz.innavation.R
 import uz.innavation.databinding.FragmentHomePageBinding
+import uz.innavation.utils.setAnimation
 
 class HomePageFragment : Fragment() {
     lateinit var binding: FragmentHomePageBinding
@@ -19,22 +20,28 @@ class HomePageFragment : Fragment() {
 
 
 
-        binding.infoProfile.setOnClickListener {
-            findNavController().navigate(R.id.profile)
-        }
-        binding.aboutBtn.setOnClickListener {
-            findNavController().navigate(R.id.aboutFragment)
-        }
-        binding.galleryBtn.setOnClickListener {
-            findNavController().navigate(R.id.galleryFragment)
-        }
-        binding.settingsBtn.setOnClickListener {
-            findNavController().navigate(R.id.settingsFragment)
-        }
-        binding.openmapBtn.setOnClickListener {
+        binding.apply {
+            startBtn.setOnClickListener {
+                navigate(R.id.videoFragment)
+            }
+            infoProfile.setOnClickListener {
+                navigate(R.id.profile)
+            }
+            aboutBtn.setOnClickListener {
+                navigate(R.id.aboutFragment2)
+            }
+            galleryBtn.setOnClickListener {
+                navigate(R.id.galleryFragment)
+            }
+            settingsBtn.setOnClickListener {
+                navigate(R.id.settingsFragment2)
+            }
 
-        }
 
+            openmapBtn.setOnClickListener {
+
+            }
+        }
 
 
 
@@ -42,4 +49,9 @@ class HomePageFragment : Fragment() {
         return binding.root
 
     }
+
+    private fun navigate(way: Int) {
+        findNavController().navigate(way, Bundle(), setAnimation().build())
+    }
+
 }
