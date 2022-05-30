@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "159760271451",
+    "project_id": "my-project3-cb1fb",
+    "storage_bucket": "my-project3-cb1fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:159760271451:android:e114724b505c5afece577e",
+        "android_client_info": {
+          "package_name": "uz.innavation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "159760271451-jacth8bitglffg50a91aqkup0m7gk4m4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhOAc6s59LYGDRvMrcMXliw8D8ghrKbkQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "159760271451-jacth8bitglffg50a91aqkup0m7gk4m4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

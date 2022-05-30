@@ -21,13 +21,13 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(layoutInflater)
 
         binding.signUpBtn.setOnClickListener {
-            findNavController().navigate(R.id.signUpFragment2, Bundle(),setAnimation().build())
+            findNavController().navigate(R.id.signUpFragment2, Bundle(), setAnimation().build())
         }
-
+        binding.btnCard.setOnClickListener {
+            findNavController().navigate(R.id.homePageFragment)
+        }
         return binding.root
     }
-
-
 
 
 }
