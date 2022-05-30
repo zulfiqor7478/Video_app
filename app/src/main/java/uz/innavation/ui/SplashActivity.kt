@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.github.florent37.runtimepermission.kotlin.askPermission
 import uz.innavation.databinding.ActivitySplashBinding
+import uz.innavation.ui.mainActivity.MainActivity
 import uz.innavation.ui.registration.RegisterMainActivity
 
 @SuppressLint("CustomSplashScreen")
@@ -61,7 +62,7 @@ class SplashActivity : AppCompatActivity() {
 
 
         Handler(Looper.myLooper()!!).postDelayed({
-            startActivity(Intent(this, RegisterMainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }, 2000)
 

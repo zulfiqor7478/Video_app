@@ -30,7 +30,6 @@ class MainActivityViewModel : ViewModel() {
     val speedText: LiveData<Speed> = _speedText
 
 
-
     fun getSpeedForLocation(location: Location?) {
             if (location != null) {
                 val speedKpPerHour = location.speed * 3.6

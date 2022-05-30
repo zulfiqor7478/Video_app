@@ -108,4 +108,8 @@ dependencies {
 
     implementation group: 'org.bytedeco', name: 'javacpp', version: '1.5.7'
 
+
+    //ripple
+    implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
+
 }

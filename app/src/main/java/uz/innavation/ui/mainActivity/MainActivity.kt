@@ -10,6 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
+import android.view.Window
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
@@ -63,9 +65,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-        askPermission()
+        val w: Window = window
+        w.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+        )
+
+
+/*        askPermission()
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
@@ -85,8 +94,9 @@ class MainActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.Default).launch {
             videoAnimation()
-        }
+        }*/
     }
+/*
 
     override fun onResume() {
         super.onResume()
@@ -410,6 +420,7 @@ class MainActivity : AppCompatActivity() {
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
+*/
 
     //alovuddin
 

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start" />
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/viewFinder"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="@id/line"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:visibility="visible"
+            motion:layout_constraintRight_toLeftOf="@id/close_map"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/close_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_44sdp"
+            android:visibility="visible"
+            motion:layout_constraintRight_toRightOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/video_capture_button"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="@id/bottom_card"
+            motion:layout_constraintLeft_toLeftOf="@id/bottom_card"
+            motion:layout_constraintRight_toRightOf="@id/bottom_card"
+            motion:layout_constraintTop_toTopOf="@id/bottom_card" />
+        <Constraint
+            android:id="@+id/location"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:visibility="invisible"
+            motion:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/bottom_card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginLeft="@dimen/_60sdp"
+            android:layout_marginRight="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/home"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="@id/bottom_card"
+            motion:layout_constraintLeft_toLeftOf="@id/bottom_card"
+            motion:layout_constraintTop_toTopOf="@id/bottom_card" />
+        <Constraint
+            android:id="@+id/top_view"
+            android:layout_width="@dimen/_320sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start">
+        <OnClick motion:targetId="@+id/location" />
+        <OnClick motion:targetId="@+id/close_map" />
+    </Transition>
+    <ConstraintSet android:id="@+id/three">
+
+        <Constraint
+            android:id="@+id/viewFinder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/full"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toTopOf="@id/close_map"
+            motion:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/close_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_44sdp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/close_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_44sdp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/close_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_44sdp"
+            android:visibility="visible"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintRight_toRightOf="parent" />
+        <Constraint
+            android:id="@+id/video_capture_button"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="@id/bottom_card"
+            motion:layout_constraintLeft_toLeftOf="@id/bottom_card"
+            motion:layout_constraintRight_toRightOf="@id/bottom_card"
+            motion:layout_constraintTop_toTopOf="@id/bottom_card" />
+        <Constraint
+            android:id="@+id/location"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="@id/bottom_card"
+            motion:layout_constraintRight_toRightOf="@id/bottom_card"
+            motion:layout_constraintTop_toTopOf="@id/bottom_card" />
+        <Constraint
+            android:id="@+id/bottom_card"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginLeft="@dimen/_60sdp"
+            android:layout_marginRight="@dimen/_60sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="parent" />
+        <Constraint
+            android:id="@+id/home"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="@id/bottom_card"
+            motion:layout_constraintLeft_toLeftOf="@id/bottom_card"
+            motion:layout_constraintTop_toTopOf="@id/bottom_card" />
+        <Constraint
+            android:id="@+id/speedText"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:visibility="invisible"
+            motion:layout_constraintBottom_toBottomOf="@id/content"
+            motion:layout_constraintLeft_toLeftOf="@id/content"
+            motion:layout_constraintRight_toRightOf="@id/content"
+            motion:layout_constraintTop_toTopOf="@id/content" />
+        <Constraint
+            android:id="@+id/top_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:visibility="invisible"
+            motion:layout_constraintTop_toTopOf="parent" />
+        <Constraint
+            android:id="@+id/content"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_120sdp"
+            motion:layout_constraintBottom_toBottomOf="@id/top_view"
+            motion:layout_constraintRight_toRightOf="@id/top_view"
+            motion:layout_constraintTop_toTopOf="@id/top_view"
+            android:visibility="invisible" />
+    </ConstraintSet>
+    <Transition
+        motion:autoTransition="none"
+        motion:constraintSetEnd="@+id/three"
+        motion:constraintSetStart="@+id/end">
+        <OnClick motion:targetId="@+id/full" />
+        <KeyFrameSet></KeyFrameSet>
+    </Transition>
+</MotionScene>

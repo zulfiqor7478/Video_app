@@ -48,4 +48,11 @@
     <string name="code">Code</string>
     <string name="send_code_again">Send code again</string>
     <string name="_02_12">02:12</string>
+    <string name="_70">70</string>
+    <string name="_0">0</string>
+    <string name="_11_05_2022_17_30">11.05.2022. 17:30</string>
+    <string name="fd">--:--</string>
+    <string name="start">Start</string>
+    <string name="videos">Videos</string>
+    <string name="saved_videos">Saved Videos</string>
 </resources>

@@ -7,21 +7,6 @@
 
 
     <fragment
-        android:id="@+id/selectLanguageFragment"
-        android:name="uz.innavation.ui.registration.SelectLanguageFragment"
-        android:label="fragment_select_language"
-        tools:layout="@layout/fragment_select_language" />
-    <fragment
-        android:id="@+id/selectRegisterTypeFragment"
-        android:name="uz.innavation.ui.registration.SelectRegisterTypeFragment"
-        android:label="fragment_select_register_type"
-        tools:layout="@layout/fragment_select_register_type" />
-    <fragment
-        android:id="@+id/phoneNumberRegisterFragment"
-        android:name="uz.innavation.ui.registration.PhoneNumberRegisterFragment"
-        android:label="fragment_phone_number_register"
-        tools:layout="@layout/fragment_phone_number_register" />
-    <fragment
         android:id="@+id/verifyCodeFragment"
         android:name="uz.innavation.ui.registration.VerifyCodeFragment"
         android:label="fragment_verify_code"
@@ -31,11 +16,7 @@
         android:name="uz.innavation.ui.registration.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="uz.innavation.SplashFragment"
-        android:label="fragment_splash"
-        tools:layout="@layout/fragment_splash" />
+
     <fragment
         android:id="@+id/signInFragment"
         android:name="uz.innavation.ui.registration.SignInFragment"

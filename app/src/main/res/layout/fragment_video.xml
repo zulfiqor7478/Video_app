@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/fragment_video_scene"
+    tools:context=".VideoFragment">
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/viewFinder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".5001" />
+
+    <LinearLayout
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@drawable/ic_radius"
+        android:gravity="left"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_date_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="@string/_11_05_2022_17_30"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_time_icon" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="@string/fd"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/content"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        app:layout_constraintBottom_toBottomOf="@id/top_view"
+        app:layout_constraintRight_toRightOf="@id/top_view"
+        app:layout_constraintTop_toTopOf="@id/top_view"
+        app:rb_color="@color/main_color"
+        app:rb_duration="3000"
+        app:rb_radius="25dp"
+        app:rb_rippleAmount="4"
+        app:rb_scale="3" />
+
+    <TextView
+        android:id="@+id/speedText"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@drawable/ic_circle"
+        android:gravity="center"
+        android:text="@string/_0"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_27sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/content"
+        app:layout_constraintLeft_toLeftOf="@id/content"
+        app:layout_constraintRight_toRightOf="@id/content"
+        app:layout_constraintTop_toTopOf="@id/content" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_card"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginLeft="@dimen/_60sdp"
+        android:layout_marginRight="@dimen/_60sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:background="@drawable/ic_radius"
+        android:orientation="horizontal"
+        app:cardCornerRadius="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/home"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_home_icon"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_card"
+        app:layout_constraintLeft_toLeftOf="@id/bottom_card"
+        app:layout_constraintTop_toTopOf="@id/bottom_card" />
+
+
+    <ImageView
+        android:id="@+id/location"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@string/app_name"
+        android:padding="@dimen/_13sdp"
+        android:src="@drawable/ic_location_icon"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_card"
+        app:layout_constraintRight_toRightOf="@id/bottom_card"
+        app:layout_constraintTop_toTopOf="@id/bottom_card" />
+
+    <LinearLayout
+        android:id="@+id/video_capture_button"
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/bottom_card"
+        app:layout_constraintLeft_toLeftOf="@id/bottom_card"
+        app:layout_constraintRight_toRightOf="@id/bottom_card"
+        app:layout_constraintTop_toTopOf="@id/bottom_card">
+
+
+        <ImageView
+            android:id="@+id/video_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_video" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/full"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_full_icon"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/close_map"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/close_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginBottom="@dimen/_44sdp"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_close_icon"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

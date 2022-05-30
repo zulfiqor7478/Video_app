@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="uz.innavation.VideoFragment"
+        android:label="fragment_video"
+        tools:layout="@layout/fragment_video" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="uz.innavation.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="uz.innavation.GalleryFragment"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" />
+    <fragment
+        android:id="@+id/savedVideosFragment"
+        android:name="uz.innavation.SavedVideosFragment"
+        android:label="fragment_saved_videos"
+        tools:layout="@layout/fragment_saved_videos" />
+</navigation>
