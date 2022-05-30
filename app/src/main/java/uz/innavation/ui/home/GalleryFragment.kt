@@ -24,6 +24,10 @@ class GalleryFragment : Fragment() {
         binding.savedVideosBtn.setOnClickListener {
             findNavController().navigate(R.id.savedVideoListFragment)
         }
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
         return binding.root
     }
 }

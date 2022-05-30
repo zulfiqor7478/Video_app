@@ -10,7 +10,7 @@ import uz.innavation.R
 import uz.innavation.databinding.FragmentHomePageBinding
 import uz.innavation.databinding.FragmentProfileBinding
 
-class Profile : Fragment() {
+class ProfileFragment : Fragment() {
     lateinit var binding: FragmentProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,11 +21,11 @@ class Profile : Fragment() {
 
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(R.id.homePageFragment)
+            findNavController().popBackStack()
         }
-binding.editBtn.setOnClickListener {
-    findNavController().navigate(R.id.editFragment)
-}
+        binding.editBtn.setOnClickListener {
+            findNavController().navigate(R.id.editFragment)
+        }
 
 
 

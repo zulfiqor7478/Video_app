@@ -19,24 +19,32 @@
         android:id="@+id/galleryFragment"
         android:name="uz.innavation.GalleryFragment"
         android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" />
-    <fragment
-        android:id="@+id/savedVideosFragment"
-        android:name="uz.innavation.SavedVideosFragment"
-        android:label="fragment_saved_videos"
-        tools:layout="@layout/fragment_saved_videos" />
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_galleryFragment_to_savedVideoListFragment2"
+            app:destination="@id/savedVideoListFragment2" />
+        <action
+            android:id="@+id/action_galleryFragment_to_videosListFragment2"
+            app:destination="@id/videosListFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/homePageFragment2"
         android:name="uz.innavation.ui.home.HomePageFragment"
-        android:label="HomePageFragment" />
+        android:label="HomePageFragment" >
+        <action
+            android:id="@+id/action_homePageFragment2_to_aboutFragment2"
+            app:destination="@id/aboutFragment2" />
+        <action
+            android:id="@+id/action_homePageFragment2_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+        <action
+            android:id="@+id/action_homePageFragment2_to_settingsFragment2"
+            app:destination="@id/settingsFragment2" />
+    </fragment>
     <fragment
         android:id="@+id/aboutFragment2"
         android:name="uz.innavation.ui.home.AboutFragment"
         android:label="AboutFragment" />
-    <fragment
-        android:id="@+id/galleryFragment2"
-        android:name="uz.innavation.ui.home.GalleryFragment"
-        android:label="GalleryFragment" />
     <fragment
         android:id="@+id/savedVideoListFragment2"
         android:name="uz.innavation.ui.home.SavedVideoListFragment"
@@ -49,4 +57,8 @@
         android:id="@+id/videosListFragment2"
         android:name="uz.innavation.ui.home.VideosListFragment"
         android:label="VideosListFragment" />
+    <fragment
+        android:id="@+id/editFragment2"
+        android:name="uz.innavation.ui.home.EditFragment"
+        android:label="EditFragment" />
 </navigation>

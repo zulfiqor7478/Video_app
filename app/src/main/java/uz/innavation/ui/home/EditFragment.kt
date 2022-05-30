@@ -18,7 +18,7 @@ class EditFragment : Fragment() {
         binding = FragmentEditBinding.inflate(layoutInflater)
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(R.id.profile)
+            findNavController().popBackStack()
         }
         return binding.root
 
