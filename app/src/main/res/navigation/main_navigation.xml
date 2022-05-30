@@ -40,6 +40,12 @@
         <action
             android:id="@+id/action_homePageFragment2_to_settingsFragment2"
             app:destination="@id/settingsFragment2" />
+        <action
+            android:id="@+id/action_homePageFragment2_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homePageFragment2_to_videoFragment"
+            app:destination="@id/videoFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment2"
@@ -61,4 +67,13 @@
         android:id="@+id/editFragment2"
         android:name="uz.innavation.ui.home.EditFragment"
         android:label="EditFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="uz.innavation.ui.home.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editFragment2"
+            app:destination="@id/editFragment2" />
+    </fragment>
 </navigation>

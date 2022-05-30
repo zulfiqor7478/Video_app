@@ -6,9 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import uz.innavation.R
-import uz.innavation.databinding.FragmentSavedVideoListBinding
-import uz.innavation.databinding.FragmentSavedVideosBinding
 import uz.innavation.databinding.FragmentVideosListBinding
 
 class VideosListFragment : Fragment() {

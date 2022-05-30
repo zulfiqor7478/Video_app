@@ -28,7 +28,7 @@ class HomePageFragment : Fragment() {
                 navigate(R.id.videoFragment)
             }
             infoProfile.setOnClickListener {
-
+                navigate(R.id.profileFragment)
             }
             aboutBtn.setOnClickListener {
                 navigate(R.id.aboutFragment2)

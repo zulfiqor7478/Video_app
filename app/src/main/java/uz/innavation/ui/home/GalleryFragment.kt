@@ -19,10 +19,10 @@ class GalleryFragment : Fragment() {
         binding = FragmentGalleryBinding.inflate(layoutInflater)
 
         binding.videosBtn.setOnClickListener {
-            findNavController().navigate(R.id.videosListFragment)
+            findNavController().navigate(R.id.videosListFragment2)
         }
         binding.savedVideosBtn.setOnClickListener {
-            findNavController().navigate(R.id.savedVideoListFragment)
+            findNavController().navigate(R.id.savedVideoListFragment2)
         }
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()

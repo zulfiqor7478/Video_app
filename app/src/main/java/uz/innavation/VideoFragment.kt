@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.ContentValues
 import android.content.Context
 import android.content.IntentSender
+import android.content.pm.PackageManager
+import android.location.Location
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -20,6 +22,7 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.*
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
@@ -29,6 +32,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -40,7 +44,7 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class VideoFragment : Fragment() {
+open class VideoFragment : Fragment(), OnMapReadyCallback {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private lateinit var viewModel: MainActivityViewModel
@@ -49,6 +53,11 @@ class VideoFragment : Fragment() {
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var locationRequest: LocationRequest
     private lateinit var dialog: AlertDialog
+
+
+    lateinit var map: GoogleMap
+
+    var mCurrentLocation: Location? = null
 
     private val abs = 10001
     private lateinit var binding: FragmentVideoBinding
@@ -74,6 +83,22 @@ class VideoFragment : Fragment() {
                 for (location in p0.locations) {
                     viewModel.getAddressForLocation(binding.root.context, location)
                     viewModel.getSpeedForLocation(location)
+                    mCurrentLocation = location
+                    val mapFragment = childFragmentManager
+                        .findFragmentById(R.id.map) as SupportMapFragment
+                    mapFragment.getMapAsync(this@VideoFragment)
+                    if (ActivityCompat.checkSelfPermission(
+                            binding.root.context,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                            binding.root.context,
+                            Manifest.permission.ACCESS_COARSE_LOCATION
+                        ) != PackageManager.PERMISSION_GRANTED
+                    ) {
+                        return
+                    }
+
+
                 }
             }
         }
@@ -92,6 +117,7 @@ class VideoFragment : Fragment() {
             }
 
             setSpeed()
+
 
         }, 1500)
 
@@ -142,7 +168,7 @@ class VideoFragment : Fragment() {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, name)
                 put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                    put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/Yxx")
+                    put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/Havfsiz yo'l")
                 }
             }
 
@@ -242,7 +268,6 @@ class VideoFragment : Fragment() {
         }, ContextCompat.getMainExecutor(binding.root.context))
     }
 
-
     private fun turnOnGPS() {
 
         locationRequest = LocationRequest.create()
@@ -313,7 +338,6 @@ class VideoFragment : Fragment() {
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
     }
 
-
     private fun setProgress() {
         dialog = AlertDialog.Builder(binding.root.context).create()
         val view = LayoutInflater.from(binding.root.context)
@@ -340,5 +364,43 @@ class VideoFragment : Fragment() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
+
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+
+
+        if (ActivityCompat.checkSelfPermission(
+                binding.root.context,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                binding.root.context,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return
+        }
+        map.isMyLocationEnabled = true
+        map.uiSettings.isMyLocationButtonEnabled = true
+
+/*        if (mCurrentLocation != null) {
+
+            googleMap.moveCamera(
+                CameraUpdateFactory.newLatLngZoom(
+                    LatLng(
+                        mCurrentLocation?.latitude ?: 0.0, mCurrentLocation?.longitude ?: 0.0
+                    ), 17.0f
+                )
+            )
+        }*/
+    }
+
 
 }

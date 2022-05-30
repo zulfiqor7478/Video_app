@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -93,5 +94,15 @@
                     android:textSize="@dimen/_15sdp" />
             </LinearLayout>
         </LinearLayout>
+
+
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:background="#D6D6D6" />
 </LinearLayout>

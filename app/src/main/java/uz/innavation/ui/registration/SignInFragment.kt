@@ -24,7 +24,7 @@ class SignInFragment : Fragment() {
             findNavController().navigate(R.id.signUpFragment2, Bundle(), setAnimation().build())
         }
         binding.btnCard.setOnClickListener {
-            findNavController().navigate(R.id.homePageFragment)
+            findNavController().navigate(R.id.homePageFragment2)
         }
         return binding.root
     }
