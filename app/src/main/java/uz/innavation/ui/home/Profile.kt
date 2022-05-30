@@ -1,14 +1,14 @@
 package uz.innavation.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.innavation.R
-import uz.innavation.databinding.FragmentHomePageBinding
 import uz.innavation.databinding.FragmentProfileBinding
+import uz.innavation.utils.setAnimation
 
 class Profile : Fragment() {
     lateinit var binding: FragmentProfileBinding
@@ -21,11 +21,11 @@ class Profile : Fragment() {
 
 
         binding.backBtn.setOnClickListener {
-            findNavController().navigate(R.id.homePageFragment)
+            findNavController().popBackStack()
         }
-binding.editBtn.setOnClickListener {
-    findNavController().navigate(R.id.editFragment)
-}
+        binding.editBtn.setOnClickListener {
+            findNavController().navigate(R.id.editFragment, Bundle(), setAnimation().build())
+        }
 
 
 

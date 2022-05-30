@@ -6,6 +6,15 @@
     app:startDestination="@id/homePageFragment2">
 
     <fragment
+        android:id="@+id/editFragment"
+        android:name="uz.innavation.ui.home.EditFragment"
+        android:label="EditFragment" />
+    <fragment
+        android:id="@+id/profile"
+        android:name="uz.innavation.ui.home.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
         android:id="@+id/videoFragment"
         android:name="uz.innavation.VideoFragment"
         android:label="fragment_video"
