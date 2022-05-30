@@ -1,14 +1,17 @@
 package uz.innavation.ui.home
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.innavation.R
 import uz.innavation.databinding.FragmentHomePageBinding
 import uz.innavation.utils.setAnimation
+
 
 class HomePageFragment : Fragment() {
     lateinit var binding: FragmentHomePageBinding
@@ -39,8 +42,14 @@ class HomePageFragment : Fragment() {
 
 
             openmapBtn.setOnClickListener {
-
+                val gmmIntentUri = Uri.parse("geo:37.7749,-122.4194")
+                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                mapIntent.setPackage("com.google.android.apps.maps")
+                if (mapIntent.resolveActivity(activity?.packageManager!!) != null) {
+                    startActivity(mapIntent)
+                }
             }
+
         }
 
 

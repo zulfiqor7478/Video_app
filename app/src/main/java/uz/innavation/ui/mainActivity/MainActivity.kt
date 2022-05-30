@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(viewBinding.root)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         val w: Window = window
         w.setFlags(

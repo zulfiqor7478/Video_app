@@ -20,12 +20,11 @@ import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.*
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
@@ -85,19 +84,20 @@ class VideoFragment : Fragment() {
 
             dialog.cancel()
 
+            turnOnGPS()
             startCamera()
 
             binding.videoCaptureButton.setOnClickListener {
                 captureVideo()
             }
 
-
-
             setSpeed()
 
+        }, 1500)
 
-        }, 2000)
-
+        binding.home.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         return binding.root
     }
