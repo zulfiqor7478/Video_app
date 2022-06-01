@@ -16,7 +16,7 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/galleryFragment"
+        android:id="@+id/galleryFragment2"
         android:name="uz.innavation.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" >
@@ -36,7 +36,7 @@
             app:destination="@id/aboutFragment2" />
         <action
             android:id="@+id/action_homePageFragment2_to_galleryFragment"
-            app:destination="@id/galleryFragment" />
+            app:destination="@id/galleryFragment2" />
         <action
             android:id="@+id/action_homePageFragment2_to_settingsFragment2"
             app:destination="@id/settingsFragment2" />

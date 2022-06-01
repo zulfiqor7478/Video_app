@@ -14,6 +14,10 @@ import com.github.florent37.runtimepermission.kotlin.askPermission
 import uz.innavation.databinding.ActivitySplashBinding
 import uz.innavation.ui.mainActivity.MainActivity
 import uz.innavation.ui.registration.RegisterMainActivity
+import uz.innavation.utils.Method
+import uz.innavation.utils.StorageUtil
+import java.io.File
+
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -28,6 +32,14 @@ class SplashActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
+
+        val storagePaths = StorageUtil.getStorageDirectories(this)
+
+        for (path in storagePaths) {
+            val storage = File(path)
+            Method.load_Directory_Files(storage)
+        }
+
 
         /* binding.card.setOnClickListener {
  *//*
@@ -67,8 +79,7 @@ class SplashActivity : AppCompatActivity() {
         }, 2000)
 
 
-
-       // allow()
+        // allow()
     }
 /*
     private fun requestRecordAudio() {

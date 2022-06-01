@@ -68,10 +68,13 @@
             android:orientation="vertical">
 
             <LinearLayout
+
                 android:id="@+id/videos_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_30sdp"
+                android:clickable="true"
+                android:foreground="?selectableItemBackground"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -113,7 +116,10 @@
                 android:id="@+id/saved_videos_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_20sdp">
+                android:layout_marginTop="@dimen/_20sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground">
 
                 <LinearLayout
                     android:layout_width="@dimen/_10sdp"

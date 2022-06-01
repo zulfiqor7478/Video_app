@@ -23,9 +23,10 @@
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
-                app:cardElevation="@dimen/_10sdp">
+                app:cardElevation="0dp">
 
                 <ImageView
+                    android:scaleType="centerCrop"
                     android:id="@+id/video_img"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
@@ -50,6 +51,8 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:singleLine="true"
+                    android:id="@+id/video_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center|left"

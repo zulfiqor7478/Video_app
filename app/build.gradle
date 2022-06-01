@@ -112,4 +112,7 @@ dependencies {
     //ripple
     implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
 
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+
 }
