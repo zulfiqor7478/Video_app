@@ -47,7 +47,13 @@ class VideosListFragment : Fragment() {
         }
 
 
-        recyclerViewAdapter =  RecyclerViewAdapter(binding.root.context)
+        recyclerViewAdapter =  RecyclerViewAdapter(binding.root.context, object :RecyclerViewAdapter.OnClick{
+            override fun click(uri: Uri) {
+                val start =  Intent(Intent.ACTION_VIEW);
+                start.setDataAndType(Uri.parse(uri.path), "video/*");
+                startActivity(start);
+            }
+        })
 
         binding.rv.adapter = recyclerViewAdapter;
 

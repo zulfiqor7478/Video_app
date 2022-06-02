@@ -77,6 +77,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         setProgress()
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
+
+
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(binding.root.context)
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(p0: LocationResult) {
@@ -111,9 +113,16 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
             turnOnGPS()
             startCamera()
-
-            binding.videoCaptureButton.setOnClickListener {
+            Handler(Looper.myLooper()!!).postDelayed({
                 captureVideo()
+            }, 2500)
+            binding.videoCaptureButton.setOnClickListener {
+                binding.videoCaptureButton.isClickable = false
+                binding.videoIcon.setImageResource(R.drawable.ic_playing_video_icon)
+                Handler(Looper.myLooper()!!).postDelayed({
+                    captureVideo()
+                    binding.videoCaptureButton.isClickable = true
+                }, 15000)
             }
 
             setSpeed()
@@ -160,8 +169,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             return
         } else {
 
-            binding.videoIcon.setImageResource(R.drawable.ic_playing_video_icon)
-
+            Toast.makeText(binding.root.context, "Video started", Toast.LENGTH_SHORT).show()
             val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
                 .format(System.currentTimeMillis())
             val contentValues = ContentValues().apply {

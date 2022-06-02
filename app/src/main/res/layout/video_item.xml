@@ -69,10 +69,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/videoDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
-                    android:text="2:00"
+                    android:text="@string/_2_00"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
 

@@ -8,6 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/back_btn"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_20sdp"
