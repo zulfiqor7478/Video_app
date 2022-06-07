@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.CustomDialogFragment3">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,9 +11,6 @@
         android:backgroundTint="#E6FFFFFF"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?selectableItemBackground"
         app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="@dimen/_4sdp">
 
@@ -34,7 +29,6 @@
 
             <RadioButton
                 android:layout_width="match_parent"
-
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:text="@string/_105_sec"
@@ -80,6 +74,7 @@
                 android:textSize="@dimen/_16sdp" />
 
             <TextView
+                android:id="@+id/cancel_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end|center"

@@ -2,20 +2,16 @@ package uz.innavation
 
 import android.Manifest
 import android.content.ContentValues
-import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
-import android.os.Build
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
@@ -44,6 +40,7 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
+
 open class VideoFragment : Fragment(), OnMapReadyCallback {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
@@ -54,13 +51,15 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     private lateinit var locationRequest: LocationRequest
     private lateinit var dialog: AlertDialog
 
+    private lateinit var timer: CountDownTimer
 
-    lateinit var map: GoogleMap
+    private lateinit var map: GoogleMap
 
     var mCurrentLocation: Location? = null
 
     private val abs = 10001
     private lateinit var binding: FragmentVideoBinding
+
     private val callback = OnMapReadyCallback { googleMap ->
         val sydney = LatLng(-34.0, 151.0)
         googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
@@ -78,6 +77,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
 
+        activity?.window!!.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(binding.root.context)
         locationCallback = object : LocationCallback() {
@@ -105,6 +105,21 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             }
         }
 
+        timer = object : CountDownTimer(120000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+
+
+            }
+
+            override fun onFinish() {
+
+                timer.start()
+
+                captureVideoForTwoMinutes()
+                captureVideoForTwoMinutes()
+            }
+        }.start()
+
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         Handler(Looper.myLooper()!!).postDelayed({
@@ -114,15 +129,20 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             turnOnGPS()
             startCamera()
             Handler(Looper.myLooper()!!).postDelayed({
-                captureVideo()
+                //captureVideo()
+                captureVideoForTwoMinutes()
             }, 2500)
+            var a = false
             binding.videoCaptureButton.setOnClickListener {
-                binding.videoCaptureButton.isClickable = false
-                binding.videoIcon.setImageResource(R.drawable.ic_playing_video_icon)
-                Handler(Looper.myLooper()!!).postDelayed({
+                a = !a
+                if (a){
+                    captureVideoForTwoMinutes()
                     captureVideo()
-                    binding.videoCaptureButton.isClickable = true
-                }, 15000)
+                }else{
+                    captureVideo()
+                    captureVideoForTwoMinutes()
+                }
+
             }
 
             setSpeed()
@@ -155,6 +175,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+
     private fun captureVideo() {
         val videoCapture = this.videoCapture ?: return
 
@@ -164,11 +185,10 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         if (curRecording != null) {
             curRecording.stop()
             recording = null
-            binding.videoIcon.setImageResource(R.drawable.ic_video)
-
             return
         } else {
 
+            binding.videoIcon.setImageResource(R.drawable.ic_playing_video_icon)
             Toast.makeText(binding.root.context, "Video started", Toast.LENGTH_SHORT).show()
             val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
                 .format(System.currentTimeMillis())
@@ -176,7 +196,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                 put(MediaStore.MediaColumns.DISPLAY_NAME, name)
                 put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                    put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/Havfsiz yo'l")
+                    put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/YxxVideos")
                 }
             }
 
@@ -211,7 +231,91 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                         "${recordEvent.outputResults.outputUri}"
                                 Toast.makeText(
                                     binding.root.context,
-                                    "Video saqlandi!",
+                                    "Video saved!",
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                                binding.videoIcon.setImageResource(R.drawable.ic_video)
+                                Log.d(TAG, msg)
+                            } else {
+                                recording?.close()
+                                recording = null
+                                Log.e(
+                                    TAG, "Video capture ends with error: " +
+                                            "${recordEvent.error}"
+                                )
+                            }
+                            binding.videoCaptureButton.apply {
+                                //   text = getString(R.string.start_capture)
+                                isEnabled = true
+                            }
+                        }
+                    }
+                }
+        }
+
+
+    }
+
+    private fun captureVideoForTwoMinutes() {
+        val videoCapture = this.videoCapture ?: return
+
+        binding.videoCaptureButton.isEnabled = false
+
+        val curRecording = recording
+        if (curRecording != null) {
+            curRecording.stop()
+            recording = null
+            binding.videoIcon.setImageResource(R.drawable.ic_video)
+
+            return
+        } else {
+
+            Toast.makeText(binding.root.context, "Video started for TwoMinutes", Toast.LENGTH_SHORT)
+                .show()
+            val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+                .format(System.currentTimeMillis())
+            val contentValues = ContentValues().apply {
+                put(MediaStore.MediaColumns.DISPLAY_NAME, name)
+                put(MediaStore.MediaColumns.MIME_TYPE, "video/mp4")
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                    put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/TwoMinutes")
+                }
+            }
+
+            val mediaStoreOutputOptions = MediaStoreOutputOptions
+                .Builder(activity?.contentResolver!!, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+                .setContentValues(contentValues)
+                .build()
+
+            recording = videoCapture.output
+                .prepareRecording(binding.root.context, mediaStoreOutputOptions)
+                .apply {
+                    if (PermissionChecker.checkSelfPermission(
+                            binding.root.context,
+                            Manifest.permission.RECORD_AUDIO
+                        ) ==
+                        PermissionChecker.PERMISSION_GRANTED
+                    ) {
+                        withAudioEnabled()
+                    }
+                }
+                .start(ContextCompat.getMainExecutor(binding.root.context)) { recordEvent ->
+                    when (recordEvent) {
+                        is VideoRecordEvent.Start -> {
+                            binding.videoCaptureButton.apply {
+                                //     text = getString(R.string.stop_capture)
+                                isEnabled = true
+                            }
+                        }
+                        is VideoRecordEvent.Finalize -> {
+                            if (!recordEvent.hasError()) {
+                                //        viewModel.stopTimer()
+                                val msg = "Video capture succeeded: " +
+                                        "${recordEvent.outputResults.outputUri}"
+                                Toast.makeText(
+                                    binding.root.context,
+                                    "Video saved for TwoMinutes!",
                                     Toast.LENGTH_SHORT
                                 )
                                     .show()
@@ -297,10 +401,6 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                 task.getResult(ApiException::class.java)
 
 
-                Toast.makeText(binding.root.context, "GPS is already toured on", Toast.LENGTH_SHORT)
-                    .show()
-
-
             } catch (e: ApiException) {
 
                 when (e.statusCode) {
@@ -330,6 +430,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+/*
     private fun isGPSEnabled(): Boolean {
         var locationManager: LocationManager? = null
 
@@ -340,6 +441,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
     }
+*/
 
     companion object {
         private const val TAG = "CameraXApp"
@@ -361,16 +463,21 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         viewModel.startLocationUpdates(binding.root.context, fusedLocationClient, locationCallback)
+        timer.start()
     }
 
     override fun onPause() {
         super.onPause()
         viewModel.stopLocationUpdates(fusedLocationClient, locationCallback)
+        captureVideoForTwoMinutes()
+        timer.cancel()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         cameraExecutor.shutdown()
+        captureVideoForTwoMinutes()
+        timer.cancel()
     }
 
 

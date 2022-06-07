@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.ProfileFragment">
+    tools:context=".ui.home.SettingsFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/back_btn"
@@ -67,13 +67,16 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/resolution"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_25sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
                 android:orientation="vertical">
 
                 <LinearLayout
-
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_weight="1"
@@ -112,9 +115,13 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_55sdp"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
                 android:orientation="vertical">
 
                 <LinearLayout

@@ -12,9 +12,6 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:backgroundTint="#E6FFFFFF"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?selectableItemBackground"
         app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="@dimen/_4sdp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +46,7 @@
                         android:layout_height="match_parent"
                         android:contentDescription="@string/play"
                         android:padding="@dimen/_2sdp"
-                        android:src="@drawable/ic_play" />
+                        android:src="@drawable/ic_play2" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -81,6 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp"
                 tools:ignore="DisableBaselineAlignment">
@@ -128,6 +128,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp"
                 tools:ignore="DisableBaselineAlignment">
@@ -168,6 +171,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/_30sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
                 android:text="@string/cancel"
                 android:textColor="@color/main_color"
                 android:textSize="@dimen/_20sdp" />

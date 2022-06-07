@@ -11,13 +11,8 @@
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="uz.innavation.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
-    <fragment
         android:id="@+id/galleryFragment2"
-        android:name="uz.innavation.GalleryFragment"
+        android:name="uz.innavation.ui.home.GalleryFragment"
         android:label="fragment_gallery"
         tools:layout="@layout/fragment_gallery" >
         <action

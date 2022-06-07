@@ -19,14 +19,7 @@ class AboutFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.dlg1.setOnClickListener {
-            val dlg1 = CustomDialogFragment1()
-            dlg1.show(childFragmentManager, "customDiolog")
-        }
-        binding.dlg2.setOnClickListener {
-            val dlg2 = CustomDialogFragment2()
-            dlg2.show(childFragmentManager, "customDiolog")
-        }
+
         return binding.root
     }
 

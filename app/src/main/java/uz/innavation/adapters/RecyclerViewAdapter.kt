@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.innavation.R
 import uz.innavation.utils.Constant
+import java.io.File
 
 class RecyclerViewAdapter internal constructor(
+    var arrayList: ArrayList<File>,
     private val mContext: Context,
     var onClick: OnClick
 ) :
@@ -25,18 +27,43 @@ class RecyclerViewAdapter internal constructor(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as FileLayoutHolder).videoTitle.text = Constant.allMediaList[position].name
+        (holder as FileLayoutHolder).videoTitle.text = arrayList[position].name
         //we will load thumbnail using glide library
-        val uri = Uri.fromFile(Constant.allMediaList[position])
-        val l = Constant.allMediaList[position].length() / 1000000
+        val uri = Uri.fromFile(arrayList[position])
+        val l = arrayList[position].length() / 1000000
         holder.videoSize.text = "$l mb"
+
+        /*      try {
+                  var durationTime: Long
+                  MediaPlayer.create(holder.videoSize.context, uri).also {
+
+                      durationTime = (it.duration / 1000).toLong()
+
+                      it.reset()
+                      it.release()
+                  }
+
+
+
+                  if (durationTime < 60){
+                      holder.videoDuration.text = "00:$durationTime"
+                  }else{
+                      val l1 = durationTime.toFloat() / 60
+                      holder.videoDuration.text = "${l1}:$durationTime"
+                  }
+
+
+
+
+              } catch (e: Exception) {
+              }*/
 
         Glide.with(mContext)
             .load(uri).thumbnail(0.1f).into(holder.thumbnail)
     }
 
     override fun getItemCount(): Int {
-        return Constant.allMediaList.size
+        return arrayList.size
     }
 
     @SuppressLint("SetTextI18n")
@@ -51,12 +78,10 @@ class RecyclerViewAdapter internal constructor(
             videoTitle = itemView.findViewById(R.id.video_name)
             videoDuration = itemView.findViewById(R.id.videoDuration)
             videoSize = itemView.findViewById(R.id.video_size)
-            thumbnail.setOnClickListener {
-                val uri = Uri.fromFile(Constant.allMediaList[adapterPosition])
+            itemView.setOnClickListener {
+                val uri = Uri.fromFile(arrayList[adapterPosition])
                 onClick.click(uri)
             }
-
-
 
 
         }

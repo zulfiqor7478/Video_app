@@ -7,8 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import uz.innavation.R
-import uz.innavation.databinding.FragmentAboutBinding
 import uz.innavation.databinding.FragmentGalleryBinding
+import uz.innavation.utils.setAnimation
+
 
 class GalleryFragment : Fragment() {
     lateinit var binding: FragmentGalleryBinding
@@ -19,10 +20,10 @@ class GalleryFragment : Fragment() {
         binding = FragmentGalleryBinding.inflate(layoutInflater)
 
         binding.videosBtn.setOnClickListener {
-            findNavController().navigate(R.id.videosListFragment2)
+            findNavController().navigate(R.id.videosListFragment2, Bundle(), setAnimation().build())
         }
         binding.savedVideosBtn.setOnClickListener {
-            findNavController().navigate(R.id.savedVideoListFragment2)
+            findNavController().navigate(R.id.savedVideoListFragment2,Bundle(), setAnimation().build())
         }
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -30,4 +31,5 @@ class GalleryFragment : Fragment() {
 
         return binding.root
     }
+
 }

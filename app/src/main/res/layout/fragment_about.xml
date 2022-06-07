@@ -61,21 +61,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_btn">
 
-        <Button
-            android:id="@+id/dlg1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:backgroundTint="@color/purple_200"
-            android:text="dialog1" />
-
-        <Button
-            android:id="@+id/dlg2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:backgroundTint="@color/purple_200"
-            android:text="dialog2" />
 
 
         <TextView

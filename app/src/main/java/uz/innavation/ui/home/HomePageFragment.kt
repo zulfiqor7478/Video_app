@@ -34,7 +34,7 @@ class HomePageFragment : Fragment() {
                 navigate(R.id.aboutFragment2)
             }
             galleryBtn.setOnClickListener {
-                navigate(R.id.videosListFragment2)
+                navigate(R.id.galleryFragment2)
             }
             settingsBtn.setOnClickListener {
                 navigate(R.id.settingsFragment2)
