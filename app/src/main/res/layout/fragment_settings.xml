@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Video resolution"
+                        android:text="@string/video_o_lchamlari"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -134,7 +134,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Video recording time"
+                        android:text="@string/video_yozib_olish_vaqti"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -149,7 +149,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="105.sec"
+                        android:text="105.sek"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
                 </LinearLayout>

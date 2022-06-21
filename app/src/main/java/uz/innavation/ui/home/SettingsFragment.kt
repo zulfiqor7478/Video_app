@@ -45,6 +45,7 @@ class SettingsFragment : Fragment() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.show()
         }
+        recTime()
 
         binding.time.setOnClickListener {
             val dialog = AlertDialog.Builder(binding.root.context).create()
@@ -72,5 +73,14 @@ class SettingsFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun recTime() {
+//        binding.recTime.setOnClickListener {
+//            var diolog = CustomDialogFragment1()
+//            diolog.show(childFragmentManager, "recTime")
+//        }
+
+    }
+
 
 }

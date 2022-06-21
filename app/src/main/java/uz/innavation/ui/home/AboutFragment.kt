@@ -19,7 +19,6 @@ class AboutFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-
         return binding.root
     }
 
