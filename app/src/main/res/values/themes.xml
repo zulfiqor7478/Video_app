@@ -13,4 +13,9 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="RoundedCornersDialog" parent="@style/Theme.MaterialComponents.Dialog">
+        <item name="dialogCornerRadius">12dp</item>
+        <item name="android:solidColor">#00000000</item>
+    </style>
 </resources>
