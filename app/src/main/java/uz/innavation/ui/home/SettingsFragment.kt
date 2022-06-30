@@ -61,6 +61,7 @@ class SettingsFragment : Fragment() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.show()
         }
+        recTime()
 
         binding.timeText.text = MySharedPreference.videoTime!!.toString() + " soniya"
         binding.time.setOnClickListener {
@@ -123,5 +124,14 @@ class SettingsFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun recTime() {
+//        binding.recTime.setOnClickListener {
+//            var diolog = CustomDialogFragment1()
+//            diolog.show(childFragmentManager, "recTime")
+//        }
+
+    }
+
 
 }
