@@ -178,13 +178,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                android:hint="@string/first_name"
-                                android:background="@color/white"
                                 android:id="@+id/pr_first_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/first_name"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
@@ -225,13 +225,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                android:hint="@string/last_name"
-                                android:background="@color/white"
                                 android:id="@+id/pr_last_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/last_name"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
@@ -272,13 +272,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                android:hint="@string/tashkent"
-                                android:background="@color/white"
                                 android:id="@+id/pr_city"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/tashkent"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
@@ -319,13 +319,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                    android:hint="@string/district"
-                                android:background="@color/white"
                                 android:id="@+id/pr_district"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/district"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
@@ -366,13 +366,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                android:hint="@string/street"
-                                android:background="@color/white"
                                 android:id="@+id/pr_street"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/street"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
@@ -413,13 +413,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                android:hint="@string/password"
                                 android:id="@+id/pr_password"
-                                android:background="@color/white"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/password"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />
@@ -461,13 +461,13 @@
                             android:layout_weight="1.5">
 
                             <EditText
-                                android:hint="@string/e_mail"
-                                android:background="@color/white"
                                 android:id="@+id/pr_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_20sdp"
+                                android:background="@color/white"
                                 android:gravity="left|center"
+                                android:hint="@string/e_mail"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_15sdp"
                                 tools:ignore="RtlHardcoded" />

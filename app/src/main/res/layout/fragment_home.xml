@@ -2,26 +2,26 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:gravity="center"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    tools:context=".ui.HomeFragment">
 
 
     <Button
         android:id="@+id/start"
-        android:text="@string/start"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/start"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/gallery"
-        android:text="@string/start"
-        android:textColor="@color/white"
-        android:backgroundTint="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="@string/start"
+        android:textColor="@color/white" />
 
 </LinearLayout>

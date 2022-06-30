@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_45sdp"
         android:layout_marginEnd="@dimen/_50sdp"
-        android:text="@string/setting"
+        android:text="Sozlamalar"
         android:textColor="@color/white"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintLeft_toRightOf="@+id/back_btn"
@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Video resolution"
+                        android:text="Video sifati"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -134,7 +134,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Video recording time"
+                        android:text="Video davomiyligi"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -149,7 +149,57 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="105.sec"
+                        android:text="15 soniya"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="#D6D6D6" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_55sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:orientation="vertical">
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:singleLine="true"
+                        android:text="Avtomatik saqlanadigan video soni"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_weight="1"
+                    android:paddingStart="@dimen/_20sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="10"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp" />
                 </LinearLayout>

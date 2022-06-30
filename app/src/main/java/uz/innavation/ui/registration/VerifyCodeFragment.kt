@@ -32,7 +32,7 @@ class VerifyCodeFragment : Fragment() {
     lateinit var auth: FirebaseAuth
     var isCodeSend = false
     lateinit var storedVerificationId: String
-     lateinit var dialog: AlertDialog
+    lateinit var dialog: AlertDialog
     private var resendToken: PhoneAuthProvider.ForceResendingToken? = null
     lateinit var number: String
     override fun onCreateView(
@@ -84,7 +84,11 @@ class VerifyCodeFragment : Fragment() {
 
         binding.btnCard.setOnClickListener {
             if (binding.password.text.toString().isNotBlank()) {
-                verifyCode()
+                //verifyCode()
+                dialog.cancel()
+                startActivity(Intent(binding.root.context, MainActivity::class.java))
+                timer.cancel()
+                activity?.finish()
             }
         }
 
@@ -119,7 +123,7 @@ class VerifyCodeFragment : Fragment() {
                 try {
                     if (isCodeSend) {
                         resendCode(number)
-                        vibratsiya()
+                        vibratos()
                         binding.password.setText("")
                         timer.start()
                         Toast.makeText(
@@ -148,7 +152,7 @@ class VerifyCodeFragment : Fragment() {
     }
 
 
-    private fun vibratsiya() {
+    private fun vibratos() {
         val vibrator = activity?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, 10))
@@ -158,8 +162,11 @@ class VerifyCodeFragment : Fragment() {
     private fun verifyCode() {
         val code = binding.password.text.toString().replace(" ", "", true)
         if (code.length == 6) {
-            val credential = PhoneAuthProvider.getCredential(storedVerificationId, code)
-            signInWithPhoneAuthCredential(credential)
+            try {
+                val credential = PhoneAuthProvider.getCredential(storedVerificationId, code)
+                signInWithPhoneAuthCredential(credential)
+            } catch (e: Exception) {
+            }
         }
     }
 

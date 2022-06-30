@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layoutDescription="@xml/fragment_video_scene2"
-    tools:context=".VideoFragment">
+    tools:context=".ui.VideoFragment">
 
 
     <androidx.fragment.app.FragmentContainerView
@@ -60,7 +60,8 @@
                 android:src="@drawable/ic_date_icon" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:text="@string/_11_05_2022_17_30"
@@ -81,7 +82,8 @@
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_time_icon" />
 
-            <TextView
+            <Chronometer
+                android:id="@+id/video_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"

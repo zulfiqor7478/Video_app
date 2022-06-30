@@ -17,16 +17,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
- <!--   <ImageView
-        android:layout_width="5dp"
-        android:layout_height="13dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_back_log"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back" />
--->
+    <!--   <ImageView
+           android:layout_width="5dp"
+           android:layout_height="13dp"
+           android:contentDescription="@string/app_name"
+           android:src="@drawable/ic_back_log"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/back" />
+   -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

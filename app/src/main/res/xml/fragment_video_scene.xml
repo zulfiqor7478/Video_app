@@ -87,11 +87,11 @@
             android:id="@+id/top_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_80sdp"
-            motion:layout_constraintRight_toRightOf="parent"
-            motion:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginLeft="@dimen/_26sdp"
             android:layout_marginTop="@dimen/_80sdp"
             android:layout_marginRight="@dimen/_26sdp"
+            motion:layout_constraintLeft_toLeftOf="parent"
+            motion:layout_constraintRight_toRightOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
     </ConstraintSet>
     <Transition
@@ -194,19 +194,19 @@
             android:layout_height="@dimen/_80sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_80sdp"
-            motion:layout_constraintStart_toStartOf="parent"
-            motion:layout_constraintEnd_toEndOf="parent"
             android:layout_marginRight="@dimen/_20sdp"
             android:visibility="invisible"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
             motion:layout_constraintTop_toTopOf="parent" />
         <Constraint
             android:id="@+id/content"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_120sdp"
+            android:visibility="invisible"
             motion:layout_constraintBottom_toBottomOf="@id/top_view"
             motion:layout_constraintRight_toRightOf="@id/top_view"
-            motion:layout_constraintTop_toTopOf="@id/top_view"
-            android:visibility="invisible" />
+            motion:layout_constraintTop_toTopOf="@id/top_view" />
     </ConstraintSet>
     <Transition
         motion:autoTransition="none"

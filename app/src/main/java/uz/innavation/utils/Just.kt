@@ -9,7 +9,7 @@ import java.nio.ByteBuffer
 class Just {
     val extractor = MediaExtractor()
 
-    fun encode(){
+    fun encode() {
         val extractor = MediaExtractor()
         extractor.setDataSource("inFilePath")
 
@@ -26,7 +26,7 @@ class Just {
         }
     }
 
-    fun two(){
+    fun two() {
         val maxChunkSize = 1024 * 1024
         val buffer = ByteBuffer.allocate(maxChunkSize)
         val bufferInfo = MediaCodec.BufferInfo()
@@ -48,11 +48,15 @@ class Just {
         }
     }
 
-    fun three(){
+    fun three() {
         val mime = "video/avc"
-        val width = 320; val height = 180
+        val width = 320;
+        val height = 180
         val outFormat = MediaFormat.createVideoFormat(mime, width, height)
-        outFormat.setInteger(MediaFormat.KEY_COLOR_FORMAT, MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface)
+        outFormat.setInteger(
+            MediaFormat.KEY_COLOR_FORMAT,
+            MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface
+        )
         outFormat.setInteger(MediaFormat.KEY_BIT_RATE, 2000000)
         outFormat.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
         outFormat.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 15)

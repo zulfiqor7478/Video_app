@@ -2,7 +2,7 @@ package uz.innavation.utils
 
 object MyData {
 
-    fun countryList():List<String> = listOf(
+    fun countryList(): List<String> = listOf(
         "Toshkent shahri",
         "Toshkent viloyati",
         "Andijon viloyati",

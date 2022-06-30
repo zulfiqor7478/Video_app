@@ -1,10 +1,12 @@
-package uz.innavation
+package uz.innavation.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
+import android.media.MediaMetadataRetriever
 import android.os.*
 import android.provider.MediaStore
 import android.util.Log
@@ -33,6 +35,9 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import uz.innavation.R
 import uz.innavation.databinding.FragmentVideoBinding
 import uz.innavation.ui.mainActivity.MainActivityViewModel
 import java.text.SimpleDateFormat
@@ -42,6 +47,7 @@ import java.util.concurrent.Executors
 
 
 open class VideoFragment : Fragment(), OnMapReadyCallback {
+
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
     private lateinit var viewModel: MainActivityViewModel
@@ -50,8 +56,13 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var locationRequest: LocationRequest
     private lateinit var dialog: AlertDialog
+    private lateinit var handler: Handler
+    var height: Int? = 0
+    var width: Int? = 0
+    var retriever: MediaMetadataRetriever? = null
 
     private lateinit var timer: CountDownTimer
+    private lateinit var timer2: CountDownTimer
 
     private lateinit var map: GoogleMap
 
@@ -66,6 +77,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
+
+    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -78,6 +91,10 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
 
         activity?.window!!.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        handler = Handler(Looper.myLooper()!!)
+
+        setDate()
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(binding.root.context)
         locationCallback = object : LocationCallback() {
@@ -127,21 +144,31 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             dialog.cancel()
 
             turnOnGPS()
-            startCamera()
+                startCamera()
             Handler(Looper.myLooper()!!).postDelayed({
-                //captureVideo()
                 captureVideoForTwoMinutes()
             }, 2500)
-            var a = false
+
             binding.videoCaptureButton.setOnClickListener {
-                a = !a
-                if (a){
-                    captureVideoForTwoMinutes()
+
+                binding.videoTime.base = SystemClock.elapsedRealtime()
+                binding.videoTime.start()
+                Toast.makeText(binding.root.context, "Video started", Toast.LENGTH_SHORT).show()
+                binding.videoCaptureButton.isClickable = false
+                captureVideoForTwoMinutes()
+                captureVideo()
+
+                handler = Handler(Looper.myLooper()!!)
+
+                handler.postDelayed({
                     captureVideo()
-                }else{
-                    captureVideo()
                     captureVideoForTwoMinutes()
-                }
+                    binding.videoCaptureButton.isClickable = true
+
+                    binding.videoTime.start()
+                    binding.videoTime.stop()
+
+                }, 16000)
 
             }
 
@@ -156,6 +183,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -175,21 +203,19 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
-
     private fun captureVideo() {
         val videoCapture = this.videoCapture ?: return
 
-        binding.videoCaptureButton.isEnabled = false
 
         val curRecording = recording
         if (curRecording != null) {
             curRecording.stop()
+            binding.videoIcon.setImageResource(R.drawable.ic_video)
             recording = null
             return
         } else {
 
             binding.videoIcon.setImageResource(R.drawable.ic_playing_video_icon)
-            Toast.makeText(binding.root.context, "Video started", Toast.LENGTH_SHORT).show()
             val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
                 .format(System.currentTimeMillis())
             val contentValues = ContentValues().apply {
@@ -235,7 +261,6 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                     Toast.LENGTH_SHORT
                                 )
                                     .show()
-                                binding.videoIcon.setImageResource(R.drawable.ic_video)
                                 Log.d(TAG, msg)
                             } else {
                                 recording?.close()
@@ -266,13 +291,19 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         if (curRecording != null) {
             curRecording.stop()
             recording = null
-            binding.videoIcon.setImageResource(R.drawable.ic_video)
 
             return
         } else {
 
-            Toast.makeText(binding.root.context, "Video started for TwoMinutes", Toast.LENGTH_SHORT)
+
+            Toast.makeText(
+                binding.root.context,
+                "Video started for TwoMinutes",
+                Toast.LENGTH_SHORT
+            )
                 .show()
+
+
             val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
                 .format(System.currentTimeMillis())
             val contentValues = ContentValues().apply {
@@ -284,7 +315,10 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             }
 
             val mediaStoreOutputOptions = MediaStoreOutputOptions
-                .Builder(activity?.contentResolver!!, MediaStore.Video.Media.EXTERNAL_CONTENT_URI)
+                .Builder(
+                    activity?.contentResolver!!,
+                    MediaStore.Video.Media.EXTERNAL_CONTENT_URI
+                )
                 .setContentValues(contentValues)
                 .build()
 
@@ -320,6 +354,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 )
                                     .show()
                                 Log.d(TAG, msg)
+                                //  addTextProcess("/storage/emulated/0/DCIM/Camera/magic123.mp4")
                             } else {
                                 recording?.close()
                                 recording = null
@@ -335,6 +370,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                         }
                     }
                 }
+
+
         }
 
 
@@ -430,18 +467,18 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
     }
 
-/*
-    private fun isGPSEnabled(): Boolean {
-        var locationManager: LocationManager? = null
+    /*
+        private fun isGPSEnabled(): Boolean {
+            var locationManager: LocationManager? = null
 
-        if (locationManager == null) {
-            locationManager =
-                activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            if (locationManager == null) {
+                locationManager =
+                    activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            }
+
+            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         }
-
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-    }
-*/
+    */
 
     companion object {
         private const val TAG = "CameraXApp"
@@ -457,6 +494,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
         dialog.show()
+
+
     }
 
 
@@ -464,6 +503,13 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         super.onResume()
         viewModel.startLocationUpdates(binding.root.context, fusedLocationClient, locationCallback)
         timer.start()
+        val curRecording = recording
+        if (curRecording != null) {
+            curRecording.stop()
+            binding.videoIcon.setImageResource(R.drawable.ic_video)
+            recording = null
+            return
+        }
     }
 
     override fun onPause() {
@@ -471,13 +517,29 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         viewModel.stopLocationUpdates(fusedLocationClient, locationCallback)
         captureVideoForTwoMinutes()
         timer.cancel()
+        handler.removeCallbacksAndMessages(null)
+        val curRecording = recording
+        if (curRecording != null) {
+            curRecording.stop()
+            binding.videoIcon.setImageResource(R.drawable.ic_video)
+            recording = null
+            return
+        }
     }
 
     override fun onDestroy() {
+        val curRecording = recording
+        if (curRecording != null) {
+            curRecording.stop()
+            binding.videoIcon.setImageResource(R.drawable.ic_video)
+            recording = null
+            return
+        }
         super.onDestroy()
         cameraExecutor.shutdown()
         captureVideoForTwoMinutes()
         timer.cancel()
+        handler.removeCallbacksAndMessages(null)
     }
 
 
@@ -505,17 +567,65 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         map.isMyLocationEnabled = true
         map.uiSettings.isMyLocationButtonEnabled = true
 
-/*        if (mCurrentLocation != null) {
+        /*        if (mCurrentLocation != null) {
 
-            googleMap.moveCamera(
-                CameraUpdateFactory.newLatLngZoom(
-                    LatLng(
-                        mCurrentLocation?.latitude ?: 0.0, mCurrentLocation?.longitude ?: 0.0
-                    ), 17.0f
-                )
-            )
-        }*/
+                    googleMap.moveCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                mCurrentLocation?.latitude ?: 0.0, mCurrentLocation?.longitude ?: 0.0
+                            ), 17.0f
+                        )
+                    )
+                }*/
     }
 
 
+    /*    override fun selectedFiles(mediaFiles: List<MediaFile>?, requestCode: Int) {
+            when (requestCode) {
+                Common.VIDEO_FILE_REQUEST_CODE -> {
+                    if (mediaFiles != null && mediaFiles.isNotEmpty()) {
+                   //     tvInputPathVideo.text = mediaFiles[0].path
+                   //     isInputVideoSelected = true
+                        CompletableFuture.runAsync {
+                            retriever = MediaMetadataRetriever()
+                            retriever?.setDataSource("tvInputPathVideo.text.toString()")
+                            val bit = retriever?.frameAtTime
+                            width = bit?.width
+                            height = bit?.height
+                        }
+                    } else {
+                        Toast.makeText(context, "Video tanlanmadi", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }*/
+
+
+    @SuppressLint("SimpleDateFormat")
+    private fun setDate() {
+
+        val s = SimpleDateFormat("dd.MM.yyyy HH:mm").format(Date())
+        binding.date.text = s
+        timer2 = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+
+
+            }
+
+            @SuppressLint("SimpleDateFormat")
+            override fun onFinish() {
+
+                timer2.start()
+
+
+                val s = SimpleDateFormat("dd.MM.yyyy HH:mm").format(Date())
+                binding.date.text = s
+            }
+        }.start()!!
+
+    }
+
 }
+
+
+

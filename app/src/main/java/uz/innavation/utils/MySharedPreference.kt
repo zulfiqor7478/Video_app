@@ -23,6 +23,14 @@ object MySharedPreference {
             }
         }
 
+    var isLogin: Boolean?
+        get() = sharedPreferences.getBoolean("isLogin", true)
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putBoolean("isLogin", value)
+            }
+        }
+
     var region: String?
         get() = sharedPreferences.getString("region", "")
         set(value) = sharedPreferences.edit {
@@ -44,6 +52,14 @@ object MySharedPreference {
         set(value) = sharedPreferences.edit {
             if (value != null) {
                 this.putString("streetNumber", value)
+            }
+        }
+
+    var videoResolution: String?
+        get() = sharedPreferences.getString("video21", "")
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putString("video21", value)
             }
         }
 

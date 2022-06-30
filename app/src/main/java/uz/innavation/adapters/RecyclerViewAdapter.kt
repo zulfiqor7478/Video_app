@@ -2,6 +2,7 @@ package uz.innavation.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.media.MediaPlayer
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.innavation.R
-import uz.innavation.utils.Constant
 import java.io.File
 
 class RecyclerViewAdapter internal constructor(
@@ -33,30 +33,24 @@ class RecyclerViewAdapter internal constructor(
         val l = arrayList[position].length() / 1000000
         holder.videoSize.text = "$l mb"
 
-        /*      try {
-                  var durationTime: Long
-                  MediaPlayer.create(holder.videoSize.context, uri).also {
+        try {
+            var durationTime: Long
+            MediaPlayer.create(holder.videoSize.context, uri).also {
 
-                      durationTime = (it.duration / 1000).toLong()
+                durationTime = (it.duration / 1000).toLong()
 
-                      it.reset()
-                      it.release()
-                  }
-
-
-
-                  if (durationTime < 60){
-                      holder.videoDuration.text = "00:$durationTime"
-                  }else{
-                      val l1 = durationTime.toFloat() / 60
-                      holder.videoDuration.text = "${l1}:$durationTime"
-                  }
+                it.reset()
+                it.release()
+            }
 
 
+            val minute = durationTime / 60
+            val second = durationTime % 60
+            holder.videoDuration.text = "${minute}:$second"
 
 
-              } catch (e: Exception) {
-              }*/
+        } catch (e: Exception) {
+        }
 
         Glide.with(mContext)
             .load(uri).thumbnail(0.1f).into(holder.thumbnail)

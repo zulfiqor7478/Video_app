@@ -7,14 +7,14 @@
 
     <fragment
         android:id="@+id/videoFragment"
-        android:name="uz.innavation.VideoFragment"
+        android:name="uz.innavation.ui.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
     <fragment
         android:id="@+id/galleryFragment2"
         android:name="uz.innavation.ui.home.GalleryFragment"
         android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" >
+        tools:layout="@layout/fragment_gallery">
         <action
             android:id="@+id/action_galleryFragment_to_savedVideoListFragment2"
             app:destination="@id/savedVideoListFragment2" />
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/homePageFragment2"
         android:name="uz.innavation.ui.home.HomePageFragment"
-        android:label="HomePageFragment" >
+        android:label="HomePageFragment">
         <action
             android:id="@+id/action_homePageFragment2_to_aboutFragment2"
             app:destination="@id/aboutFragment2" />
@@ -66,7 +66,7 @@
         android:id="@+id/profileFragment"
         android:name="uz.innavation.ui.home.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_editFragment2"
             app:destination="@id/editFragment2" />

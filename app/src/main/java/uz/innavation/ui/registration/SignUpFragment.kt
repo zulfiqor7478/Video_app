@@ -1,11 +1,11 @@
 package uz.innavation.ui.registration
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.innavation.R
 import uz.innavation.databinding.FragmentSignUpBinding
@@ -45,12 +45,16 @@ class SignUpFragment : Fragment() {
                 if (check()) {
 
                     val bundle = Bundle()
-                    bundle.putString("name",name.text.toString())
-                    bundle.putString("lastName",lastName.text.toString())
-                    bundle.putString("email",email.text.toString())
-                    bundle.putString("password",password.text.toString())
+                    bundle.putString("name", name.text.toString())
+                    bundle.putString("lastName", lastName.text.toString())
+                    bundle.putString("email", email.text.toString())
+                    bundle.putString("password", password.text.toString())
 
-                    findNavController().navigate(R.id.verifyCodeFragment, bundle, setAnimation().build())
+                    findNavController().navigate(
+                        R.id.verifyCodeFragment,
+                        bundle,
+                        setAnimation().build()
+                    )
 
                 }
 
@@ -82,7 +86,11 @@ class SignUpFragment : Fragment() {
                         if (MySharedPreference.region != "" && MySharedPreference.country != "" && MySharedPreference.streetNumber != "") {
 
                             a = true
-                            Toast.makeText(binding.root.context, MySharedPreference.region, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                binding.root.context,
+                                MySharedPreference.region,
+                                Toast.LENGTH_SHORT
+                            ).show()
 
                         } else
                             Toast.makeText(
@@ -117,7 +125,6 @@ class SignUpFragment : Fragment() {
 
         return a
     }
-
 
 
 }

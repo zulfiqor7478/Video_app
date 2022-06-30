@@ -20,7 +20,7 @@
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-keysexposed/fragment_verify_code.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-keyssoft/fragment_verify_code.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-land/activity_main.xml" value="0.152" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-land/fragment_video.xml" value="0.1" />
+        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-land/fragment_video.xml" value="0.264" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-night/fragment_verify_code.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-nokeys/fragment_verify_code.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout-qwerty/fragment_verify_code.xml" value="1.0572687224669604" />
@@ -52,14 +52,15 @@
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_sign_up2.xml" value="0.2" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_splash.xml" value="0.25" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_verify_code.xml" value="0.2" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_video.xml" value="0.176" />
+        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_video.xml" value="0.152" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_video_player.xml" value="0.1" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/fragment_videos_list.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/main.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/number_dialog.xml" value="0.20427350427350427" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/play_dialog.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/time_dialog.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/video_item.xml" value="0.264" />
-        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/video_resolution_dialog.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/layout/video_resolution_dialog.xml" value="0.264" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.121" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.121" />
         <entry key="..\:/Users/IT Park/AndroidStudioProjects/Video_app/app/src/main/res/xml/file_paths.xml" value="0.24895833333333334" />

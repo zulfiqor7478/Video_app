@@ -31,10 +31,10 @@ class MainActivityViewModel : ViewModel() {
 
 
     fun getSpeedForLocation(location: Location?) {
-            if (location != null) {
-                val speedKpPerHour = location.speed * 3.6
-                _speedText.value = Speed(speedKpPerHour.toFloat(), 500)
-            }
+        if (location != null) {
+            val speedKpPerHour = location.speed * 3.6
+            _speedText.value = Speed(speedKpPerHour.toFloat(), 500)
+        }
     }
 
     fun startLocationUpdates(
@@ -66,7 +66,10 @@ class MainActivityViewModel : ViewModel() {
         }
     }
 
-    fun stopLocationUpdates(fusedLocationClient: FusedLocationProviderClient, locationCallback: LocationCallback) {
+    fun stopLocationUpdates(
+        fusedLocationClient: FusedLocationProviderClient,
+        locationCallback: LocationCallback
+    ) {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 

@@ -1,60 +1,20 @@
 package uz.innavation.ui.mainActivity
 
-import android.Manifest
-import android.content.ContentValues
-import android.content.Context
-import android.content.IntentSender
-import android.location.LocationManager
-import android.opengl.GLES20
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import android.view.View
-import android.view.Window
 import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.Preview
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.*
-import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker
 import androidx.lifecycle.ViewModelProvider
-import com.github.florent37.runtimepermission.kotlin.askPermission
-import com.google.android.gms.common.api.ApiException
-import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import uz.innavation.R
 import uz.innavation.databinding.ActivityMainBinding
-import java.text.SimpleDateFormat
-import java.util.*
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
+import uz.innavation.utils.MySharedPreference
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityMainBinding
-    private var videoCapture: VideoCapture<Recorder>? = null
-    private var recording: Recording? = null
-
-    private val abs = 10001
-    private lateinit var locationRequest: LocationRequest
-    private lateinit var cameraExecutor: ExecutorService
-    private lateinit var animation1: Animation
-    private lateinit var animation2: Animation
     private lateinit var viewModel: MainActivityViewModel
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var locationCallback: LocationCallback
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -62,16 +22,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
+        if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+        if (Build.VERSION.SDK_INT >= 19) {
+            window.decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        }
+        if (Build.VERSION.SDK_INT >= 21) {
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            window.statusBarColor = Color.TRANSPARENT
+        }
         setContentView(viewBinding.root)
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
-
-        val w: Window = window
-        w.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
-
+        MySharedPreference.isLogin = true
 
 /*        askPermission()
 

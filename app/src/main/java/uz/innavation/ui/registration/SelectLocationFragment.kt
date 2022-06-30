@@ -1,7 +1,6 @@
 package uz.innavation.ui.registration
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.R
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.innavation.databinding.FragmentSelectLocationBinding
 import uz.innavation.utils.MyData
@@ -27,8 +27,6 @@ class SelectLocationFragment : Fragment() {
         binding = FragmentSelectLocationBinding.inflate(layoutInflater)
 
         binding.view.layoutParams.height = getStatusBarHeight()
-
-
 
 
         val spinnerAdapter = ArrayAdapter(

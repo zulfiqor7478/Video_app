@@ -54,17 +54,18 @@ class SavedVideoListFragment : Fragment() {
                             .inflate(uz.innavation.R.layout.play_dialog, null, false)
                         dialog.setView(view)
 
-                        view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn).setOnClickListener {
+                        view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn)
+                            .setOnClickListener {
 
-                            val start =  Intent(Intent.ACTION_VIEW);
-                            start.setDataAndType(Uri.parse(uri.path), "video/*");
-                            startActivity(start);
+                                val start = Intent(Intent.ACTION_VIEW);
+                                start.setDataAndType(Uri.parse(uri.path), "video/*");
+                                startActivity(start);
 
-                            dialog.cancel()
-                        }
+                                dialog.cancel()
+                            }
                         view.findViewById<View>(uz.innavation.R.id.cancel_btn).setOnClickListener {
 
-                           dialog.cancel()
+                            dialog.cancel()
 
                         }
 

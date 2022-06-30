@@ -1,10 +1,10 @@
 package uz.innavation.ui.registration
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import uz.innavation.R
 
 class RegisterMainActivity : AppCompatActivity() {

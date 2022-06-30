@@ -183,10 +183,10 @@
             android:id="@+id/content"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_120sdp"
+            android:visibility="invisible"
             motion:layout_constraintBottom_toBottomOf="@id/top_view"
             motion:layout_constraintRight_toRightOf="@id/top_view"
-            motion:layout_constraintTop_toTopOf="@id/top_view"
-            android:visibility="invisible" />
+            motion:layout_constraintTop_toTopOf="@id/top_view" />
     </ConstraintSet>
     <Transition
         motion:autoTransition="none"

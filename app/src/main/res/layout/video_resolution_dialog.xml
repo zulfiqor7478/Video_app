@@ -8,82 +8,77 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:backgroundTint="#E6FFFFFF"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginEnd="@dimen/_15sdp"
+        android:paddingBottom="@dimen/_20sdp"
+        app:cardBackgroundColor="#E6FFFFFF"
         app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="@dimen/_4sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_20sdp">
 
-            <RadioButton
+            <RadioGroup
+                android:id="@+id/radio"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
+                android:layout_height="wrap_content">
 
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:checked="true"
+                    android:text="@string/_1600x720"
+                    android:textSize="@dimen/_16sdp" />
 
-            <RadioButton
-                android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:text="@string/_1080x1080"
+                    android:textSize="@dimen/_16sdp" />
 
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
+                <RadioButton
+                    android:id="@+id/radio3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:text="@string/_1280x720_hd"
+                    android:textSize="@dimen/_16sdp" />
 
-            <RadioButton
-                android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radio4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:text="@string/_1440x720"
+                    android:textSize="@dimen/_16sdp" />
 
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
+                <RadioButton
+                    android:id="@+id/radio5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:text="@string/_1440x1080"
+                    android:textSize="@dimen/_16sdp" />
 
-            <RadioButton
-                android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/radio6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:text="@string/_1920x1080_fullhd"
+                    android:textSize="@dimen/_16sdp" />
 
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
+            </RadioGroup>
 
-            <RadioButton
-                android:layout_width="match_parent"
 
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
-
-            <RadioButton
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:text="@string/_105_sec"
-                android:textSize="@dimen/_16sdp" />
-
-            <TextView
-                android:id="@+id/cancel_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end|center"
-                android:layout_marginEnd="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_30sdp"
-                android:text="@string/cancel"
-                android:textColor="@color/main_color"
-                android:textSize="@dimen/_16sdp"
-                android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

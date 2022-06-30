@@ -76,7 +76,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="left|center"
-                    android:text="@string/_02_00"
+                    android:text="@string/ds"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
 

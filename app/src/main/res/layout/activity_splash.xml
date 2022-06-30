@@ -20,9 +20,9 @@
 
     <TextView
         android:id="@+id/splash_title"
-        android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/havfsiz_yo_l"
         android:textColor="@color/white"
         android:textSize="@dimen/_25sdp"
