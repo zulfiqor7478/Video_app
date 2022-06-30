@@ -40,6 +40,7 @@ import kotlinx.coroutines.withContext
 import uz.innavation.R
 import uz.innavation.databinding.FragmentVideoBinding
 import uz.innavation.ui.mainActivity.MainActivityViewModel
+import uz.innavation.utils.MySharedPreference
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -168,7 +169,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                     binding.videoTime.start()
                     binding.videoTime.stop()
 
-                }, 16000)
+                }, (MySharedPreference.videoTime!! * 1000 + 1000).toLong())
 
             }
 

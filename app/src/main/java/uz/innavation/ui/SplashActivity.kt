@@ -59,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
 
             if (it.isAccepted) {
                 Handler(Looper.myLooper()!!).postDelayed({
-                    if (MySharedPreference.isLogin!!){
+                    if (!MySharedPreference.isLogin!!){
                         startActivity(Intent(this, RegisterMainActivity::class.java))
                         finish()
                     }else{

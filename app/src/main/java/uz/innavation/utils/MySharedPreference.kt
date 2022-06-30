@@ -63,4 +63,12 @@ object MySharedPreference {
             }
         }
 
+    var videoTime: Int?
+        get() = sharedPreferences.getInt("paubile", 15)
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putInt("paubile", value)
+            }
+        }
+
 }

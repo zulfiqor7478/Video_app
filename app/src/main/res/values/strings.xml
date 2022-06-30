@@ -7,7 +7,6 @@
     <string name="kamera">Kameradan foydalanish</string>
     <string name="galleriya">Galleriyaga saqlash</string>
     <string name="text1">Video registrator ishlashi uchun quyidagi ruxsatlar talab qilinadi:</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hush_kelibsiz">Hush kelibsiz!</string>
     <string name="dasturga_kirish_turini_tanlang">Dasturga kirish turini tanlang</string>
     <string name="now">Telefon raqami orqali</string>
@@ -83,4 +82,5 @@
     <string name="ds">02:00</string>
     <string name="fdsfd">Ўзбек тили(крилл)</string>
     <string name="asd">Русский</string>
+    <string name="hello_blank_fragment">Salom!</string>
 </resources>
