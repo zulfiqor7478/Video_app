@@ -22,6 +22,8 @@ class SignInFragment : Fragment() {
     ): View {
         binding = FragmentSignInBinding.inflate(layoutInflater)
 
+        binding.signUpBtn.isSelected = true
+
         binding.signUpBtn.setOnClickListener {
             findNavController().navigate(R.id.signUpFragment, Bundle(), setAnimation().build())
         }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Havfsiz yo\'l</string>
     <string name="take_photo">Take Photo</string>
@@ -30,14 +31,14 @@
     <string name="o_zbek_tili">O’zbek tili</string>
     <string name="lang_ru">Русский</string>
     <string name="lang_en">English</string>
-    <string name="sign_in">Sign in</string>
+    <string name="sign_in">Kirish</string>
     <string name="e_mail">E-mail</string>
     <string name="password">Parol</string>
     <string name="continue_btn">Davom etish</string>
     <string name="first_name">Ism</string>
     <string name="last_name">Familiya</string>
     <string name="location">Manzil</string>
-    <string name="sign_up">Sign up</string>
+    <string name="sign_up">Ro\'yxatdan o\'tish</string>
     <string name="phone_number">Telefon raqam</string>
     <string name="district">Tuman</string>
     <string name="tashkent">Shahar</string>

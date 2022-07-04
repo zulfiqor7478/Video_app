@@ -15,16 +15,16 @@ object MySharedPreference {
         )
     }
 
-    var isUzbekLanguage: Boolean?
-        get() = sharedPreferences.getBoolean("isUzbekLanguage", true)
+    var language: String?
+        get() = sharedPreferences.getString("isUzbekLanguage", "uz")
         set(value) = sharedPreferences.edit {
             if (value != null) {
-                this.putBoolean("isUzbekLanguage", value)
+                this.putString("isUzbekLanguage", value)
             }
         }
 
     var isLogin: Boolean?
-        get() = sharedPreferences.getBoolean("isLogin", true)
+        get() = sharedPreferences.getBoolean("isLogin", false)
         set(value) = sharedPreferences.edit {
             if (value != null) {
                 this.putBoolean("isLogin", value)
@@ -68,6 +68,13 @@ object MySharedPreference {
         set(value) = sharedPreferences.edit {
             if (value != null) {
                 this.putInt("paubile", value)
+            }
+        }
+    var automaticVideoCount: Int?
+        get() = sharedPreferences.getInt("asddsa", 10)
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putInt("asddsa", value)
             }
         }
 

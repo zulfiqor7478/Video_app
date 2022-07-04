@@ -71,6 +71,9 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/video_item"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

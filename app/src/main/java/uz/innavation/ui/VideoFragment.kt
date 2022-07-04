@@ -14,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
@@ -35,8 +34,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import uz.innavation.R
 import uz.innavation.databinding.FragmentVideoBinding
 import uz.innavation.ui.mainActivity.MainActivityViewModel
@@ -60,6 +57,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     private lateinit var handler: Handler
     var height: Int? = 0
     var width: Int? = 0
+    lateinit var handlerMain: Handler
     var retriever: MediaMetadataRetriever? = null
 
     private lateinit var timer: CountDownTimer
@@ -73,8 +71,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentVideoBinding
 
     private val callback = OnMapReadyCallback { googleMap ->
-        val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        val sydney = LatLng(41.3775, 64.5853)
+        googleMap.addMarker(MarkerOptions().position(sydney).title("Uzbekistan"))
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
 
@@ -140,12 +138,15 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        Handler(Looper.myLooper()!!).postDelayed({
+        turnOnGPS()
+        startCamera()
+
+        handlerMain = Handler(Looper.myLooper()!!)
+
+        handlerMain.postDelayed({
 
             dialog.cancel()
 
-            turnOnGPS()
-                startCamera()
             Handler(Looper.myLooper()!!).postDelayed({
                 captureVideoForTwoMinutes()
             }, 2500)
@@ -154,7 +155,6 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
                 binding.videoTime.base = SystemClock.elapsedRealtime()
                 binding.videoTime.start()
-                Toast.makeText(binding.root.context, "Video started", Toast.LENGTH_SHORT).show()
                 binding.videoCaptureButton.isClickable = false
                 captureVideoForTwoMinutes()
                 captureVideo()
@@ -176,7 +176,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             setSpeed()
 
 
-        }, 1500)
+        }, 10000)
 
         binding.home.setOnClickListener {
             findNavController().popBackStack()
@@ -256,12 +256,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 //        viewModel.stopTimer()
                                 val msg = "Video capture succeeded: " +
                                         "${recordEvent.outputResults.outputUri}"
-                                Toast.makeText(
-                                    binding.root.context,
-                                    "Video saved!",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
+
                                 Log.d(TAG, msg)
                             } else {
                                 recording?.close()
@@ -284,7 +279,6 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun captureVideoForTwoMinutes() {
-        val videoCapture = this.videoCapture ?: return
 
         binding.videoCaptureButton.isEnabled = false
 
@@ -296,15 +290,15 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             return
         } else {
 
+            startTwoMinutesVideo()
 
-            Toast.makeText(
-                binding.root.context,
-                "Video started for TwoMinutes",
-                Toast.LENGTH_SHORT
-            )
-                .show()
+        }
 
 
+    }
+
+    private fun startTwoMinutesVideo() {
+        try {
             val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
                 .format(System.currentTimeMillis())
             val contentValues = ContentValues().apply {
@@ -323,6 +317,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                 .setContentValues(contentValues)
                 .build()
 
+            val videoCapture = this.videoCapture ?: return
             recording = videoCapture.output
                 .prepareRecording(binding.root.context, mediaStoreOutputOptions)
                 .apply {
@@ -348,12 +343,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 //        viewModel.stopTimer()
                                 val msg = "Video capture succeeded: " +
                                         "${recordEvent.outputResults.outputUri}"
-                                Toast.makeText(
-                                    binding.root.context,
-                                    "Video saved for TwoMinutes!",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
+
                                 Log.d(TAG, msg)
                                 //  addTextProcess("/storage/emulated/0/DCIM/Camera/magic123.mp4")
                             } else {
@@ -372,9 +362,9 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                     }
                 }
 
+        } catch (e: Exception) {
 
         }
-
 
     }
 
@@ -519,6 +509,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         captureVideoForTwoMinutes()
         timer.cancel()
         handler.removeCallbacksAndMessages(null)
+        handlerMain.removeCallbacksAndMessages(null)
         val curRecording = recording
         if (curRecording != null) {
             curRecording.stop()
@@ -541,6 +532,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         captureVideoForTwoMinutes()
         timer.cancel()
         handler.removeCallbacksAndMessages(null)
+        handlerMain.removeCallbacksAndMessages(null)
     }
 
 
@@ -595,7 +587,6 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                             height = bit?.height
                         }
                     } else {
-                        Toast.makeText(context, "Video tanlanmadi", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -627,6 +618,3 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     }
 
 }
-
-
-

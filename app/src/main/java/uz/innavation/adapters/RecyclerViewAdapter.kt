@@ -31,7 +31,12 @@ class RecyclerViewAdapter internal constructor(
         //we will load thumbnail using glide library
         val uri = Uri.fromFile(arrayList[position])
         val l = arrayList[position].length() / 1000000
-        holder.videoSize.text = "$l mb"
+        var a = ""
+        if (l < 10 ) {
+            a = "0"
+        }
+
+        holder.videoSize.text = "$a$l mb"
 
         try {
             var durationTime: Long
@@ -46,8 +51,16 @@ class RecyclerViewAdapter internal constructor(
 
             val minute = durationTime / 60
             val second = durationTime % 60
-            holder.videoDuration.text = "${minute}:$second"
+            var m = ""
+            if (minute < 10) {
+                m = "0"
+            }
+            var s = ""
+            if (second < 10){
+                s = "0"
+            }
 
+            holder.videoDuration.text = "$m${minute}:$s$second"
 
         } catch (e: Exception) {
         }
@@ -74,7 +87,7 @@ class RecyclerViewAdapter internal constructor(
             videoSize = itemView.findViewById(R.id.video_size)
             itemView.setOnClickListener {
                 val uri = Uri.fromFile(arrayList[adapterPosition])
-                onClick.click(uri)
+                onClick.click(uri, adapterPosition)
             }
 
 
@@ -84,7 +97,7 @@ class RecyclerViewAdapter internal constructor(
 
     interface OnClick {
 
-        fun click(uri: Uri)
+        fun click(uri: Uri, position: Int)
 
     }
 

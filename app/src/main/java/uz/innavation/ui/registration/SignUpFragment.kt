@@ -22,6 +22,7 @@ class SignUpFragment : Fragment() {
     ): View {
         binding = FragmentSignUpBinding.inflate(layoutInflater)
 
+        binding.signUpBtn.isSelected = true
 
         binding.signInBtn.setOnClickListener {
             findNavController().popBackStack()

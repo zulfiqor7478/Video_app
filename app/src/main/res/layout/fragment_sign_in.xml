@@ -62,7 +62,7 @@
 
                 <TextView
                     android:id="@+id/signIn_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_110sdp"
                     android:layout_height="wrap_content"
                     android:background="@color/main_color"
                     android:paddingStart="@dimen/_20sdp"
@@ -89,13 +89,17 @@
 
                 <TextView
                     android:id="@+id/signUp_btn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_110sdp"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
                     android:paddingStart="@dimen/_20sdp"
                     android:paddingTop="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_20sdp"
                     android:paddingBottom="@dimen/_8sdp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
                     android:text="@string/sign_up"
                     android:textColor="@color/main_color"
                     android:textSize="@dimen/_20sdp" />

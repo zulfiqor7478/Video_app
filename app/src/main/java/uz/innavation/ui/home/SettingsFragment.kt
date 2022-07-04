@@ -61,9 +61,12 @@ class SettingsFragment : Fragment() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.show()
         }
-        recTime()
 
-        binding.timeText.text = MySharedPreference.videoTime!!.toString() + " soniya"
+        binding.timeText.text =
+            MySharedPreference.videoTime!!.toString() + " " + getString(R.string.soniya)
+        binding.countText.text =
+            MySharedPreference.automaticVideoCount!!.toString() + " " + getString(R.string.ta)
+
         binding.time.setOnClickListener {
             val dialog = AlertDialog.Builder(binding.root.context).create()
             val view = LayoutInflater.from(binding.root.context)
@@ -84,13 +87,14 @@ class SettingsFragment : Fragment() {
             sliders.value = MySharedPreference.videoTime!!.toFloat()
 
             view.findViewById<TextView>(R.id.pb_txt).text =
-                MySharedPreference.videoTime!!.toString() + " soniya"
+                MySharedPreference.videoTime!!.toString() + " " + getString(R.string.soniya)
             sliders.addOnChangeListener(Slider.OnChangeListener { slider, _, _ ->
 
                 view.findViewById<TextView>(R.id.pb_txt).text =
-                    slider.value.toInt().toString() + " soniya"
+                    slider.value.toInt().toString() + " " + getString(R.string.soniya)
                 MySharedPreference.videoTime = slider.value.toInt()
-                binding.timeText.text = MySharedPreference.videoTime!!.toString() + " soniya"
+                binding.timeText.text =
+                    MySharedPreference.videoTime!!.toString() + " " + getString(R.string.soniya)
             })
 
             dialog.setContentView(view)
@@ -114,6 +118,20 @@ class SettingsFragment : Fragment() {
                 dialog.cancel()
 
             }
+            val sliders = view.findViewById<Slider>(R.id.pb)
+            sliders.value = MySharedPreference.automaticVideoCount!!.toFloat()
+
+            view.findViewById<TextView>(R.id.pb_txt).text =
+                MySharedPreference.automaticVideoCount!!.toString() + " " + getString(R.string.ta)
+            sliders.addOnChangeListener(Slider.OnChangeListener { slider, _, _ ->
+
+                view.findViewById<TextView>(R.id.pb_txt).text =
+                    slider.value.toInt().toString() + " " + getString(R.string.ta)
+                MySharedPreference.automaticVideoCount = slider.value.toInt()
+                binding.countText.text =
+                    MySharedPreference.automaticVideoCount!!.toString() + " " + getString(R.string.ta)
+            })
+
 
             dialog.setContentView(view)
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -123,14 +141,6 @@ class SettingsFragment : Fragment() {
 
 
         return binding.root
-    }
-
-    private fun recTime() {
-//        binding.recTime.setOnClickListener {
-//            var diolog = CustomDialogFragment1()
-//            diolog.show(childFragmentManager, "recTime")
-//        }
-
     }
 
 

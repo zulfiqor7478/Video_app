@@ -1,5 +1,6 @@
 package uz.innavation.ui.mainActivity
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import uz.innavation.databinding.ActivityMainBinding
 import uz.innavation.utils.MySharedPreference
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +24,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         viewBinding = ActivityMainBinding.inflate(layoutInflater)
+
+
+
         if (Build.VERSION.SDK_INT >= 19 && Build.VERSION.SDK_INT < 21) {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
@@ -37,6 +42,8 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
         MySharedPreference.isLogin = true
+
+
 
 /*        askPermission()
 
@@ -60,6 +67,8 @@ class MainActivity : AppCompatActivity() {
             videoAnimation()
         }*/
     }
+
+
 /*
 
     override fun onResume() {

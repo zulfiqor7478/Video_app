@@ -44,14 +44,13 @@
             android:id="@+id/txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_45sdp"
-            android:layout_marginEnd="@dimen/_50sdp"
             android:text="@string/edit_profile"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toBottomOf="@id/back_btn"
             app:layout_constraintLeft_toRightOf="@+id/back_btn"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/back_btn" />
 
         <LinearLayout
             android:id="@+id/info_profile"

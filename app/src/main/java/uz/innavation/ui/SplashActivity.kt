@@ -2,6 +2,7 @@ package uz.innavation.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -17,6 +18,7 @@ import uz.innavation.databinding.ActivitySplashBinding
 import uz.innavation.ui.mainActivity.MainActivity
 import uz.innavation.ui.registration.RegisterMainActivity
 import uz.innavation.utils.MySharedPreference
+import java.util.*
 
 
 @SuppressLint("CustomSplashScreen")
@@ -39,7 +41,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
+        setAppLocale(this, MySharedPreference.language!!)
 
 
 
@@ -59,10 +61,10 @@ class SplashActivity : AppCompatActivity() {
 
             if (it.isAccepted) {
                 Handler(Looper.myLooper()!!).postDelayed({
-                    if (!MySharedPreference.isLogin!!){
+                    if (!MySharedPreference.isLogin!!) {
                         startActivity(Intent(this, RegisterMainActivity::class.java))
                         finish()
-                    }else{
+                    } else {
                         startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     }
@@ -93,5 +95,17 @@ class SplashActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    private fun setAppLocale(context: Context, language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = context.resources.configuration
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+        context.resources.updateConfiguration(
+            config,
+            context.resources.displayMetrics
+        )
     }
 }

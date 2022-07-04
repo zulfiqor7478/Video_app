@@ -19,6 +19,7 @@ import java.io.File
 class VideosListFragment : Fragment() {
 
     lateinit var binding: FragmentVideosListBinding
+    lateinit var recyclerViewAdapter:RecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,49 +37,63 @@ class VideosListFragment : Fragment() {
             Log.d("Files", "Size: " + files.size)
             for (file in files) {
                 Log.d("FILE", file.name)
-
+                //if (files.size < 10){
                 arrayList.add(file)
+                //}else{
+                //   files[files.size].delete()
+                // }
+
 
             }
         } else Log.d("Null?", "it is null")
 
-        binding.rv.adapter =
-            RecyclerViewAdapter(
-                arrayList,
-                binding.root.context,
-                object : RecyclerViewAdapter.OnClick {
-                    override fun click(uri: Uri) {
+        val aaa = object : RecyclerViewAdapter.OnClick {
+            override fun click(uri: Uri, position: Int) {
 
 
-                        val dialog = AlertDialog.Builder(binding.root.context).create()
-                        val view = LayoutInflater.from(binding.root.context)
-                            .inflate(uz.innavation.R.layout.play_dialog, null, false)
-                        dialog.setView(view)
+                val dialog = AlertDialog.Builder(binding.root.context).create()
+                val view = LayoutInflater.from(binding.root.context)
+                    .inflate(uz.innavation.R.layout.play_dialog, null, false)
+                dialog.setView(view)
 
-                        view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn)
-                            .setOnClickListener {
+                view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn)
+                    .setOnClickListener {
 
-                                val start = Intent(Intent.ACTION_VIEW);
-                                start.setDataAndType(Uri.parse(uri.path), "video/*");
-                                startActivity(start);
+                        val start = Intent(Intent.ACTION_VIEW);
+                        start.setDataAndType(Uri.parse(uri.path), "video/*");
+                        startActivity(start);
 
-                                dialog.cancel()
-                            }
-                        view.findViewById<View>(uz.innavation.R.id.cancel_btn).setOnClickListener {
-
-                            dialog.cancel()
-
-                        }
-
-                        dialog.setContentView(view)
-                        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-                        dialog.setCancelable(false)
-                        dialog.show()
-
-
+                        dialog.cancel()
                     }
-                })
 
+                view.findViewById<View>(uz.innavation.R.id.cancel_btn).setOnClickListener {
+                    dialog.cancel()
+
+                }
+                view.findViewById<View>(uz.innavation.R.id.delete_btn).setOnClickListener {
+                    files!![position].delete()
+                    arrayList.removeAt(position)
+                    recyclerViewAdapter.notifyItemRemoved(position)
+                    dialog.cancel()
+
+                }
+
+
+                dialog.setContentView(view)
+                dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+                dialog.setCancelable(false)
+                dialog.show()
+
+
+            }
+        }
+
+         recyclerViewAdapter = RecyclerViewAdapter(
+            arrayList,
+            binding.root.context, aaa
+        )
+
+        binding.rv.adapter = recyclerViewAdapter
 
         return binding.root
     }

@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_45sdp"
         android:layout_marginEnd="@dimen/_50sdp"
-        android:text="Sozlamalar"
+        android:text="@string/setting"
         android:textColor="@color/white"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintLeft_toRightOf="@+id/back_btn"
@@ -85,7 +85,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Video sifati"
+                        android:text="@string/video_sifati"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -98,6 +98,7 @@
                     android:paddingStart="@dimen/_20sdp">
 
                     <TextView
+                        android:id="@+id/hdText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="1920 x 1080 (Full HD)"
@@ -134,7 +135,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Video davomiyligi"
+                        android:text="@string/video_davomiyligi"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -185,7 +186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:singleLine="true"
-                        android:text="Avtomatik saqlanadigan video soni"
+                        android:text="@string/avtomatik_saqlanadigan_video_soni"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_16sdp"
                         android:textStyle="bold" />
@@ -198,6 +199,7 @@
                     android:paddingStart="@dimen/_20sdp">
 
                     <TextView
+                        android:id="@+id/countText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="10"
