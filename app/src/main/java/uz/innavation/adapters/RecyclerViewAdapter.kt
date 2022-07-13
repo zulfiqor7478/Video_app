@@ -32,7 +32,7 @@ class RecyclerViewAdapter internal constructor(
         val uri = Uri.fromFile(arrayList[position])
         val l = arrayList[position].length() / 1000000
         var a = ""
-        if (l < 10 ) {
+        if (l < 10) {
             a = "0"
         }
 
@@ -56,7 +56,7 @@ class RecyclerViewAdapter internal constructor(
                 m = "0"
             }
             var s = ""
-            if (second < 10){
+            if (second < 10) {
                 s = "0"
             }
 

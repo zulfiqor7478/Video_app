@@ -1,7 +1,6 @@
 package uz.innavation.ui.home
 
 import android.app.ProgressDialog
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -77,8 +76,6 @@ class VideoTrimFragment : Fragment(), OnK4LVideoListener {
             Toast.makeText(binding.root.context, "onVideoPrepared", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
 
 }

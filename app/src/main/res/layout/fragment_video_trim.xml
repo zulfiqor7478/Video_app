@@ -10,11 +10,11 @@
         android:id="@+id/trim_video_view_trim_video_ac"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_centerInParent="true"
         android:backgroundTint="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_centerInParent="true"
         app:layout_constraintTop_toTopOf="parent" />
 
 </RelativeLayout>

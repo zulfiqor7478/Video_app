@@ -52,7 +52,7 @@
     <fragment
         android:id="@+id/savedVideoListFragment2"
         android:name="uz.innavation.ui.home.SavedVideoListFragment"
-        android:label="SavedVideoListFragment" >
+        android:label="SavedVideoListFragment">
         <action
             android:id="@+id/action_savedVideoListFragment2_to_videoTrimFragment"
             app:destination="@id/videoTrimFragment" />

@@ -71,14 +71,14 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                tools:listitem="@layout/video_item"
-                app:reverseLayout="true"
-                app:stackFromEnd="true"
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/_15sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                tools:listitem="@layout/video_item" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
