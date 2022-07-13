@@ -107,7 +107,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:contentDescription="@string/profile"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/red" />
+                        android:src="@drawable/profil_photo_man" />
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>

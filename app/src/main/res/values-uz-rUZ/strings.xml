@@ -55,7 +55,7 @@
     <string name="log_out">Tizimdan chiqish</string>
     <string name="number">+998 99 999 99 99</string>
     <string name="edit_profile">Profilni tahrirlash</string>
-    <string name="lorem">Ushbu dastur yordamida jarimalarni videoga olib, pul ishlashingiz mumkin</string>
+    <string name="lorem">Ushbu dastur yordamida avtomobil yo\'llaridagi qoida buzarligalarni videoga olib, pul ishlashingiz mumkin</string>
     <string name="about">Dastur haqida</string>
     <string name="saved_videos">Saqlangan videolar</string>
     <string name="videos">Videolar</string>
@@ -91,4 +91,11 @@
     <string name="video_sifati">Video sifati</string>
     <string name="video_davomiyligi">Video davomiyligi</string>
     <string name="avtomatik_saqlanadigan_video_soni">Avtomatik saqlanadigan video soni</string>
+    <string name="kesish">Kesish</string>
+    <string name="_240p">240p</string>
+    <string name="_360p">360p</string>
+    <string name="_480p">480p</string>
+    <string name="df">720p</string>
+    <string name="_1080p_hd">1080p(hd)</string>
+    <string name="kesilgan_videolar">Kesilgan videolar</string>
 </resources>

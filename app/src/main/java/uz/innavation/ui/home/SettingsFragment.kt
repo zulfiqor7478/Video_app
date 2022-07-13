@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -29,21 +28,21 @@ class SettingsFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.hdText.text = MySharedPreference.videoResolution
+
         binding.resolution.setOnClickListener {
             val dialog = AlertDialog.Builder(binding.root.context).create()
             val view = LayoutInflater.from(binding.root.context)
                 .inflate(R.layout.video_resolution_dialog, null, false)
             dialog.setView(view)
 
-            /*    view.findViewById<LinearLayout>(R.id.play_btn).setOnClickListener {
 
+            val button = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
 
-                    dialog.cancel()
-                }*/
+            button.isChecked = true
 
             val radioButton = view.findViewById<RadioGroup>(R.id.radio)
-
-            radioButton.baselineAlignedChildIndex = 4
 
 
             dialog.setOnCancelListener {
@@ -51,9 +50,20 @@ class SettingsFragment : Fragment() {
 
                 val checkedRadioButtonId = radioButton.checkedRadioButtonId
 
+
                 val button = view.findViewById<RadioButton>(checkedRadioButtonId)
-                Toast.makeText(binding.root.context, button.text, Toast.LENGTH_SHORT).show()
+
+                if (MySharedPreference.videoResolution.toString() == button.text.toString()) {
+                    button.isChecked = true
+                }
+
+                MySharedPreference.videoResolutionId = checkedRadioButtonId
+
+                println("alovuddin: $checkedRadioButtonId")
+
                 MySharedPreference.videoResolution = button.text.toString()
+                binding.hdText.text = MySharedPreference.videoResolution
+
 
             }
 

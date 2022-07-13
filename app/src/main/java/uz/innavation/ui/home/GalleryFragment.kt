@@ -29,6 +29,13 @@ class GalleryFragment : Fragment() {
                 setAnimation().build()
             )
         }
+        binding.cutideosBtn.setOnClickListener {
+            findNavController().navigate(
+                R.id.trimVideosFragment,
+                Bundle(),
+                setAnimation().build()
+            )
+        }
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }

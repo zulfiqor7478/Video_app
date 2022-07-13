@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="_240p">240p</string>
+    <string name="_360p">360p</string>
+    <string name="_480p">480p</string>
+    <string name="df">720p</string>
+    <string name="_1080p_hd">1080p(hd)</string>
+    <string name="kesilgan_videolar">Kesilgan videolar</string>
+</resources>

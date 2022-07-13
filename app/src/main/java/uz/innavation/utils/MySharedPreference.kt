@@ -56,10 +56,18 @@ object MySharedPreference {
         }
 
     var videoResolution: String?
-        get() = sharedPreferences.getString("video21", "")
+        get() = sharedPreferences.getString("video21", "480p")
         set(value) = sharedPreferences.edit {
             if (value != null) {
                 this.putString("video21", value)
+            }
+        }
+
+    var videoResolutionId: Int?
+        get() = sharedPreferences.getInt("video21123", 2131231266)
+        set(value) = sharedPreferences.edit {
+            if (value != null) {
+                this.putInt("video21123", value)
             }
         }
 

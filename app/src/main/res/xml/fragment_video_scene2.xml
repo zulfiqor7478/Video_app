@@ -17,22 +17,20 @@
             android:id="@+id/full"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:visibility="visible"
-            motion:layout_constraintRight_toLeftOf="@id/close_map"
-            motion:layout_constraintRight_toRightOf="parent"
-            motion:layout_constraintTop_toTopOf="parent" />
+            motion:layout_constraintBottom_toTopOf="@id/close_map"
+            motion:layout_constraintRight_toRightOf="parent" />
         <Constraint
             android:id="@+id/close_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_30sdp"
             android:layout_marginBottom="@dimen/_44sdp"
             android:visibility="visible"
-            motion:layout_constraintRight_toRightOf="parent"
-            motion:layout_constraintTop_toTopOf="parent" />
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintRight_toRightOf="parent" />
         <Constraint
             android:id="@+id/video_capture_button"
             android:layout_width="@dimen/_80sdp"

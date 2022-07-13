@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_galleryFragment_to_videosListFragment2"
             app:destination="@id/videosListFragment2" />
+        <action
+            android:id="@+id/action_galleryFragment2_to_trimVideosFragment"
+            app:destination="@id/trimVideosFragment" />
     </fragment>
     <fragment
         android:id="@+id/homePageFragment2"
@@ -49,7 +52,11 @@
     <fragment
         android:id="@+id/savedVideoListFragment2"
         android:name="uz.innavation.ui.home.SavedVideoListFragment"
-        android:label="SavedVideoListFragment" />
+        android:label="SavedVideoListFragment" >
+        <action
+            android:id="@+id/action_savedVideoListFragment2_to_videoTrimFragment"
+            app:destination="@id/videoTrimFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment2"
         android:name="uz.innavation.ui.home.SettingsFragment"
@@ -71,4 +78,14 @@
             android:id="@+id/action_profileFragment_to_editFragment2"
             app:destination="@id/editFragment2" />
     </fragment>
+    <fragment
+        android:id="@+id/videoTrimFragment"
+        android:name="uz.innavation.ui.home.VideoTrimFragment"
+        android:label="fragment_video_trim"
+        tools:layout="@layout/fragment_video_trim" />
+    <fragment
+        android:id="@+id/trimVideosFragment"
+        android:name="uz.innavation.ui.home.TrimVideosFragment"
+        android:label="fragment_trim_videos"
+        tools:layout="@layout/fragment_trim_videos" />
 </navigation>

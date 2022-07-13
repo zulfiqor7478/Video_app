@@ -4,8 +4,10 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -39,10 +41,9 @@ class MainActivity : AppCompatActivity() {
             window.statusBarColor = Color.TRANSPARENT
         }
         setContentView(viewBinding.root)
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel = ViewModelProvider(this)[MainActivityViewModel::class.java]
 
         MySharedPreference.isLogin = true
-
 
 
 /*        askPermission()
@@ -396,5 +397,33 @@ class MainActivity : AppCompatActivity() {
 */
 
     //alovuddin
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+
+
+
+    }
+
+
+    override fun onBackPressed() {
+        Toast.makeText(this, "dsa", Toast.LENGTH_SHORT).show()
+        setAppLocale(this, MySharedPreference.language!!)
+
+        super.onBackPressed()
+    }
+
+
+    private fun setAppLocale(context: Context, language: String) {
+        val locale = Locale(language)
+        Locale.setDefault(locale)
+        val config = context.resources.configuration
+        config.setLocale(locale)
+        context.createConfigurationContext(config)
+        context.resources.updateConfiguration(
+            config,
+            context.resources.displayMetrics
+        )
+    }
 
 }

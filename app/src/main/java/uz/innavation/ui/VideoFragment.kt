@@ -3,9 +3,11 @@ package uz.innavation.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentValues
+import android.content.Context
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationManager
 import android.media.MediaMetadataRetriever
 import android.os.*
 import android.provider.MediaStore
@@ -14,6 +16,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.Preview
@@ -61,6 +64,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     var retriever: MediaMetadataRetriever? = null
 
     private lateinit var timer: CountDownTimer
+    var isStart = false
     private lateinit var timer2: CountDownTimer
 
     private lateinit var map: GoogleMap
@@ -138,13 +142,13 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
-        turnOnGPS()
         startCamera()
 
         handlerMain = Handler(Looper.myLooper()!!)
 
         handlerMain.postDelayed({
 
+            turnOnGPS()
             dialog.cancel()
 
             Handler(Looper.myLooper()!!).postDelayed({
@@ -152,31 +156,42 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             }, 2500)
 
             binding.videoCaptureButton.setOnClickListener {
-
-                binding.videoTime.base = SystemClock.elapsedRealtime()
-                binding.videoTime.start()
-                binding.videoCaptureButton.isClickable = false
-                captureVideoForTwoMinutes()
-                captureVideo()
-
-                handler = Handler(Looper.myLooper()!!)
-
-                handler.postDelayed({
-                    captureVideo()
-                    captureVideoForTwoMinutes()
-                    binding.videoCaptureButton.isClickable = true
-
+                if (isStart) {
+                    binding.videoTime.base = SystemClock.elapsedRealtime()
                     binding.videoTime.start()
-                    binding.videoTime.stop()
+                    binding.videoCaptureButton.isClickable = false
+                    captureVideoForTwoMinutes()
+                    captureVideo()
 
-                }, (MySharedPreference.videoTime!! * 1000 + 1000).toLong())
+                    handler = Handler(Looper.myLooper()!!)
+
+                    handler.postDelayed({
+                        captureVideo()
+                        captureVideoForTwoMinutes()
+                        binding.videoCaptureButton.isClickable = true
+
+                        binding.videoTime.start()
+                        binding.videoTime.stop()
+
+                    }, (MySharedPreference.videoTime!! * 1000 + 1000).toLong())
+                } else {
+
+                    Toast.makeText(
+                        binding.root.context,
+                        "Iltimos, dastur GPS ga bog'lanishi kuting!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+
+                }
+
 
             }
 
             setSpeed()
 
 
-        }, 10000)
+        }, 3000)
 
         binding.home.setOnClickListener {
             findNavController().popBackStack()
@@ -385,9 +400,16 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                 }
 
             val recorder = Recorder.Builder()
-                .setQualitySelector(QualitySelector.from(Quality.SD))
-                .build()
-            videoCapture = VideoCapture.withOutput(recorder)
+            if (MySharedPreference.videoResolution.toString() == "1080p(hd)")
+                recorder.setQualitySelector(QualitySelector.from(Quality.FHD))
+            else if (MySharedPreference.videoResolution.toString() == "720p")
+                recorder.setQualitySelector(QualitySelector.from(Quality.HD))
+            else if (MySharedPreference.videoResolution.toString() == "480p")
+                recorder.setQualitySelector(QualitySelector.from(Quality.SD))
+
+
+
+            videoCapture = VideoCapture.withOutput(recorder.build())
 
             // Select back camera as a default
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -458,18 +480,16 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
     }
 
-    /*
-        private fun isGPSEnabled(): Boolean {
-            var locationManager: LocationManager? = null
+    private fun isGPSEnabled(): Boolean {
+        var locationManager: LocationManager? = null
 
-            if (locationManager == null) {
-                locationManager =
-                    activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-            }
-
-            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        if (locationManager == null) {
+            locationManager =
+                activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         }
-    */
+
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
 
     companion object {
         private const val TAG = "CameraXApp"
@@ -614,6 +634,12 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                 binding.date.text = s
             }
         }.start()!!
+
+        Handler(Looper.myLooper()!!).postDelayed({
+
+            isStart = true
+
+        }, 15000)
 
     }
 
