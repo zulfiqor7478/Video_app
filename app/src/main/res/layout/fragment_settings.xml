@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.SettingsFragment">
 
+
+
     <androidx.cardview.widget.CardView
         android:id="@+id/back_btn"
         android:layout_width="@dimen/_40sdp"
@@ -61,161 +63,167 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back_btn">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <LinearLayout
-                android:id="@+id/resolution"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_25sdp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/resolution"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_weight="1"
-                    android:paddingStart="@dimen/_20sdp">
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/video_sifati"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold" />
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_20sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/video_sifati"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/hdText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/_720p"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:background="#D6D6D6" />
+
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/time"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_weight="1"
-                    android:paddingStart="@dimen/_20sdp">
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/hdText"
+                    <LinearLayout
+
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/_720p"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp" />
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_20sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="@string/video_davomiyligi"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/time_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="15 soniya"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:background="#D6D6D6" />
+
                 </LinearLayout>
 
-                <View
+                <LinearLayout
+                    android:id="@+id/number"
                     android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="#D6D6D6" />
+                    android:layout_height="@dimen/_55sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:orientation="vertical">
 
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_20sdp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:singleLine="true"
+                            android:text="@string/avtomatik_saqlanadigan_video_soni"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_weight="1"
+                        android:paddingStart="@dimen/_20sdp">
+
+                        <TextView
+                            android:id="@+id/countText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="10"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:background="#D6D6D6" />
+
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/time"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
-                android:orientation="vertical">
+        </ScrollView>
 
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_weight="1"
-                    android:paddingStart="@dimen/_20sdp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="@string/video_davomiyligi"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_weight="1"
-                    android:paddingStart="@dimen/_20sdp">
-
-                    <TextView
-                        android:id="@+id/time_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="15 soniya"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="#D6D6D6" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/number"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_55sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?selectableItemBackground"
-                android:orientation="vertical">
-
-                <LinearLayout
-
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_weight="1"
-                    android:paddingStart="@dimen/_20sdp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:singleLine="true"
-                        android:text="@string/avtomatik_saqlanadigan_video_soni"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16sdp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_weight="1"
-                    android:paddingStart="@dimen/_20sdp">
-
-                    <TextView
-                        android:id="@+id/countText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="10"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
-                    android:background="#D6D6D6" />
-
-            </LinearLayout>
-        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
