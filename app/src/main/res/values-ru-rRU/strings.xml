@@ -92,12 +92,15 @@
     <string name="video_sifati">Качество видео</string>
     <string name="video_davomiyligi">Продолжительность видео</string>
     <string name="avtomatik_saqlanadigan_video_soni">Автоматически сохраненный номер видео</string>
-    <string name="kesish">Kesish</string>
+
+
+    <string name="kesish">Обрезать</string>
     <string name="_240p">240p</string>
     <string name="_360p">360p</string>
     <string name="_480p">480p</string>
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Обрезанные видео</string>
-
+    <string name="_720p">720p</string>
+    <string name="cut">Обрезать</string>
 </resources>
