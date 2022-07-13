@@ -11,6 +11,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.gowtham.library.utils.TrimType
+import com.gowtham.library.utils.TrimVideo
 import uz.innavation.adapters.RecyclerViewAdapter
 import uz.innavation.databinding.FragmentVideosListBinding
 import java.io.File
@@ -19,7 +22,7 @@ import java.io.File
 class VideosListFragment : Fragment() {
 
     lateinit var binding: FragmentVideosListBinding
-    lateinit var recyclerViewAdapter:RecyclerViewAdapter
+    lateinit var recyclerViewAdapter: RecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +30,10 @@ class VideosListFragment : Fragment() {
     ): View {
         binding = FragmentVideosListBinding.inflate(layoutInflater)
 
+
+        binding.backBtn.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val arrayList = ArrayList<File>()
         val path = Environment.getExternalStorageDirectory().toString() + "/Movies/YxxVideos/"
@@ -53,7 +60,7 @@ class VideosListFragment : Fragment() {
 
                 val dialog = AlertDialog.Builder(binding.root.context).create()
                 val view = LayoutInflater.from(binding.root.context)
-                    .inflate(uz.innavation.R.layout.play_dialog, null, false)
+                    .inflate(uz.innavation.R.layout.play_dialog2, null, false)
                 dialog.setView(view)
 
                 view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn)
@@ -70,6 +77,7 @@ class VideosListFragment : Fragment() {
                     dialog.cancel()
 
                 }
+
                 view.findViewById<View>(uz.innavation.R.id.delete_btn).setOnClickListener {
                     files!![position].delete()
                     arrayList.removeAt(position)
@@ -78,17 +86,30 @@ class VideosListFragment : Fragment() {
 
                 }
 
+                view.findViewById<View>(uz.innavation.R.id.cut_btn).setOnClickListener {
+
+
+                    TrimVideo.activity(uri.toString())
+                        .setDestination("/storage/emulated/0/Movies/TrimVideos")
+                        .start(this@VideosListFragment)
+
+
+                    dialog.cancel()
+
+
+                }
 
                 dialog.setContentView(view)
                 dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-                dialog.setCancelable(false)
                 dialog.show()
 
 
             }
+
+
         }
 
-         recyclerViewAdapter = RecyclerViewAdapter(
+        recyclerViewAdapter = RecyclerViewAdapter(
             arrayList,
             binding.root.context, aaa
         )

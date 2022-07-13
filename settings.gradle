@@ -6,6 +6,12 @@ pluginManagement {
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io' }
         jcenter()
+        flatDir{
+            dirs 'libs'
+        }
+        maven {
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +22,12 @@ dependencyResolutionManagement {
         maven { url 'https://maven.google.com' }
         maven { url 'https://jitpack.io' }
         jcenter()
+        flatDir{
+            dirs 'libs'
+        }
+        maven {
+            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+        }
     }
 }
 rootProject.name = "Video_app"

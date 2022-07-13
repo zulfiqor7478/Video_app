@@ -13,25 +13,25 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gowtham.library.utils.TrimVideo
+import uz.innavation.R
 import uz.innavation.adapters.RecyclerViewAdapter
-import uz.innavation.databinding.FragmentSavedVideoListBinding
-import uz.innavation.utils.MySharedPreference
+import uz.innavation.databinding.FragmentTrimVideosBinding
 import java.io.File
 
+class TrimVideosFragment : Fragment() {
 
-class SavedVideoListFragment : Fragment() {
-    lateinit var binding: FragmentSavedVideoListBinding
-
-    lateinit var recyclerViewAdapter: RecyclerViewAdapter
-
+    lateinit var binding: FragmentTrimVideosBinding
+    lateinit var recyclerViewAdapter:RecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSavedVideoListBinding.inflate(layoutInflater)
+
+        binding = FragmentTrimVideosBinding.inflate(layoutInflater)
+
 
         val arrayList = ArrayList<File>()
-        val path = Environment.getExternalStorageDirectory().toString() + "/Movies/TwoMinutes/"
+        val path = Environment.getExternalStorageDirectory().toString() + "/Movies/TrimVideos/"
         Log.d("Files", "Path: $path")
         val directory = File(path)
         val files = directory.listFiles()
@@ -39,14 +39,16 @@ class SavedVideoListFragment : Fragment() {
             Log.d("Files", "Size: " + files.size)
             for (file in files) {
                 Log.d("FILE", file.name)
+                //if (files.size < 10){
                 arrayList.add(file)
-                if (arrayList.size > MySharedPreference.automaticVideoCount!!) {
-                    arrayList.removeAt(0)
-                    files[0].delete()
-                }
+                //}else{
+                //   files[files.size].delete()
+                // }
+
 
             }
         } else Log.d("Null?", "it is null")
+
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -61,10 +63,10 @@ class SavedVideoListFragment : Fragment() {
 
                     val dialog = AlertDialog.Builder(binding.root.context).create()
                     val view = LayoutInflater.from(binding.root.context)
-                        .inflate(uz.innavation.R.layout.play_dialog2, null, false)
+                        .inflate(R.layout.play_dialog2, null, false)
                     dialog.setView(view)
 
-                    view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn)
+                    view.findViewById<LinearLayout>(R.id.play_btn)
                         .setOnClickListener {
 
                             val start = Intent(Intent.ACTION_VIEW);
@@ -73,17 +75,25 @@ class SavedVideoListFragment : Fragment() {
 
                             dialog.cancel()
                         }
-                    view.findViewById<View>(uz.innavation.R.id.cancel_btn).setOnClickListener {
+                    view.findViewById<View>(R.id.cancel_btn).setOnClickListener {
 
                         dialog.cancel()
 
                     }
-                    view.findViewById<View>(uz.innavation.R.id.cut_btn).setOnClickListener {
+                    view.findViewById<View>(R.id.cut_btn).setOnClickListener {
+
+
+                        /*         val bundle = Bundle()
+                                 bundle.putString("str", uri.path)
+                                 findNavController().navigate(R.id.videoTrimFragment, bundle)
+                                 dialog.cancel()*/
 
 
                         TrimVideo.activity(uri.toString())
-                            .setDestination("/storage/emulated/0/Movies/TrimVideos")
-                            .start(this@SavedVideoListFragment)
+                            .setDestination("/storage/emulated/0/DCIM/Trim")
+                            .start(this@TrimVideosFragment)
+
+
 
 
                         dialog.cancel()
@@ -91,7 +101,7 @@ class SavedVideoListFragment : Fragment() {
 
                     }
 
-                    view.findViewById<View>(uz.innavation.R.id.delete_btn).setOnClickListener {
+                    view.findViewById<View>(R.id.delete_btn).setOnClickListener {
                         files!![position].delete()
                         arrayList.removeAt(position)
                         recyclerViewAdapter.notifyItemRemoved(position)

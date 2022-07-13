@@ -46,7 +46,7 @@
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:stepSize="1.0"
                 android:valueFrom="5.0"
-                android:valueTo="30.0"
+                android:valueTo="60.0"
                 app:haloColor="@color/main_color"
                 app:layout_constraintBottom_toTopOf="@+id/cancel_btn"
                 app:layout_constraintLeft_toLeftOf="parent"

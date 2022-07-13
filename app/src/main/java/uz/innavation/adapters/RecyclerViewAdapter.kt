@@ -65,8 +65,14 @@ class RecyclerViewAdapter internal constructor(
         } catch (e: Exception) {
         }
 
-        Glide.with(mContext)
-            .load(uri).thumbnail(0.1f).into(holder.thumbnail)
+
+//        Picasso.get().load(uri).resize(200,200).into(holder.thumbnail)
+        Glide
+            .with(mContext)
+            .load(uri)
+            .centerCrop()
+            .into(holder.thumbnail);
+
     }
 
     override fun getItemCount(): Int {

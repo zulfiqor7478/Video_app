@@ -26,22 +26,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/radio1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:checked="true"
-                    android:text="@string/_1600x720"
-                    android:textSize="@dimen/_16sdp" />
+
 
                 <RadioButton
                     android:id="@+id/radio2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:text="@string/_1080x1080"
+                    android:text="@string/_360p"
                     android:textSize="@dimen/_16sdp" />
 
                 <RadioButton
@@ -49,7 +41,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:text="@string/_1280x720_hd"
+                    android:checked="true"
+                    android:text="@string/_480p"
                     android:textSize="@dimen/_16sdp" />
 
                 <RadioButton
@@ -57,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:text="@string/_1440x720"
+                    android:text="@string/_720p"
                     android:textSize="@dimen/_16sdp" />
 
                 <RadioButton
@@ -65,16 +58,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:text="@string/_1440x1080"
+                    android:text="@string/_1080p_hd"
                     android:textSize="@dimen/_16sdp" />
 
-                <RadioButton
-                    android:id="@+id/radio6"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:text="@string/_1920x1080_fullhd"
-                    android:textSize="@dimen/_16sdp" />
 
             </RadioGroup>
 

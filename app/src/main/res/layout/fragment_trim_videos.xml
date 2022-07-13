@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.ProfileFragment">
+    android:keepScreenOn="true"
+    tools:context=".ui.home.SavedVideoListFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/back_btn"
@@ -12,6 +13,9 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_40sdp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?selectableItemBackground"
         app:cardCornerRadius="@dimen/_10sdp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -40,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_45sdp"
         android:layout_marginEnd="@dimen/_50sdp"
-        android:text="@string/videos"
+        android:text="@string/kesilgan_videolar"
         android:textColor="@color/white"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintLeft_toRightOf="@+id/back_btn"
@@ -67,13 +71,14 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/video_item"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
                 android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="@dimen/_15sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:reverseLayout="true"
-                app:stackFromEnd="true" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

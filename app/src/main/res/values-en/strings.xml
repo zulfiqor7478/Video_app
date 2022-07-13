@@ -55,7 +55,7 @@
     <string name="log_out">Тизимдан чиқиш</string>
     <string name="number">+998 99 999 99 99</string>
     <string name="edit_profile">Профилни таҳрирлаш</string>
-    <string name="lorem">Ушбу дастур йордамида жарималарни видеога олиб, пул ишлашингиз мумкин</string>
+    <string name="lorem">Ушбу дастур ёрдамида автомобиль ёълларидаги қоида бузарлигаларни видеога олиб, пул ишлашингиз мумкин</string>
     <string name="about">Дастур ҳақида</string>
     <string name="saved_videos">Сақланган видеолар</string>
     <string name="videos">Видеолар</string>
@@ -91,4 +91,11 @@
     <string name="video_sifati">Видео сифати</string>
     <string name="video_davomiyligi">Видео давомийлиги</string>
     <string name="avtomatik_saqlanadigan_video_soni">Автоматик сақланадиган видео сони</string>
+    <string name="kesish">Kesish</string>
+    <string name="_240p">240p</string>
+    <string name="_360p">360p</string>
+    <string name="_480p">480p</string>
+    <string name="df">720p</string>
+    <string name="_1080p_hd">1080p(hd)</string>
+    <string name="kesilgan_videolar">Кесилган видеолар</string>
 </resources>
