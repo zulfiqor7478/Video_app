@@ -21,7 +21,7 @@ import java.io.File
 class TrimVideosFragment : Fragment() {
 
     lateinit var binding: FragmentTrimVideosBinding
-    lateinit var recyclerViewAdapter:RecyclerViewAdapter
+    lateinit var recyclerViewAdapter: RecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

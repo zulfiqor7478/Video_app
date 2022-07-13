@@ -1,20 +1,16 @@
 package uz.innavation.ui.home
 
-import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.innavation.R
 import uz.innavation.databinding.FragmentHomePageBinding
 import uz.innavation.utils.setAnimation
-import java.util.*
 
 
 class HomePageFragment : Fragment() {
@@ -66,7 +62,6 @@ class HomePageFragment : Fragment() {
     private fun navigate(way: Int) {
         findNavController().navigate(way, Bundle(), setAnimation().build())
     }
-
 
 
 }
