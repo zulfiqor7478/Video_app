@@ -40,7 +40,7 @@ class SettingsFragment : Fragment() {
 
             val button = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
 
-            button.isChecked = true
+           // button.isChecked = false
 
             val radioButton = view.findViewById<RadioGroup>(R.id.radio)
 
