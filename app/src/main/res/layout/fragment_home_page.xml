@@ -125,7 +125,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:gravity="center|left"
-                            android:text="+998 99 999 99 99"
+                            android:text="+998 90 005 00 34"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_14sdp" />
 

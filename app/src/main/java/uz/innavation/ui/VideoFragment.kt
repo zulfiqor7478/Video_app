@@ -39,6 +39,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import uz.innavation.R
 import uz.innavation.databinding.FragmentVideoBinding
+import uz.innavation.models.Video
+import uz.innavation.room.AppDatabase
 import uz.innavation.ui.mainActivity.MainActivityViewModel
 import uz.innavation.utils.MySharedPreference
 import java.text.SimpleDateFormat
@@ -62,6 +64,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     var width: Int? = 0
     lateinit var handlerMain: Handler
     var retriever: MediaMetadataRetriever? = null
+    lateinit var arrayList: ArrayList<Video>
 
     private lateinit var timer: CountDownTimer
     var isStart = false
@@ -92,6 +95,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         setProgress()
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
+        arrayList = ArrayList()
 
         activity?.window!!.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
@@ -272,6 +276,18 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 val msg = "Video capture succeeded: " +
                                         "${recordEvent.outputResults.outputUri}"
 
+
+                                AppDatabase.getInstants(binding.root.context).dao().add(
+                                    Video(
+                                        recordEvent.outputResults.outputUri.toString(),
+                                        12,
+                                        12,
+                                        "nn",
+                                        "kkk"
+                                    )
+                                )
+
+
                                 Log.d(TAG, msg)
                             } else {
                                 recording?.close()
@@ -405,6 +421,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             else if (MySharedPreference.videoResolution.toString() == "720p")
                 recorder.setQualitySelector(QualitySelector.from(Quality.HD))
             else if (MySharedPreference.videoResolution.toString() == "480p")
+                recorder.setQualitySelector(QualitySelector.from(Quality.SD))
+            else if (MySharedPreference.videoResolution.toString() == "360p")
                 recorder.setQualitySelector(QualitySelector.from(Quality.SD))
 
 
@@ -616,8 +634,8 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
     @SuppressLint("SimpleDateFormat")
     private fun setDate() {
 
-        val s = SimpleDateFormat("dd.MM.yyyy HH:mm").format(Date())
-        binding.date.text = s
+        val s1 = SimpleDateFormat("dd.MM.yyyy HH:mm").format(Date())
+        binding.date.text = s1
         timer2 = object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -639,7 +657,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
             isStart = true
 
-        }, 15000)
+        }, 3000)
 
     }
 

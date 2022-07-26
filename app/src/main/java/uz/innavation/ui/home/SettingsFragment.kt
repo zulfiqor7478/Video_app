@@ -24,6 +24,7 @@ class SettingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentSettingsBinding.inflate(layoutInflater)
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
@@ -38,9 +39,9 @@ class SettingsFragment : Fragment() {
             dialog.setView(view)
 
 
-            val button = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
+            val button1 = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
 
-            button.isChecked = true
+            button1.isChecked = true
 
             val radioButton = view.findViewById<RadioGroup>(R.id.radio)
 
@@ -66,7 +67,11 @@ class SettingsFragment : Fragment() {
 
 
             }
+            view.findViewById<View>(R.id.cancel_btn).setOnClickListener {
 
+                dialog.cancel()
+
+            }
             dialog.setContentView(view)
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.show()

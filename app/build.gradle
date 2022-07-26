@@ -139,5 +139,14 @@ dependencies {
 
     implementation 'com.google.guava:guava:29.0-android'
 
+    //`room`
+    def room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+
+
 
 }

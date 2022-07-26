@@ -14,14 +14,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gowtham.library.utils.TrimVideo
 import uz.innavation.R
-import uz.innavation.adapters.RecyclerViewAdapter
+import uz.innavation.adapters.MyAdapter
 import uz.innavation.databinding.FragmentTrimVideosBinding
+import uz.innavation.models.Video
+import uz.innavation.room.AppDatabase
 import java.io.File
 
 class TrimVideosFragment : Fragment() {
 
     lateinit var binding: FragmentTrimVideosBinding
-    lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    lateinit var recyclerViewAdapter: MyAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,10 +56,13 @@ class TrimVideosFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        recyclerViewAdapter = RecyclerViewAdapter(
-            arrayList,
+
+        val all = AppDatabase.getInstants(binding.root.context).dao().getAll()
+
+        recyclerViewAdapter = MyAdapter(
+            all as ArrayList<Video>,
             binding.root.context,
-            object : RecyclerViewAdapter.OnClick {
+            object : MyAdapter.OnClick {
                 override fun click(uri: Uri, position: Int) {
 
 
@@ -117,6 +122,8 @@ class TrimVideosFragment : Fragment() {
                 }
             })
 
+
+        //val all = AppDatabase.getInstants(binding.root.context).dao().getAll()
 
         binding.rv.adapter = recyclerViewAdapter
 

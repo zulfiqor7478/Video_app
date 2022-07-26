@@ -48,7 +48,7 @@
     <string name="send_code_again">Kodni qayta yuborish</string>
     <string name="_02_12">02:12</string>
     <string name="app_nameee">Havfsiz Yo\'l</string>
-    <string name="yoqubov_otabek">Foydalanuvchi</string>
+    <string name="yoqubov_otabek">Umid Abdusattorov</string>
     <string name="setting">Sozlamalar</string>
     <string name="start">Boshlash</string>
     <string name="profile">Profil</string>
@@ -98,4 +98,5 @@
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Kesilgan videolar</string>
+    <string name="information">Information</string>
 </resources>

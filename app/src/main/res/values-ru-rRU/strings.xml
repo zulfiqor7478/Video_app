@@ -35,7 +35,7 @@
     <string name="sign_in">Войти</string>
     <string name="e_mail">E-mail</string>
     <string name="password">Пароль</string>
-    <string name="continue_btn">Продолжать</string>
+    <string name="continue_btn">Продолжить</string>
     <string name="first_name">Имя</string>
     <string name="last_name">Фамилия</string>
     <string name="location">Адрес</string>
@@ -44,19 +44,19 @@
     <string name="district">район</string>
     <string name="tashkent">Город</string>
     <string name="street">Улица</string>
-    <string name="save">Сохранять</string>
+    <string name="save">Сохранить</string>
     <string name="code">Kod</string>
     <string name="send_code_again">Отправить код повторно</string>
     <string name="_02_12">02:12</string>
     <string name="app_nameee">Havfsiz Yo\'l</string>
     <string name="yoqubov_otabek">Пользователь</string>
     <string name="setting">Настройки</string>
-    <string name="start">Начинать</string>
+    <string name="start">Начать</string>
     <string name="profile">Профиль</string>
     <string name="log_out">выход</string>
     <string name="number">+998 99 999 99 99</string>
     <string name="edit_profile">Редактировать профиль</string>
-    <string name="lorem">С помощью этой программы вы можете зарабатывать деньги, снимая видео о штрафах..</string>
+    <string name="lorem">С помощью этой программы вы сможете зарабатывать, записывая нарушения ПДД на видео</string>
     <string name="about">О программе</string>
     <string name="saved_videos">Сохраненные видео</string>
     <string name="videos">Видео</string>
@@ -92,12 +92,13 @@
     <string name="video_sifati">Качество видео</string>
     <string name="video_davomiyligi">Продолжительность видео</string>
     <string name="avtomatik_saqlanadigan_video_soni">Автоматически сохраненный номер видео</string>
-    <string name="kesish">Kesish</string>
+    <string name="kesish">Отрезать</string>
     <string name="_240p">240p</string>
     <string name="_360p">360p</string>
     <string name="_480p">480p</string>
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Обрезанные видео</string>
+    <string name="information">Information</string>
 
 </resources>

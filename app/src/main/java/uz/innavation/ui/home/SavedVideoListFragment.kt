@@ -30,6 +30,7 @@ class SavedVideoListFragment : Fragment() {
     ): View {
         binding = FragmentSavedVideoListBinding.inflate(layoutInflater)
 
+
         val arrayList = ArrayList<File>()
         val path = Environment.getExternalStorageDirectory().toString() + "/Movies/TwoMinutes/"
         Log.d("Files", "Path: $path")

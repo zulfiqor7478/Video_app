@@ -30,7 +30,7 @@ class RecyclerViewAdapter internal constructor(
         (holder as FileLayoutHolder).videoTitle.text = arrayList[position].name
         //we will load thumbnail using glide library
         val uri = Uri.fromFile(arrayList[position])
-        val l = arrayList[position].length() / 1000000
+/*        val l = arrayList[position].length() / 1000000
         var a = ""
         if (l < 10) {
             a = "0"
@@ -63,7 +63,7 @@ class RecyclerViewAdapter internal constructor(
             holder.videoDuration.text = "$m${minute}:$s$second"
 
         } catch (e: Exception) {
-        }
+        }*/
 
 
 //        Picasso.get().load(uri).resize(200,200).into(holder.thumbnail)

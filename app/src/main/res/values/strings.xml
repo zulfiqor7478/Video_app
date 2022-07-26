@@ -47,14 +47,14 @@
     <string name="send_code_again">Kodni qayta yuborish</string>
     <string name="_02_12">02:12</string>
     <string name="app_nameee">Havfsiz Yo\'l</string>
-    <string name="yoqubov_otabek">Foydalanuvchi</string>
+    <string name="yoqubov_otabek">Umid Abdusattorov</string>
     <string name="setting">Sozlamalar</string>
     <string name="start">Boshlash</string>
     <string name="profile">Profil</string>
     <string name="log_out">Tizimdan chiqish</string>
     <string name="number">+998 99 999 99 99</string>
     <string name="edit_profile">Profilni tahrirlash</string>
-    <string name="lorem">Ushbu dastur yordamida avtomobil yo\'llaridagi qoida buzarligalarni videoga olib, pul ishlashingiz mumkin</string>
+    <string name="lorem">Ushbu dastur yordamida avtomobil yoʻllaridagi qoida buzarliklarni videoga tasvirga olib, pul ishlashingiz mumkin</string>
     <string name="about">Dastur haqida</string>
     <string name="saved_videos">Saqlangan videolar</string>
     <string name="videos">Videolar</string>
@@ -98,4 +98,5 @@
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Kesilgan videolar</string>
     <string name="_720p">720p</string>
+    <string name="information">Information</string>
 </resources>

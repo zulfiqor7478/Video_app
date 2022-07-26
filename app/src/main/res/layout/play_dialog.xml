@@ -172,6 +172,8 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:clickable="true"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
                 android:focusable="true"
                 android:foreground="?selectableItemBackground"
                 android:text="@string/cancel"
