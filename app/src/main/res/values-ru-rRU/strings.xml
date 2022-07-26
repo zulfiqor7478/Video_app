@@ -99,5 +99,10 @@
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Обрезанные видео</string>
+    <string name="information">Информация</string>
+    <string name="xaritadan_ko_rish">Посмотреть c карты</string>
+    <string name="video_joylashuvi">Локация Видео</string>
+    <string name="video_ma_lumotlari">Информации Видео</string>
+
 
 </resources>

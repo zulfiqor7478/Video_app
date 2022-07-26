@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gowtham.library.utils.TrimType
 import com.gowtham.library.utils.TrimVideo
+import uz.innavation.R
 import uz.innavation.adapters.RecyclerViewAdapter
 import uz.innavation.databinding.FragmentVideosListBinding
 import java.io.File
@@ -63,6 +64,9 @@ class VideosListFragment : Fragment() {
                     .inflate(uz.innavation.R.layout.play_dialog2, null, false)
                 dialog.setView(view)
 
+                view.findViewById<LinearLayout>(R.id.info_btn).setOnClickListener {
+                    findNavController().navigate(R.id.infoFragment)
+                }
                 view.findViewById<LinearLayout>(uz.innavation.R.id.play_btn)
                     .setOnClickListener {
 

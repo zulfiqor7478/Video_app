@@ -64,7 +64,11 @@
     <fragment
         android:id="@+id/videosListFragment2"
         android:name="uz.innavation.ui.home.VideosListFragment"
-        android:label="VideosListFragment" />
+        android:label="VideosListFragment" >
+        <action
+            android:id="@+id/action_videosListFragment2_to_infoFragment"
+            app:destination="@id/infoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editFragment2"
         android:name="uz.innavation.ui.home.EditFragment"
@@ -88,4 +92,9 @@
         android:name="uz.innavation.ui.home.TrimVideosFragment"
         android:label="fragment_trim_videos"
         tools:layout="@layout/fragment_trim_videos" />
+    <fragment
+        android:id="@+id/infoFragment"
+        android:name="uz.innavation.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
 </navigation>
