@@ -12,9 +12,9 @@ data class Video(
     @PrimaryKey
     val uri: String,
     @ColumnInfo(name = "author")
-    val lat: Long,
+    val lat: Double,
     @ColumnInfo(name = "image")
-    val longitude: Long,
+    val longitude: Double,
     @ColumnInfo(name = "title")
     val time: String,
     @ColumnInfo(name = "description")

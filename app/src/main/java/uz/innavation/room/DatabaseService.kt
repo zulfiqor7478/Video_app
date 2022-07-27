@@ -2,20 +2,30 @@ package uz.innavation.room
 
 import androidx.room.*
 import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Single
 import uz.innavation.models.Video
 
 @Dao
 interface DatabaseService {
 
     @Query("select * from Video")
-    fun getAll(): List<Video>
+    fun getAllVideo(): List<Video>
 
     @Insert
-    fun add(myClass: Video)
+    fun addVideo(myClass: Video)
+
+
+    @Query("select * from Video")
+    fun getAllTwoMinuteVideo(): List<Video>
+
+    @Insert
+    fun addTwoMinuteVideo(myClass: Video)
 
     @Update
     fun update(myClass: Video): Completable
+
+    @Delete
+    fun deleteVideo(myClass: Video)
+
+
 
 }

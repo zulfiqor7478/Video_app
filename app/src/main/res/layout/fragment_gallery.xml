@@ -146,7 +146,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="center|left"
-                            android:text="@string/saved_videos"
+                            android:text="@string/saqlangan_videolar"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_16sdp" />
                     </LinearLayout>

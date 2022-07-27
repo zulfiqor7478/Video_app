@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "095f59ac9714e354e53739f0dae46327",
+    "identityHash": "0fd396b1716ef59bf72615120f99f72d",
     "entities": [
       {
         "tableName": "Video",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uri` TEXT NOT NULL, `author` INTEGER NOT NULL, `image` INTEGER NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY(`uri`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uri` TEXT NOT NULL, `author` REAL NOT NULL, `image` REAL NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY(`uri`))",
         "fields": [
           {
             "fieldPath": "uri",
@@ -17,13 +17,13 @@
           {
             "fieldPath": "lat",
             "columnName": "author",
-            "affinity": "INTEGER",
+            "affinity": "REAL",
             "notNull": true
           },
           {
             "fieldPath": "longitude",
             "columnName": "image",
-            "affinity": "INTEGER",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -52,7 +52,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '095f59ac9714e354e53739f0dae46327')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0fd396b1716ef59bf72615120f99f72d')"
     ]
   }
 }

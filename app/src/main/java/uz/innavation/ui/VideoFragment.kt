@@ -195,7 +195,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
             setSpeed()
 
 
-        }, 3000)
+        }, 2500)
 
         binding.home.setOnClickListener {
             findNavController().popBackStack()
@@ -223,6 +223,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun captureVideo() {
         val videoCapture = this.videoCapture ?: return
 
@@ -277,13 +278,16 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                         "${recordEvent.outputResults.outputUri}"
 
 
-                                AppDatabase.getInstants(binding.root.context).dao().add(
+                                val time = SimpleDateFormat("HH:mm").format(Date())
+                                val date = SimpleDateFormat("dd.MM.yyyy").format(Date())
+
+                                AppDatabase.getInstants(binding.root.context).dao().addVideo(
                                     Video(
                                         recordEvent.outputResults.outputUri.toString(),
-                                        12,
-                                        12,
-                                        "nn",
-                                        "kkk"
+                                        mCurrentLocation!!.latitude,
+                                        mCurrentLocation!!.longitude,
+                                        time,
+                                        date
                                     )
                                 )
 
@@ -657,7 +661,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
             isStart = true
 
-        }, 3000)
+        }, 5000)
 
     }
 

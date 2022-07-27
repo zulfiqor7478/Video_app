@@ -159,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center|start"
-                        android:text="@string/kesish"
+                        android:text="@string/cut"
                         android:textColor="@color/main_color"
                         android:textSize="@dimen/_20sdp" />
                 </LinearLayout>

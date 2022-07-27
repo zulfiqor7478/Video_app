@@ -7,4 +7,10 @@
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Kesilgan videolar</string>
     <string name="information">Information</string>
+    <string name="video_hajmi">Video hajmi</string>
+    <string name="video_infarmation">Video infarmation</string>
+    <string name="video_olingan_vaqt">Video olingan vaqt</string>
+    <string name="video_olingan_sana">Video olingan sana</string>
+    <string name="video_olingan_joy">Video olingan joy</string>
+    <string name="saqlangan_videolar">Saqlangan videolar</string>
 </resources>

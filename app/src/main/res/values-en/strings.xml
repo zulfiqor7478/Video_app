@@ -57,7 +57,7 @@
     <string name="edit_profile">Профилни таҳрирлаш</string>
     <string name="lorem">Ушбу дастур ёрдамида автомобиль йўлларидаги қоида бузарликларни видеога тасвирга олиб, пул ишлашингиз мумкин</string>
     <string name="about">Дастур ҳақида</string>
-    <string name="saved_videos">Сақланган видеолар</string>
+    <string name="saved_videos">видеолар</string>
     <string name="videos">Видеолар</string>
     <string name="gallery">Галерея</string>
     <string name="open_map">Харитани очиш</string>
@@ -91,16 +91,18 @@
     <string name="video_sifati">Видео сифати</string>
     <string name="video_davomiyligi">Видео давомийлиги</string>
     <string name="avtomatik_saqlanadigan_video_soni">Автоматик сақланадиган видео сони</string>
-    <string name="kesish">Кесиш</string>
+    <string name="cut">Кесиш</string>
     <string name="_240p">240p</string>
     <string name="_360p">360p</string>
     <string name="_480p">480p</string>
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Кесилган видеолар</string>
-    <string name="information">Информация</string>
-    <string name="xaritadan_ko_rish">Xaritadan ko\'rish</string>
-    <string name="video_joylashuvi">Video joylashuvi</string>
-    <string name="video_ma_lumotlari">Video Ma\'lumotlari</string>
-
+    <string name="information">Information</string>
+    <string name="video_infarmation">Видео маълумотлари</string>
+    <string name="video_hajmi">Видео ҳажми</string>
+    <string name="video_olingan_vaqt">Видео олинган вақт</string>
+    <string name="video_olingan_sana">Видео олинган сана</string>
+    <string name="video_olingan_joy">Видео олинган жой</string>
+    <string name="saqlangan_videolar">Сақланган видеолар</string>
 </resources>

@@ -2,7 +2,6 @@ package uz.innavation.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.media.MediaPlayer
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -83,14 +82,15 @@ class RecyclerViewAdapter internal constructor(
     internal inner class FileLayoutHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var thumbnail: ImageView
         var videoTitle: TextView
-        var videoDuration: TextView
-        var videoSize: TextView
+
+        //var videoDuration: TextView
+       // var videoSize: TextView
 
         init {
             thumbnail = itemView.findViewById(R.id.video_img)
             videoTitle = itemView.findViewById(R.id.video_name)
-            videoDuration = itemView.findViewById(R.id.videoDuration)
-            videoSize = itemView.findViewById(R.id.video_size)
+            //   videoDuration = itemView.findViewById(R.id.videoDuration)
+            //   videoSize = itemView.findViewById(R.id.video_size)
             itemView.setOnClickListener {
                 val uri = Uri.fromFile(arrayList[adapterPosition])
                 onClick.click(uri, adapterPosition)

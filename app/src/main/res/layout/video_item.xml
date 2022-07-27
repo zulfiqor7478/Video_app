@@ -64,7 +64,7 @@
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
             </LinearLayout>
-
+<!--
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -99,7 +99,7 @@
                     android:text="5.00Mb"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
-            </LinearLayout>
+            </LinearLayout>-->
         </LinearLayout>
 
         <LinearLayout
@@ -109,8 +109,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:foreground="?selectableItemBackgroundBorderless"
+                android:clickable="false"
                 android:padding="@dimen/_10sdp"
                 android:src="@drawable/ic_baseline_more_vert_24" />
 

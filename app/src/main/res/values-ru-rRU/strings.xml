@@ -58,7 +58,7 @@
     <string name="edit_profile">Редактировать профиль</string>
     <string name="lorem">С помощью этой программы вы сможете зарабатывать, записывая нарушения ПДД на видео</string>
     <string name="about">О программе</string>
-    <string name="saved_videos">Сохраненные видео</string>
+    <string name="saved_videos">видео</string>
     <string name="videos">Видео</string>
     <string name="gallery">Галерея</string>
     <string name="open_map">Откройте карту</string>
@@ -92,17 +92,18 @@
     <string name="video_sifati">Качество видео</string>
     <string name="video_davomiyligi">Продолжительность видео</string>
     <string name="avtomatik_saqlanadigan_video_soni">Автоматически сохраненный номер видео</string>
-    <string name="kesish">Kesish</string>
+    <string name="cut">Kesish</string>
     <string name="_240p">240p</string>
     <string name="_360p">360p</string>
     <string name="_480p">480p</string>
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Обрезанные видео</string>
-    <string name="information">Информация</string>
-    <string name="xaritadan_ko_rish">Посмотреть c карты</string>
-    <string name="video_joylashuvi">Локация Видео</string>
-    <string name="video_ma_lumotlari">Информации Видео</string>
-
+    <string name="video_infarmation">Видеоданные</string>
+    <string name="video_hajmi">Размер видео</string>
+    <string name="video_olingan_vaqt">Время, когда было снято видео</string>
+    <string name="video_olingan_sana">Дата, когда было снято видео</string>
+    <string name="video_olingan_joy">Где было снято видео</string>
+    <string name="saqlangan_videolar">Сохраненные видео</string>
 
 </resources>
