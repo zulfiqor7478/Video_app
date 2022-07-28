@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import uz.innavation.R
 import uz.innavation.databinding.FragmentVideoBinding
+import uz.innavation.models.TwoMinutesVideo
 import uz.innavation.models.Video
 import uz.innavation.room.AppDatabase
 import uz.innavation.ui.mainActivity.MainActivityViewModel
@@ -332,6 +333,7 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
 
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun startTwoMinutesVideo() {
         try {
             val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
@@ -378,6 +380,19 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 //        viewModel.stopTimer()
                                 val msg = "Video capture succeeded: " +
                                         "${recordEvent.outputResults.outputUri}"
+
+                                val time = SimpleDateFormat("HH:mm").format(Date())
+                                val date = SimpleDateFormat("dd.MM.yyyy").format(Date())
+
+                                AppDatabase.getInstants(binding.root.context).dao().addTwoMinuteVideo(
+                                    TwoMinutesVideo(
+                                        recordEvent.outputResults.outputUri.toString(),
+                                        mCurrentLocation!!.latitude,
+                                        mCurrentLocation!!.longitude,
+                                        time,
+                                        date
+                                    )
+                                )
 
                                 Log.d(TAG, msg)
                                 //  addTextProcess("/storage/emulated/0/DCIM/Camera/magic123.mp4")

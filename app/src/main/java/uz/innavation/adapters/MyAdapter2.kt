@@ -1,98 +1,100 @@
-package uz.innavation
+package uz.innavation.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
-import android.media.MediaPlayer
 import android.net.Uri
-import android.os.Bundle
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import uz.innavation.databinding.FragmentInfoVideoBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import uz.innavation.databinding.VideoItemBinding
+import uz.innavation.models.TwoMinutesVideo
 import uz.innavation.models.Video
 import java.io.File
 
 
-class InfoVideoFragment : Fragment() {
-    lateinit var binding: FragmentInfoVideoBinding
+class MyAdapter2(
+    private val movies: ArrayList<TwoMinutesVideo>, var context: Context,
+    var onClick: OnClick
+) :
+    RecyclerView.Adapter<MyAdapter2.ViewH>() {
 
-    @SuppressLint("SetTextI18n")
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    inner class ViewH(private var itemVideoBinding: VideoItemBinding) :
+        RecyclerView.ViewHolder(itemVideoBinding.root) {
 
-        binding = FragmentInfoVideoBinding.inflate(layoutInflater)
+        @SuppressLint("SetTextI18n")
+        fun onBind(video: TwoMinutesVideo) {
 
-        val video = arguments?.getSerializable("video") as Video
-        binding.latInfo.text = "Latitude: ${video.lat}"
-        binding.lanInfo.text = "Longitude: ${video.longitude}"
+            Glide
+                .with(context)
+                .load(video.uri)
+                .centerCrop()
+                .into(itemVideoBinding.videoImg)
 
-        binding.backBtn.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        val uri =
-            Uri.parse(video.uri)
-        try {
-            val la = getFileFromUri(binding.root.context, uri)
+
+            val uri = Uri.parse(video.uri)
+
+            itemView.setOnClickListener {
+                onClick.click(uri, adapterPosition, video)
+
+            }
+
+//            itemVideoBinding.videoName.text = getFileFromUri(context, uri)!!.name
+        /*    val la = getFileFromUri(context, uri)
             val l = la!!.length() / 1000000
             var a = ""
             if (l < 10) {
                 a = "0"
             }
 
-            binding.storageInfoTxt.text = "$a$l mb"
-        } catch (e: Exception) {
+            itemVideoBinding.videoSize.text = "$a$l mb"
+*/
+/*            try {
+                var durationTime: Long
+                MediaPlayer.create(itemVideoBinding.videoSize.context, uri).also {
+
+                    durationTime = (it.duration / 1000).toLong()
+
+                    it.reset()
+                    it.release()
+                }
+
+
+                val minute = durationTime / 60
+                val second = durationTime % 60
+                var m = ""
+                if (minute < 10) {
+                    m = "0"
+                }
+                var s = ""
+                if (second < 10) {
+                    s = "0"
+                }
+
+                itemVideoBinding.videoDuration.text = "$m${minute}:$s$second"
+
+            } catch (e: Exception) {
+            }*/
+
+
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewH {
+
+        return ViewH(VideoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    }
+
+    override fun getItemCount(): Int {
+        return movies.size
+    }
 
 
-        try {
-            var durationTime: Long
-            MediaPlayer.create(binding.root.context, uri).also {
-
-                durationTime = (it.duration / 1000).toLong()
-
-                it.reset()
-                it.release()
-            }
-
-
-            val minute = durationTime / 60
-            val second = durationTime % 60
-            var m = ""
-            if (minute < 10) {
-                m = "0"
-            }
-            var s = ""
-            if (second < 10) {
-                s = "0"
-            }
-
-            binding.timeInfoTxt.text = "$m${minute}:$s$second"
-
-        } catch (e: Exception) {
-        }
-
-        binding.timeVideoInfoTxt.text = video.time
-        binding.dateVideoInfoTxt.text = video.date
-
-        binding.openMap.setOnClickListener {
-
-            val uri: Uri =
-                Uri.parse("https://maps.google.com/?q=${video.lat},${video.longitude}") // missing 'http://' will cause crashed
-
-            val intent = Intent(Intent.ACTION_VIEW, uri)
-            startActivity(intent)
-        }
-
-
-        return binding.root
+    override fun onBindViewHolder(holder: ViewH, position: Int) {
+        holder.onBind(movies[position])
     }
 
     fun getFileFromUri(context: Context, uri: Uri?): File? {
@@ -156,6 +158,12 @@ class InfoVideoFragment : Fragment() {
             }
         }
         return if (path.isNullOrEmpty()) null else File(path)
+    }
+
+    interface OnClick {
+
+        fun click(uri: Uri, position: Int,video: TwoMinutesVideo)
+
     }
 
 }

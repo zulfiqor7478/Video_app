@@ -90,7 +90,7 @@
         tools:layout="@layout/fragment_trim_videos" />
     <fragment
         android:id="@+id/infoVideoFragment"
-        android:name="uz.innavation.InfoVideoFragment"
+        android:name="uz.innavation.ui.InfoVideoFragment"
         android:label="fragment_info_video"
         tools:layout="@layout/fragment_info_video" />
 </navigation>

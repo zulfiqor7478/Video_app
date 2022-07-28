@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
@@ -17,12 +16,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gowtham.library.utils.TrimVideo
 import uz.innavation.R
-import uz.innavation.adapters.MyAdapter
-import uz.innavation.adapters.RecyclerViewAdapter
+import uz.innavation.adapters.MyAdapter2
 import uz.innavation.databinding.FragmentSavedVideoListBinding
-import uz.innavation.models.Video
+import uz.innavation.models.TwoMinutesVideo
 import uz.innavation.room.AppDatabase
-import uz.innavation.utils.MySharedPreference
 import uz.innavation.utils.setAnimation
 import java.io.File
 
@@ -30,7 +27,7 @@ import java.io.File
 class SavedVideoListFragment : Fragment() {
     lateinit var binding: FragmentSavedVideoListBinding
 
-    lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    lateinit var recyclerViewAdapter: MyAdapter2
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +36,7 @@ class SavedVideoListFragment : Fragment() {
         binding = FragmentSavedVideoListBinding.inflate(layoutInflater)
 
 
-        val arrayList = ArrayList<File>()
+/*        val arrayList = ArrayList<File>()
         val path = Environment.getExternalStorageDirectory().toString() + "/Movies/TwoMinutes/"
         Log.d("Files", "Path: $path")
         val directory = File(path)
@@ -55,18 +52,20 @@ class SavedVideoListFragment : Fragment() {
                 }
 
             }
-        } else Log.d("Null?", "it is null")
+        } else Log.d("Null?", "it is null")*/
 
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
 
+        val all = AppDatabase.getInstants(binding.root.context).dao().getAllTwoMinuteVideo()
+        val arrayList = all as ArrayList<TwoMinutesVideo>
 
-        recyclerViewAdapter = RecyclerViewAdapter(
+        recyclerViewAdapter = MyAdapter2(
             arrayList,
             binding.root.context,
-            object : RecyclerViewAdapter.OnClick {
-                override fun click(uri: Uri, position: Int) {
+            object : MyAdapter2.OnClick {
+                override fun click(uri: Uri, position: Int, video: TwoMinutesVideo) {
 
 
                     val dialog = AlertDialog.Builder(binding.root.context).create()
@@ -109,20 +108,29 @@ class SavedVideoListFragment : Fragment() {
 
                     }
 
-               /*     view.findViewById<View>(R.id.info_btn).setOnClickListener{
+                    view.findViewById<View>(R.id.info_btn).setOnClickListener {
 
                         val bundle = Bundle()
-                        bundle.putSerializable("video",video)
-                        findNavController().navigate(R.id.infoVideoFragment, bundle, setAnimation().build())
+                        bundle.putSerializable("video", video)
+                        findNavController().navigate(
+                            R.id.infoVideoFragment,
+                            bundle,
+                            setAnimation().build()
+                        )
 
                         dialog.cancel()
 
-                    }*/
+                    }
 
                     view.findViewById<View>(R.id.delete_btn).setOnClickListener {
-                        files[position].delete()
-                        arrayList.removeAt(position)
-                        recyclerViewAdapter.notifyItemRemoved(position)
+                        try {
+                            getFileFromUri(binding.root.context, uri)!!.delete()
+                            arrayList.removeAt(position)
+                            recyclerViewAdapter.notifyItemRemoved(position)
+                            AppDatabase.getInstants(binding.root.context).dao()
+                                .deleteTwoMinutesVideo(video)
+                        } catch (e: Exception) {
+                        }
                         dialog.cancel()
 
                     }
