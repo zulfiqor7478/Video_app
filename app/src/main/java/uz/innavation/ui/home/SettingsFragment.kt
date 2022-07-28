@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -19,7 +20,7 @@ import uz.innavation.utils.MySharedPreference
 class SettingsFragment : Fragment() {
     lateinit var binding: FragmentSettingsBinding
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "CutPasteId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,9 +40,9 @@ class SettingsFragment : Fragment() {
             dialog.setView(view)
 
 
-            val button1 = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
+            val button12 = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
 
-            button1.isChecked = true
+            button12.isChecked = true
 
             val radioButton = view.findViewById<RadioGroup>(R.id.radio)
 
@@ -52,11 +53,50 @@ class SettingsFragment : Fragment() {
                 val checkedRadioButtonId = radioButton.checkedRadioButtonId
 
 
-                val button = view.findViewById<RadioButton>(checkedRadioButtonId)
+                val button = view.findViewById<RadioButton>(R.id.radio)
+                val button1 = view.findViewById<RadioButton>(R.id.radio2)
+                val button2 = view.findViewById<RadioButton>(R.id.radio3)
+                val button3 = view.findViewById<RadioButton>(R.id.radio4)
+                val button4 = view.findViewById<RadioButton>(R.id.radio5)
 
-                if (MySharedPreference.videoResolution.toString() == button.text.toString()) {
-                    button.isChecked = true
+                when (MySharedPreference.videoResolutionId) {
+                    1 -> button1.isChecked = true
+                    2 -> button2.isChecked = true
+                    3 -> button3.isChecked = true
+                    4 -> button4.isChecked = true
                 }
+
+                button1.setOnCheckedChangeListener { p0, p1 ->
+
+                    if (p1){
+                        MySharedPreference.videoResolutionId = 1
+                    }
+
+                }
+                button2.setOnCheckedChangeListener { p0, p1 ->
+
+                    if (p1){
+                        MySharedPreference.videoResolutionId = 2
+                    }
+
+                }
+                button3.setOnCheckedChangeListener { p0, p1 ->
+
+                    if (p1){
+                        MySharedPreference.videoResolutionId = 3
+                    }
+
+                }
+                button4.setOnCheckedChangeListener { p0, p1 ->
+
+                    if (p1){
+                        MySharedPreference.videoResolutionId = 4
+                    }
+
+                }
+
+
+
 
                 MySharedPreference.videoResolutionId = checkedRadioButtonId
 
