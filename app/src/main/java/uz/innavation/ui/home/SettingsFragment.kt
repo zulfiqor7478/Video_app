@@ -40,11 +40,63 @@ class SettingsFragment : Fragment() {
             dialog.setView(view)
 
 
-            val button12 = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
+      /*      val button12 = view.findViewById<RadioButton>(MySharedPreference.videoResolutionId!!)
 
-            button12.isChecked = true
+            button12.isChecked = true*/
 
             val radioButton = view.findViewById<RadioGroup>(R.id.radio)
+
+//            val button = view.findViewById<RadioButton>(R.id.radio)
+            val button1 = view.findViewById<RadioButton>(R.id.radio2)
+            val button2 = view.findViewById<RadioButton>(R.id.radio3)
+            val button3 = view.findViewById<RadioButton>(R.id.radio4)
+            val button4 = view.findViewById<RadioButton>(R.id.radio5)
+
+            when (MySharedPreference.videoResolutionId) {
+                1 -> {
+                    button1.isChecked = true
+                }
+                2 -> button2.isChecked = true
+                3 -> button3.isChecked = true
+                4 -> button4.isChecked = true
+            }
+
+            button1.setOnCheckedChangeListener { p0, p1 ->
+
+                if (p1){
+                    MySharedPreference.videoResolutionId = 1
+                    MySharedPreference.videoResolution = button1.text.toString()
+                    binding.hdText.text = MySharedPreference.videoResolution
+                }
+
+            }
+            button2.setOnCheckedChangeListener { p0, p1 ->
+
+                if (p1){
+                    MySharedPreference.videoResolutionId = 2
+                    MySharedPreference.videoResolution = button2.text.toString()
+                    binding.hdText.text = MySharedPreference.videoResolution
+                }
+
+            }
+            button3.setOnCheckedChangeListener { p0, p1 ->
+
+                if (p1){
+                    MySharedPreference.videoResolutionId = 3
+                    MySharedPreference.videoResolution = button3.text.toString()
+                    binding.hdText.text = MySharedPreference.videoResolution
+                }
+
+            }
+            button4.setOnCheckedChangeListener { p0, p1 ->
+
+                if (p1){
+                    MySharedPreference.videoResolutionId = 4
+                    MySharedPreference.videoResolution = button4.text.toString()
+                    binding.hdText.text = MySharedPreference.videoResolution
+                }
+
+            }
 
 
             dialog.setOnCancelListener {
@@ -53,57 +105,12 @@ class SettingsFragment : Fragment() {
                 val checkedRadioButtonId = radioButton.checkedRadioButtonId
 
 
-                val button = view.findViewById<RadioButton>(R.id.radio)
-                val button1 = view.findViewById<RadioButton>(R.id.radio2)
-                val button2 = view.findViewById<RadioButton>(R.id.radio3)
-                val button3 = view.findViewById<RadioButton>(R.id.radio4)
-                val button4 = view.findViewById<RadioButton>(R.id.radio5)
-
-                when (MySharedPreference.videoResolutionId) {
-                    1 -> button1.isChecked = true
-                    2 -> button2.isChecked = true
-                    3 -> button3.isChecked = true
-                    4 -> button4.isChecked = true
-                }
-
-                button1.setOnCheckedChangeListener { p0, p1 ->
-
-                    if (p1){
-                        MySharedPreference.videoResolutionId = 1
-                    }
-
-                }
-                button2.setOnCheckedChangeListener { p0, p1 ->
-
-                    if (p1){
-                        MySharedPreference.videoResolutionId = 2
-                    }
-
-                }
-                button3.setOnCheckedChangeListener { p0, p1 ->
-
-                    if (p1){
-                        MySharedPreference.videoResolutionId = 3
-                    }
-
-                }
-                button4.setOnCheckedChangeListener { p0, p1 ->
-
-                    if (p1){
-                        MySharedPreference.videoResolutionId = 4
-                    }
-
-                }
+            //
 
 
-
-
-                MySharedPreference.videoResolutionId = checkedRadioButtonId
 
                 println("alovuddin: $checkedRadioButtonId")
 
-                MySharedPreference.videoResolution = button.text.toString()
-                binding.hdText.text = MySharedPreference.videoResolution
 
 
             }

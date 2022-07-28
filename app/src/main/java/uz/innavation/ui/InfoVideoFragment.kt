@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import uz.innavation.databinding.FragmentInfoVideoBinding
+import uz.innavation.models.TwoMinutesVideo
 import uz.innavation.models.Video
 import java.io.File
 
@@ -30,7 +31,9 @@ class InfoVideoFragment : Fragment() {
 
         binding = FragmentInfoVideoBinding.inflate(layoutInflater)
 
-        val video = arguments?.getSerializable("video") as Video
+        try {
+        val video = arguments?.getSerializable("videos") as Video
+
         binding.latInfo.text = "Latitude: ${video.lat}"
         binding.lanInfo.text = "Longitude: ${video.longitude}"
 
@@ -90,12 +93,74 @@ class InfoVideoFragment : Fragment() {
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)
         }
+        } catch (e: Exception) {
+            val video = arguments?.getSerializable("videos") as TwoMinutesVideo
 
+            binding.latInfo.text = "Latitude: ${video.lat}"
+            binding.lanInfo.text = "Longitude: ${video.longitude}"
+
+            binding.backBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            val uri =
+                Uri.parse(video.uri)
+            try {
+                val la = getFileFromUri(binding.root.context, uri)
+                val l = la!!.length() / 1000000
+                var a = ""
+                if (l < 10) {
+                    a = "0"
+                }
+
+                binding.storageInfoTxt.text = "$a$l mb"
+            } catch (e: Exception) {
+            }
+
+
+            try {
+                var durationTime: Long
+                MediaPlayer.create(binding.root.context, uri).also {
+
+                    durationTime = (it.duration / 1000).toLong()
+
+                    it.reset()
+                    it.release()
+                }
+
+
+                val minute = durationTime / 60
+                val second = durationTime % 60
+                var m = ""
+                if (minute < 10) {
+                    m = "0"
+                }
+                var s = ""
+                if (second < 10) {
+                    s = "0"
+                }
+
+                binding.timeInfoTxt.text = "$m${minute}:$s$second"
+
+            } catch (e: Exception) {
+            }
+
+            binding.timeVideoInfoTxt.text = video.time
+            binding.dateVideoInfoTxt.text = video.date
+
+            binding.openMap.setOnClickListener {
+
+                val uri: Uri =
+                    Uri.parse("https://maps.google.com/?q=${video.lat},${video.longitude}") // missing 'http://' will cause crashed
+
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                startActivity(intent)
+            }
+        }
 
         return binding.root
     }
 
-    fun getFileFromUri(context: Context, uri: Uri?): File? {
+    private fun getFileFromUri(context: Context, uri: Uri?): File? {
         uri ?: return null
         uri.path ?: return null
 

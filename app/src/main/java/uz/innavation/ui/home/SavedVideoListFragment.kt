@@ -111,7 +111,7 @@ class SavedVideoListFragment : Fragment() {
                     view.findViewById<View>(R.id.info_btn).setOnClickListener {
 
                         val bundle = Bundle()
-                        bundle.putSerializable("video", video)
+                        bundle.putSerializable("videos", video)
                         findNavController().navigate(
                             R.id.infoVideoFragment,
                             bundle,
