@@ -77,6 +77,7 @@ class VideosListFragment : Fragment() {
                         .inflate(R.layout.play_dialog2, null, false)
                     dialog.setView(view)
 
+
                     view.findViewById<LinearLayout>(R.id.play_btn)
                         .setOnClickListener {
 
@@ -134,11 +135,9 @@ class VideosListFragment : Fragment() {
                             recyclerViewAdapter.notifyItemRemoved(position)
                             AppDatabase.getInstants(binding.root.context).dao().deleteVideo(video)
                         } catch (e: Exception) {
-                        }
+                                 }
                         dialog.cancel()
-
                     }
-
                     dialog.setContentView(view)
                     dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
                     dialog.show()

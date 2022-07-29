@@ -14,11 +14,12 @@
     <string name="sms_kodni_kiriting">SMS kodni kiriting</string>
     <string name="kodni_kiriting">Kodni kiriting</string>
     <string name="kodni_qayta_olish">Kodni qayta olish</string>
-    <string name="_00_45">00:45</string>
+    <string name="_00_45">Video Galereyadan o/chib ketgan</string>
     <string name="kirish">Kirish</string>
     <string name="ortga_qaytish">Ortga qaytish</string>
     <string name="ism">Ism</string>
     <string name="familiya">Familiya</string>
+    <string name="open_map">Xaritani ochish</string>
     <string name="sharifi">Sharifi</string>
     <string name="poselka_mavze_ko_cha_uy">Poselka/mavze/ko\'cha/uy</string>
     <string name="pochta_indexi">Pochta indeksi</string>
@@ -54,12 +55,11 @@
     <string name="log_out">Tizimdan chiqish</string>
     <string name="number">+998 99 999 99 99</string>
     <string name="edit_profile">Profilni tahrirlash</string>
-    <string name="lorem">Ushbu dastur yordamida avtomobil yoʻllaridagi qoida buzarliklarni videoga tasvirga olib, pul ishlashingiz mumkin</string>
+    <string name="lorem">Ushbu dastur yordamida qoida buzarliklarni videoga olishingiz mumkin</string>
     <string name="about">Dastur haqida</string>
     <string name="saved_videos">Videolar</string>
     <string name="videos">Videolar</string>
     <string name="gallery">Galereya</string>
-    <string name="open_map">Xaritani ochish</string>
     <string name="_0">0</string>
     <string name="_11_05_2022_17_30">11.05.2022. 17:30</string>
     <string name="fd">--:--</string>
@@ -90,14 +90,15 @@
     <string name="video_sifati">Video sifati</string>
     <string name="video_davomiyligi">Video davomiyligi</string>
     <string name="avtomatik_saqlanadigan_video_soni">Avtomatik saqlanadigan video soni</string>
-    <string name="cut">Kesish</string>
     <string name="_240p">240p</string>
     <string name="_360p">360p</string>
     <string name="_480p">480p</string>
+    <string name="cut">Kesish</string>
+
     <string name="df">720p</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Kesilgan videolar</string>
-    <string name="_720p">720p</string>
+    <string name="_720p" translatable="false">720p</string>
     <string name="information">Information</string>
     <string name="video_hajmi">Video hajmi</string>
     <string name="video_infarmation">Video infarmation</string>
@@ -105,4 +106,6 @@
     <string name="video_olingan_sana">Video olingan sana</string>
     <string name="video_olingan_joy">Video olingan joy</string>
     <string name="saqlangan_videolar">Saqlangan videolar</string>
+    <string name="xaritadan_ko_rish">Xaritadan ko\'rish</string>
+    <string name="video_ma_lumotlari">Video ma\'lumotlari</string>
 </resources>

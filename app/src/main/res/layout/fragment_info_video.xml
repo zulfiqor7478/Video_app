@@ -126,6 +126,7 @@
                             android:background="#D6D6D6" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_55sdp"
@@ -174,6 +175,7 @@
                             android:background="#D6D6D6" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_55sdp"
@@ -191,10 +193,11 @@
                             android:paddingStart="@dimen/_20sdp">
 
                             <TextView
+
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="@string/video_olingan_vaqt"
                                 android:singleLine="true"
+                                android:text="@string/video_olingan_vaqt"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_16sdp"
                                 android:textStyle="bold" />
@@ -223,6 +226,7 @@
                             android:background="#D6D6D6" />
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_55sdp"
@@ -361,8 +365,8 @@
 
                                     <ImageView
                                         android:layout_width="match_parent"
-                                        android:padding="@dimen/_8sdp"
                                         android:layout_height="match_parent"
+                                        android:padding="@dimen/_8sdp"
                                         android:src="@drawable/ic_baseline_location_on_24" />
                                 </androidx.cardview.widget.CardView>
 
@@ -370,7 +374,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="Open map"
+                                    android:text="@string/open_map"
                                     android:textColor="@color/black" />
 
                             </LinearLayout>

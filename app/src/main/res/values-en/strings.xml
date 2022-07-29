@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Havfsiz yo\'l</string>
     <string name="take_photo">Take Photo</string>
     <string name="start_capture">Start Capture</string>
@@ -15,11 +15,11 @@
     <string name="sms_kodni_kiriting">SMS kodni kiriting</string>
     <string name="kodni_kiriting">Kodni kiriting</string>
     <string name="kodni_qayta_olish">Кодни қайта олиш</string>
-    <string name="_00_45">00:45</string>
     <string name="kirish">Кириш</string>
-    <string name="ortga_qaytish">Ортга қайтиш</string>
+    В<string name="ortga_qaytish">Ортга қайтиш</string>
     <string name="ism">Исм</string>
     <string name="familiya">Фамилия</string>
+    <string name="_00_45">Видео галереядан ўчиб кетган</string>
     <string name="sharifi">Шарифи</string>
     <string name="poselka_mavze_ko_cha_uy">Поселка/мавзе/коъча/уй</string>
     <string name="pochta_indexi">Почта индекси</string>
@@ -48,16 +48,16 @@
     <string name="send_code_again">Kодни қайта юбориш</string>
     <string name="_02_12">02:12</string>
     <string name="app_nameee">Havfsiz Yo\'l</string>
-    <string name="yoqubov_otabek">Umid Abdusattorov</string>
+    <string name="yoqubov_otabek">Умид Абдусаттаров</string>
     <string name="setting">Созламалар</string>
     <string name="start">Бошлаш</string>
     <string name="profile">Профил</string>
     <string name="log_out">Тизимдан чиқиш</string>
     <string name="number">+998 99 999 99 99</string>
     <string name="edit_profile">Профилни таҳрирлаш</string>
-    <string name="lorem">Ушбу дастур ёрдамида автомобиль йўлларидаги қоида бузарликларни видеога тасвирга олиб, пул ишлашингиз мумкин</string>
+    <string name="lorem">Ушбу дастур ёрдамида қоида бузарликларни видеога олишингиз мумкин</string>
     <string name="about">Дастур ҳақида</string>
-    <string name="saved_videos">видеолар</string>
+    <string name="saved_videos">Сақланган видеолар</string>
     <string name="videos">Видеолар</string>
     <string name="gallery">Галерея</string>
     <string name="open_map">Харитани очиш</string>
@@ -85,24 +85,26 @@
     <string name="hello_blank_fragment">Salom!</string>
     <string name="_15_soniya">15 сония</string>
     <string name="saqlash">Сақлаш</string>
-
     <string name="ta">та</string>
     <string name="soniya">сония</string>
     <string name="video_sifati">Видео сифати</string>
     <string name="video_davomiyligi">Видео давомийлиги</string>
     <string name="avtomatik_saqlanadigan_video_soni">Автоматик сақланадиган видео сони</string>
-    <string name="cut">Кесиш</string>
     <string name="_240p">240p</string>
     <string name="_360p">360p</string>
     <string name="_480p">480p</string>
     <string name="df">720p</string>
+
+    <string name="cut">Кесиш</string>
     <string name="_1080p_hd">1080p(hd)</string>
     <string name="kesilgan_videolar">Кесилган видеолар</string>
-    <string name="information">Information</string>
+    <string name="information">Малумот</string>
     <string name="video_infarmation">Видео маълумотлари</string>
     <string name="video_hajmi">Видео ҳажми</string>
-    <string name="video_olingan_vaqt">Видео олинган вақт</string>
-    <string name="video_olingan_sana">Видео олинган сана</string>
-    <string name="video_olingan_joy">Видео олинган жой</string>
+    <string name="xaritadan_ko_rish">Харитадан кориш</string>
+    <string name="video_ma_lumotlari">Видео информациялари</string>
+    <string name="video_olingan_vaqt">Видео олинган вақт: </string>
+    <string name="video_olingan_sana">Видео олинган сана: </string>
+    <string name="video_olingan_joy">Видео олинган жой: </string>
     <string name="saqlangan_videolar">Сақланган видеолар</string>
 </resources>

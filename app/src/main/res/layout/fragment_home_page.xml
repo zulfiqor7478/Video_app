@@ -113,12 +113,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:gravity="center|left"
+                            android:gravity="center|start"
                             android:lines="1"
+                            android:maxLines="1"
                             android:text="@string/yoqubov_otabek"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_16sdp"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            tools:ignore="NestedWeights" />
 
                         <TextView
                             android:layout_width="match_parent"
