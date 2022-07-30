@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:keepScreenOn="true"
-    tools:context=".ui.home.TrimVideosFragment">
+    tools:context=".ui.home.SavedVideoListFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/back_btn"

@@ -7,6 +7,7 @@ import android.content.Intent
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
@@ -24,6 +25,7 @@ import uz.innavation.adapters.MyAdapter
 import uz.innavation.databinding.FragmentSavedVideoListBinding
 import uz.innavation.models.Video
 import uz.innavation.room.AppDatabase
+import uz.innavation.utils.MySharedPreference
 import uz.innavation.utils.setAnimation
 import java.io.File
 
@@ -41,7 +43,7 @@ class SavedVideoListFragment : Fragment() {
         binding = FragmentSavedVideoListBinding.inflate(layoutInflater)
 
 
-/*        val arrayList = ArrayList<File>()
+        val arrayList12 = ArrayList<File>()
         val path = Environment.getExternalStorageDirectory().toString() + "/Movies/TwoMinutes/"
         Log.d("Files", "Path: $path")
         val directory = File(path)
@@ -50,15 +52,23 @@ class SavedVideoListFragment : Fragment() {
             Log.d("Files", "Size: " + files.size)
             for (file in files) {
                 Log.d("FILE", file.name)
-                arrayList.add(file)
-                if (arrayList.size > MySharedPreference.automaticVideoCount!!) {
-                    arrayList.removeAt(0)
+                arrayList12.add(file)
+                if (arrayList12.size > MySharedPreference.automaticVideoCount!!) {
+                    arrayList12.removeAt(0)
                     files[0].delete()
                 }
 
             }
-        } else Log.d("Null?", "it is null")*/
+        } else Log.d("Null?", "it is null")
 
+        if (AppDatabase.getInstants(binding.root.context).dao()
+                .getAllVideo(1).size > MySharedPreference.automaticVideoCount!!
+        ) {
+            val list = AppDatabase.getInstants(binding.root.context).dao().getAllVideo(1)
+            for (i in list.indices) {
+                AppDatabase.getInstants(binding.root.context).dao().deleteVideo(list[0])
+            }
+        }
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
