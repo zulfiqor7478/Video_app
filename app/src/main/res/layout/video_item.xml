@@ -59,7 +59,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center|left"
                     android:singleLine="true"
-                    android:text="@string/saved_videos"
+                    android:text="@string/videos"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />

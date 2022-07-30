@@ -7,7 +7,6 @@ import android.content.Intent
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 import android.util.Log
@@ -15,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -23,7 +21,6 @@ import com.gowtham.library.utils.LogMessage
 import com.gowtham.library.utils.TrimVideo
 import uz.innavation.R
 import uz.innavation.adapters.MyAdapter
-import uz.innavation.adapters.RecyclerViewAdapter
 import uz.innavation.databinding.FragmentTrimVideosBinding
 import uz.innavation.models.Video
 import uz.innavation.room.AppDatabase
@@ -68,7 +65,6 @@ class TrimVideosFragment : Fragment() {
         binding.backBtn.setOnClickListener {
             findNavController().popBackStack()
         }
-
 
 
         val all = AppDatabase.getInstants(binding.root.context).dao().getAllVideo(2)
