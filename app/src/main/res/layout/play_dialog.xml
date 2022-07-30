@@ -121,7 +121,9 @@
                 android:layout_height="1dp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
-                android:background="#D6D6D6" />  <LinearLayout
+                android:background="#D6D6D6" />
+
+            <LinearLayout
                 android:id="@+id/cut_btn"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
@@ -220,10 +222,10 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="@dimen/_30sdp"
                 android:clickable="true"
-                android:paddingTop="@dimen/_10sdp"
-                android:paddingBottom="@dimen/_10sdp"
                 android:focusable="true"
                 android:foreground="?selectableItemBackground"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
                 android:text="@string/cancel"
                 android:textColor="@color/main_color"
                 android:textSize="@dimen/_20sdp" />

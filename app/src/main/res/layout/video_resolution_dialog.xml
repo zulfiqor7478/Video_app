@@ -15,17 +15,17 @@
         app:cardElevation="@dimen/_4sdp">
 
         <LinearLayout
-            android:gravity="right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="right"
             android:orientation="vertical"
             android:paddingBottom="@dimen/_20sdp">
 
             <RadioGroup
-                android:layout_marginTop="@dimen/_15sdp"
                 android:id="@+id/radio"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp">
 
 
                 <RadioButton

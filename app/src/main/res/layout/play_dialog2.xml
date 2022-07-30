@@ -215,12 +215,14 @@
                 </LinearLayout>
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:background="#D6D6D6" />
+
             <LinearLayout
                 android:id="@+id/info_btn"
                 android:layout_width="match_parent"

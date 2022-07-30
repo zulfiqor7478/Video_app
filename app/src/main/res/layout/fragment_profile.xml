@@ -121,10 +121,10 @@
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:maxLines="2"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center|left"
+                    android:maxLines="2"
                     android:text="@string/yoqubov_otabek"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp"

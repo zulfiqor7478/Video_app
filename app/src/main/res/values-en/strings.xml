@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Havfsiz yo\'l</string>
     <string name="take_photo">Take Photo</string>
     <string name="start_capture">Start Capture</string>
@@ -16,7 +16,8 @@
     <string name="kodni_kiriting">Kodni kiriting</string>
     <string name="kodni_qayta_olish">Кодни қайта олиш</string>
     <string name="kirish">Кириш</string>
-    В<string name="ortga_qaytish">Ортга қайтиш</string>
+    В
+    <string name="ortga_qaytish">Ортга қайтиш</string>
     <string name="ism">Исм</string>
     <string name="familiya">Фамилия</string>
     <string name="_00_45">Видео галереядан ўчиб кетган</string>

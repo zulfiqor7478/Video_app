@@ -3,16 +3,12 @@ package uz.innavation.adapters
 import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import android.provider.DocumentsContract
-import android.provider.MediaStore
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import uz.innavation.databinding.VideoItemBinding
 import uz.innavation.models.Video
-import java.io.File
 
 
 class MyAdapter(
@@ -42,15 +38,15 @@ class MyAdapter(
             }
 
 //            itemVideoBinding.videoName.text = getFileFromUri(context, uri)!!.name
-        /*    val la = getFileFromUri(context, uri)
-            val l = la!!.length() / 1000000
-            var a = ""
-            if (l < 10) {
-                a = "0"
-            }
+            /*    val la = getFileFromUri(context, uri)
+                val l = la!!.length() / 1000000
+                var a = ""
+                if (l < 10) {
+                    a = "0"
+                }
 
-            itemVideoBinding.videoSize.text = "$a$l mb"
-*/
+                itemVideoBinding.videoSize.text = "$a$l mb"
+    */
 /*            try {
                 var durationTime: Long
                 MediaPlayer.create(itemVideoBinding.videoSize.context, uri).also {
@@ -99,7 +95,7 @@ class MyAdapter(
 
     interface OnClick {
 
-        fun click(uri: Uri, position: Int,video: Video)
+        fun click(uri: Uri, position: Int, video: Video)
 
     }
 
