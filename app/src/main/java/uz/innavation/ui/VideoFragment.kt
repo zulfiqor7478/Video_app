@@ -39,7 +39,6 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import uz.innavation.R
 import uz.innavation.databinding.FragmentVideoBinding
-import uz.innavation.models.TwoMinutesVideo
 import uz.innavation.models.Video
 import uz.innavation.room.AppDatabase
 import uz.innavation.ui.mainActivity.MainActivityViewModel
@@ -282,15 +281,20 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 val time = SimpleDateFormat("HH:mm").format(Date())
                                 val date = SimpleDateFormat("dd.MM.yyyy").format(Date())
 
-                                AppDatabase.getInstants(binding.root.context).dao().addVideo(
-                                    Video(
-                                        recordEvent.outputResults.outputUri.toString(),
-                                        mCurrentLocation!!.latitude,
-                                        mCurrentLocation!!.longitude,
-                                        time,
-                                        date
+
+                                try {
+                                    AppDatabase.getInstants(binding.root.context).dao().addVideo(
+                                        Video(
+                                            recordEvent.outputResults.outputUri.toString(),
+                                            mCurrentLocation?.latitude,
+                                            mCurrentLocation?.longitude,
+                                            time,
+                                            date,
+                                            0
+                                        )
                                     )
-                                )
+                                } catch (e: Exception) {
+                                }
 
 
                                 Log.d(TAG, msg)
@@ -384,15 +388,19 @@ open class VideoFragment : Fragment(), OnMapReadyCallback {
                                 val time = SimpleDateFormat("HH:mm").format(Date())
                                 val date = SimpleDateFormat("dd.MM.yyyy").format(Date())
 
-                                AppDatabase.getInstants(binding.root.context).dao().addTwoMinuteVideo(
-                                    TwoMinutesVideo(
-                                        recordEvent.outputResults.outputUri.toString(),
-                                        mCurrentLocation!!.latitude,
-                                        mCurrentLocation!!.longitude,
-                                        time,
-                                        date
+                                try {
+                                    AppDatabase.getInstants(binding.root.context).dao().addVideo(
+                                        Video(
+                                            recordEvent.outputResults.outputUri.toString(),
+                                            mCurrentLocation?.latitude,
+                                            mCurrentLocation?.longitude,
+                                            time,
+                                            date,
+                                            1
+                                        )
                                     )
-                                )
+                                } catch (e: Exception) {
+                                }
 
                                 Log.d(TAG, msg)
                                 //  addTextProcess("/storage/emulated/0/DCIM/Camera/magic123.mp4")

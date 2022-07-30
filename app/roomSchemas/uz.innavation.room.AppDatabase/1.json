@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e5a2ad16686254f2e6944dc86f42494b",
+    "identityHash": "09dfabf1f637e74a2a5fde1b53f0abfa",
     "entities": [
       {
         "tableName": "Video",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uri` TEXT NOT NULL, `author` REAL NOT NULL, `image` REAL NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY(`uri`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uri` TEXT NOT NULL, `author` REAL, `image` REAL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `type` INTEGER NOT NULL, PRIMARY KEY(`uri`))",
         "fields": [
           {
             "fieldPath": "uri",
@@ -18,13 +18,13 @@
             "fieldPath": "lat",
             "columnName": "author",
             "affinity": "REAL",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "longitude",
             "columnName": "image",
             "affinity": "REAL",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "time",
@@ -37,49 +37,11 @@
             "columnName": "description",
             "affinity": "TEXT",
             "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "uri"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "TwoMinutesVideo",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uri` TEXT NOT NULL, `author` REAL NOT NULL, `image` REAL NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, PRIMARY KEY(`uri`))",
-        "fields": [
-          {
-            "fieldPath": "uri",
-            "columnName": "uri",
-            "affinity": "TEXT",
-            "notNull": true
           },
           {
-            "fieldPath": "lat",
-            "columnName": "author",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "longitude",
-            "columnName": "image",
-            "affinity": "REAL",
-            "notNull": true
-          },
-          {
-            "fieldPath": "time",
-            "columnName": "title",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "date",
-            "columnName": "description",
-            "affinity": "TEXT",
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
             "notNull": true
           }
         ],
@@ -96,7 +58,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e5a2ad16686254f2e6944dc86f42494b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '09dfabf1f637e74a2a5fde1b53f0abfa')"
     ]
   }
 }

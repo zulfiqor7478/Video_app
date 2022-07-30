@@ -1,7 +1,10 @@
 package uz.innavation.ui.home
 
+import android.app.Activity
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
 import android.provider.DocumentsContract
@@ -14,11 +17,12 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.gowtham.library.utils.LogMessage
 import com.gowtham.library.utils.TrimVideo
 import uz.innavation.R
-import uz.innavation.adapters.MyAdapter2
+import uz.innavation.adapters.MyAdapter
 import uz.innavation.databinding.FragmentSavedVideoListBinding
-import uz.innavation.models.TwoMinutesVideo
+import uz.innavation.models.Video
 import uz.innavation.room.AppDatabase
 import uz.innavation.utils.setAnimation
 import java.io.File
@@ -27,7 +31,8 @@ import java.io.File
 class SavedVideoListFragment : Fragment() {
     lateinit var binding: FragmentSavedVideoListBinding
 
-    lateinit var recyclerViewAdapter: MyAdapter2
+    lateinit var recyclerViewAdapter: MyAdapter
+    var uriString = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,14 +63,16 @@ class SavedVideoListFragment : Fragment() {
             findNavController().popBackStack()
         }
 
-        val all = AppDatabase.getInstants(binding.root.context).dao().getAllTwoMinuteVideo()
-        val arrayList = all as ArrayList<TwoMinutesVideo>
+        val all = AppDatabase.getInstants(binding.root.context).dao().getAllVideo(1)
+        val arrayList = all as ArrayList<Video>
 
-        recyclerViewAdapter = MyAdapter2(
+        recyclerViewAdapter = MyAdapter(
             arrayList,
             binding.root.context,
-            object : MyAdapter2.OnClick {
-                override fun click(uri: Uri, position: Int, video: TwoMinutesVideo) {
+            object : MyAdapter.OnClick {
+                override fun click(uri: Uri, position: Int, video: Video) {
+
+                    uriString = video.uri
 
 
                     val dialog = AlertDialog.Builder(binding.root.context).create()
@@ -128,7 +135,7 @@ class SavedVideoListFragment : Fragment() {
                             arrayList.removeAt(position)
                             recyclerViewAdapter.notifyItemRemoved(position)
                             AppDatabase.getInstants(binding.root.context).dao()
-                                .deleteTwoMinutesVideo(video)
+                                .deleteVideo(video)
                         } catch (e: Exception) {
                         }
                         dialog.cancel()
@@ -215,5 +222,49 @@ class SavedVideoListFragment : Fragment() {
         return if (path.isNullOrEmpty()) null else File(path)
     }
 
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK &&
+            data != null && requestCode == 324
+        ) {
+            val videoFile = File(TrimVideo.getTrimmedVideoPath(data))
+            Log.d(TAG, "Trimmed path:: ${data.data}")
+            MediaScannerConnection.scanFile(
+                binding.root.context, arrayOf(videoFile.absolutePath), null
+            ) { _: String?, uri: Uri ->
+                Log.i(
+                    TAG,
+                    uri.toString()
+                )
+                println("lalalalalalala2: $uri")
+                val allVideo = AppDatabase.getInstants(binding.root.context).dao().getAllVideo(1)
+
+                println("lalalalalalala: $uri")
+                for (video in allVideo.indices) {
+
+                    if (allVideo[video].uri == uriString) {
+                        AppDatabase.getInstants(binding.root.context).dao().addVideo(
+                            Video(
+                                uri.toString(),
+                                allVideo[video].lat,
+                                allVideo[video].longitude,
+                                allVideo[video].time,
+                                allVideo[video].date,
+                                2
+                            )
+                        )
+
+                    }
+
+
+                }
+            }
+
+
+        } else LogMessage.v("videoTrimResultLauncher data is null")
+
+    }
 
 }

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
@@ -61,7 +60,7 @@ class SettingsFragment : Fragment() {
                 4 -> button4.isChecked = true
             }
 
-            button1.setOnCheckedChangeListener { p0, p1 ->
+            button1.setOnCheckedChangeListener { _, p1 ->
 
                 if (p1){
                     MySharedPreference.videoResolutionId = 1
@@ -70,7 +69,7 @@ class SettingsFragment : Fragment() {
                 }
 
             }
-            button2.setOnCheckedChangeListener { p0, p1 ->
+            button2.setOnCheckedChangeListener { _, p1 ->
 
                 if (p1){
                     MySharedPreference.videoResolutionId = 2
@@ -79,7 +78,7 @@ class SettingsFragment : Fragment() {
                 }
 
             }
-            button3.setOnCheckedChangeListener { p0, p1 ->
+            button3.setOnCheckedChangeListener { _, p1 ->
 
                 if (p1){
                     MySharedPreference.videoResolutionId = 3
@@ -88,7 +87,7 @@ class SettingsFragment : Fragment() {
                 }
 
             }
-            button4.setOnCheckedChangeListener { p0, p1 ->
+            button4.setOnCheckedChangeListener { _, p1 ->
 
                 if (p1){
                     MySharedPreference.videoResolutionId = 4

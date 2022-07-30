@@ -1,7 +1,10 @@
 package uz.innavation.ui.home
 
+import android.app.Activity
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
 import android.provider.DocumentsContract
@@ -11,9 +14,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.gowtham.library.utils.LogMessage
 import com.gowtham.library.utils.TrimVideo
 import uz.innavation.R
 import uz.innavation.adapters.MyAdapter
@@ -28,6 +33,7 @@ class VideosListFragment : Fragment() {
 
     lateinit var binding: FragmentVideosListBinding
     lateinit var recyclerViewAdapter: MyAdapter
+    var uriString = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +68,7 @@ class VideosListFragment : Fragment() {
 */
 
 
-        val all = AppDatabase.getInstants(binding.root.context).dao().getAllVideo()
+        val all = AppDatabase.getInstants(binding.root.context).dao().getAllVideo(0)
         val arrayList = all as ArrayList<Video>
 
         recyclerViewAdapter = MyAdapter(
@@ -72,6 +78,7 @@ class VideosListFragment : Fragment() {
                 override fun click(uri: Uri, position: Int, video: Video) {
 
 
+                    uriString = video.uri
                     val dialog = AlertDialog.Builder(binding.root.context).create()
                     val view = LayoutInflater.from(binding.root.context)
                         .inflate(R.layout.play_dialog2, null, false)
@@ -215,6 +222,51 @@ class VideosListFragment : Fragment() {
             }
         }
         return if (path.isNullOrEmpty()) null else File(path)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK &&
+            data != null && requestCode == 324
+        ) {
+            val videoFile = File(TrimVideo.getTrimmedVideoPath(data))
+            Log.d(ContentValues.TAG, "Trimmed path:: ${data.data}")
+            MediaScannerConnection.scanFile(
+                binding.root.context, arrayOf(videoFile.absolutePath), null
+            ) { _: String?, uri: Uri ->
+                Log.i(
+                    ContentValues.TAG,
+                    uri.toString()
+                )
+                println("lalalalalalala2: $uri")
+                val allVideo = AppDatabase.getInstants(binding.root.context).dao().getAllVideo(0)
+
+                val filepath = uri.toString()
+                println("lalalalalalala: $uri")
+                for (video in allVideo.indices) {
+
+                    if (allVideo[video].uri == uriString) {
+                        AppDatabase.getInstants(binding.root.context).dao().addVideo(
+                            Video(
+                                uri.toString(),
+                                allVideo[video].lat,
+                                allVideo[video].longitude,
+                                allVideo[video].time,
+                                allVideo[video].date,
+                                2
+                            )
+                        )
+
+                    }
+
+
+                }
+            }
+
+
+        } else LogMessage.v("videoTrimResultLauncher data is null")
+
     }
 
 

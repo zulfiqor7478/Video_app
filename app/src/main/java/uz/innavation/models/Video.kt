@@ -12,12 +12,14 @@ data class Video(
     @PrimaryKey
     val uri: String,
     @ColumnInfo(name = "author")
-    val lat: Double,
+    val lat: Double?,
     @ColumnInfo(name = "image")
-    val longitude: Double,
+    val longitude: Double?,
     @ColumnInfo(name = "title")
     val time: String,
     @ColumnInfo(name = "description")
     val date: String,
+    @ColumnInfo(name = "type")
+    val type: Int,
 
     ) : Serializable
